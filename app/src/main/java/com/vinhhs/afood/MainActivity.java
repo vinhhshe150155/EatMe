@@ -1,6 +1,7 @@
 package com.vinhhs.afood;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -105,10 +106,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 currentFragment = FRAGMENT_LIST_RECIPE;
             }
         }else if(id == R.id.signout){
-            if(currentFragment != FRAGMENT_SIGNOUT){
-                replaceFragment(new ListRecipeFragment());
-                currentFragment = FRAGMENT_LIST_RECIPE;
-            }
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(this, SignInActivity.class);
+            startActivity(intent);
+            finish();
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
