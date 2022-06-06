@@ -1,6 +1,7 @@
 package com.vinhhs.afood;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -80,10 +81,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 currentFragment = FRAGMENT_LIST_RECIPE;
             }
         }else if(id == R.id.signout){
-            if(currentFragment != FRAGMENT_SIGNOUT){
-                replaceFragment(new ListRecipeFragment());
-                currentFragment = FRAGMENT_LIST_RECIPE;
-            }
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(this, SignInActivity.class);
+            startActivity(intent);
+            finish();
         }else if(id == R.id.language){
             if(currentFragment != FRAGMENT_LANGUAGE){
                 replaceFragment(new LanguageFragment());
