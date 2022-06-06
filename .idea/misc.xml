@@ -5,24 +5,28 @@
       <map>
         <entry key="..\:/Users/vinh1/AndroidStudioProjects/AFood/app/src/main/res/drawable-anydpi/ic_menu.xml" value="0.1905" />
         <entry key="..\:/Users/vinh1/AndroidStudioProjects/AFood/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1585" />
+        <entry key="..\:/Users/vinh1/AndroidStudioProjects/AFood/app/src/main/res/drawable/gradient.xml" value="0.1935" />
         <entry key="..\:/Users/vinh1/AndroidStudioProjects/AFood/app/src/main/res/drawable/ic_baseline_elderly_24.xml" value="0.1585" />
         <entry key="..\:/Users/vinh1/AndroidStudioProjects/AFood/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1905" />
         <entry key="..\:/Users/vinh1/AndroidStudioProjects/AFood/app/src/main/res/drawable/ic_remove_background.xml" value="0.1905" />
         <entry key="..\:/Users/vinh1/AndroidStudioProjects/AFood/app/src/main/res/drawable/mealtype_shape.xml" value="0.1905" />
         <entry key="..\:/Users/vinh1/AndroidStudioProjects/AFood/app/src/main/res/drawable/search_ingredient_bg.xml" value="0.1905" />
         <entry key="..\:/Users/vinh1/AndroidStudioProjects/AFood/app/src/main/res/drawable/selected_mealtype.xml" value="0.1905" />
+        <entry key="..\:/Users/vinh1/AndroidStudioProjects/AFood/app/src/main/res/drawable/shape_suggest_ingre_background.xml" value="0.22" />
+        <entry key="..\:/Users/vinh1/AndroidStudioProjects/AFood/app/src/main/res/drawable/suggest_ingre_shape.xml" value="0.22" />
         <entry key="..\:/Users/vinh1/AndroidStudioProjects/AFood/app/src/main/res/font/siro_font.xml" value="0.35833333333333334" />
         <entry key="..\:/Users/vinh1/AndroidStudioProjects/AFood/app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="..\:/Users/vinh1/AndroidStudioProjects/AFood/app/src/main/res/layout/activity_main2.xml" value="0.14895833333333333" />
         <entry key="..\:/Users/vinh1/AndroidStudioProjects/AFood/app/src/main/res/layout/activity_sign_in.xml" value="0.18229166666666666" />
         <entry key="..\:/Users/vinh1/AndroidStudioProjects/AFood/app/src/main/res/layout/activity_sign_up.xml" value="0.18229166666666666" />
         <entry key="..\:/Users/vinh1/AndroidStudioProjects/AFood/app/src/main/res/layout/activity_splash.xml" value="0.18229166666666666" />
-        <entry key="..\:/Users/vinh1/AndroidStudioProjects/AFood/app/src/main/res/layout/fragment_home.xml" value="0.5" />
+        <entry key="..\:/Users/vinh1/AndroidStudioProjects/AFood/app/src/main/res/layout/fragment_home.xml" value="0.22" />
+        <entry key="..\:/Users/vinh1/AndroidStudioProjects/AFood/app/src/main/res/layout/fragment_language.xml" value="0.1546875" />
         <entry key="..\:/Users/vinh1/AndroidStudioProjects/AFood/app/src/main/res/layout/fragment_list_recipe.xml" value="0.14895833333333333" />
         <entry key="..\:/Users/vinh1/AndroidStudioProjects/AFood/app/src/main/res/layout/header_navigattion_drawer.xml" value="0.14895833333333333" />
         <entry key="..\:/Users/vinh1/AndroidStudioProjects/AFood/app/src/main/res/layout/item_ingredient_search.xml" value="0.33" />
-        <entry key="..\:/Users/vinh1/AndroidStudioProjects/AFood/app/src/main/res/layout/item_ingredient_suggestion.xml" value="0.18229166666666666" />
-        <entry key="..\:/Users/vinh1/AndroidStudioProjects/AFood/app/src/main/res/layout/item_suggest_mealtype.xml" value="0.5" />
+        <entry key="..\:/Users/vinh1/AndroidStudioProjects/AFood/app/src/main/res/layout/item_ingredient_suggestion.xml" value="0.22" />
+        <entry key="..\:/Users/vinh1/AndroidStudioProjects/AFood/app/src/main/res/layout/item_suggest_mealtype.xml" value="0.25" />
         <entry key="..\:/Users/vinh1/AndroidStudioProjects/AFood/app/src/main/res/layout/layout_header_nav.xml" value="0.25" />
         <entry key="..\:/Users/vinh1/AndroidStudioProjects/AFood/app/src/main/res/layout/layout_main.xml" value="0.14895833333333333" />
         <entry key="..\:/Users/vinh1/AndroidStudioProjects/AFood/app/src/main/res/menu/header_menu.xml" value="0.14895833333333333" />

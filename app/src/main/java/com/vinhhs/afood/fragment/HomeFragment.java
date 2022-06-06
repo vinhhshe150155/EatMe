@@ -1,5 +1,6 @@
 package com.vinhhs.afood.fragment;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -8,6 +9,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -23,8 +25,11 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -39,18 +44,20 @@ import com.vinhhs.afood.model.ApiFoodResponse;
 import com.vinhhs.afood.model.Ingredient;
 import com.vinhhs.afood.model.MealType;
 import com.vinhhs.afood.util.ListIngredient;
+import com.vinhhs.afood.util.MealTypeScroll;
 import com.vinhhs.afood.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 
 public class HomeFragment extends Fragment {
-    private Button button;
+    private CardView cvFindRecipe;
     private LinearLayout layoutIngredientSuggest;
     private List<MealType> mealTypes;
     private List<Ingredient> searchIngredient;
@@ -62,6 +69,8 @@ public class HomeFragment extends Fragment {
     private DrawerLayout drawerLayout;
     private ConstraintLayout layoutMain;
     private MealType mealType;
+    private TextView tvTitile;
+    private HorizontalScrollView hrvIngredient;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -72,15 +81,18 @@ public class HomeFragment extends Fragment {
         bindingAction();
         return view;
     }
+
     private void initUI(View view) {
-        button = view.findViewById(R.id.button);
+        cvFindRecipe = view.findViewById(R.id.card_view);
         layoutIngredientSuggest = view.findViewById(R.id.linear_ingredient_suggest);
         rcvMealType = view.findViewById(R.id.main_activity_rcv_mealtype);
         svIngregient = view.findViewById(R.id.main_sv_search_ingredients);
         drawerLayout = view.findViewById(R.id.drawerlayout);
+        tvTitile = view.findViewById(R.id.tv_title);
         rcvIngredientSearch = view.findViewById(R.id.main_activity_rcv_search_ingredient);
         layoutMain = view.findViewById(R.id.layout_main);
         svIngregient.clearFocus();
+        hrvIngredient = view.findViewById(R.id.layout_ingredient_suggest);
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL);
         rcvIngredientSearch.addItemDecoration(itemDecoration);
         rcvIngredientSearch.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false));
@@ -106,6 +118,24 @@ public class HomeFragment extends Fragment {
         SuggestMealTypeAdapter mealTypeAdapter = new SuggestMealTypeAdapter(mealTypes, requireContext(), mtype -> mealType = mtype);
         rcvMealType.setAdapter(mealTypeAdapter);
         rcvMealType.setLayoutManager(staggeredGridLayoutManager);
+//        rcvMealType.setOnScrollListener(new MealTypeScroll() {
+//            @Override
+//            public void show() {
+//                ObjectAnimator animation = ObjectAnimator.ofFloat(tvTitile, "translationY", 0);
+//                animation.setDuration(500);
+//                animation.start();
+////                Toast.makeText(requireContext(), "SHOW", Toast.LENGTH_SHORT).show();
+//                tvTitile.setVisibility(View.VISIBLE);
+//            }
+//            @Override
+//            public void hide() {
+//                ObjectAnimator animation = ObjectAnimator.ofFloat(tvTitile, "translationY", -200f);
+//                animation.setDuration(500);
+//                animation.start();
+//                tvTitile.setVisibility(View.GONE);
+////                Toast.makeText(requireContext(), "HIDE", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     private void initSuggestListIngredientLayout() {
@@ -129,26 +159,28 @@ public class HomeFragment extends Fragment {
 
     private void initMealType() {
         mealTypes = new ArrayList<>();
-        mealTypes.add(new MealType("main course", R.drawable.breakfast));
-        mealTypes.add(new MealType("side dish", R.drawable.breakfast));
-        mealTypes.add(new MealType("dessert", R.drawable.breakfast));
-        mealTypes.add(new MealType("appetizer", R.drawable.breakfast));
-        mealTypes.add(new MealType("salad", R.drawable.breakfast));
-        mealTypes.add(new MealType("bread", R.drawable.breakfast));
-        mealTypes.add(new MealType("breakfast", R.drawable.breakfast));
-        mealTypes.add(new MealType("soup", R.drawable.breakfast));
-        mealTypes.add(new MealType("beverage", R.drawable.breakfast));
-        mealTypes.add(new MealType("sauce", R.drawable.breakfast));
-        mealTypes.add(new MealType("marinade", R.drawable.breakfast));
-        mealTypes.add(new MealType("fingerfood", R.drawable.breakfast));
-        mealTypes.add(new MealType("snack", R.drawable.breakfast));
-        mealTypes.add(new MealType("drink", R.drawable.breakfast));
+        mealTypes.add(new MealType("main course", R.drawable.breakfast, R.string.main_course));
+        mealTypes.add(new MealType("side dish", R.drawable.ic_menu, R.string.main_course));
+        mealTypes.add(new MealType("dessert", R.drawable.ic_menu, R.string.main_course));
+        mealTypes.add(new MealType("appetizer", R.drawable.ic_avt, R.string.main_course));
+        mealTypes.add(new MealType("salad", R.drawable.ic_menu, R.string.main_course));
+        mealTypes.add(new MealType("bread", R.drawable.breakfast, R.string.main_course));
+        mealTypes.add(new MealType("breakfast", R.drawable.breakfast, R.string.main_course));
+        mealTypes.add(new MealType("soup", R.drawable.breakfast, R.string.main_course));
+        mealTypes.add(new MealType("beverage", R.drawable.breakfast, R.string.main_course));
+        mealTypes.add(new MealType("sauce", R.drawable.breakfast, R.string.main_course));
+        mealTypes.add(new MealType("marinade", R.drawable.breakfast, R.string.main_course));
+        mealTypes.add(new MealType("fingerfood", R.drawable.breakfast, R.string.main_course));
+        mealTypes.add(new MealType("snack", R.drawable.breakfast, R.string.main_course));
+        mealTypes.add(new MealType("drink", R.drawable.breakfast, R.string.main_course));
 
     }
 
     private void closeKeyboard() {
         MainActivity mainActivity = (MainActivity) getActivity();
-        mainActivity.closeKeyboard();
+        if (mainActivity != null) {
+            mainActivity.closeKeyboard();
+        }
     }
 
     private void initRandomIngredients() {
@@ -173,7 +205,7 @@ public class HomeFragment extends Fragment {
 
     private void bindingAction() {
         layoutMain.setOnClickListener(view -> closeKeyboard());
-        button.setOnClickListener(this::callApi);
+        cvFindRecipe.setOnClickListener(this::callApi);
         svIngregient.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -185,7 +217,7 @@ public class HomeFragment extends Fragment {
             public boolean onQueryTextChange(String newText) {
                 filterList(newText);
                 rcvIngredientSearch.setVisibility(View.VISIBLE);
-                Toast.makeText(requireContext(), newText, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(requireContext(), newText, Toast.LENGTH_SHORT).show();
                 return false;
             }
         });
@@ -199,7 +231,7 @@ public class HomeFragment extends Fragment {
             }
         }
         if (filterIngredientList.isEmpty()) {
-            Toast.makeText(requireContext(), "No", Toast.LENGTH_SHORT).show();
+            Toast.makeText(requireContext(), "Empty", Toast.LENGTH_SHORT).show();
         } else {
             searchIngredientAdapter.setIngredientList(filterIngredientList);
         }
@@ -217,7 +249,7 @@ public class HomeFragment extends Fragment {
             public void onResponse(@NonNull Call<ApiFoodResponse> call, @NonNull Response<ApiFoodResponse> response) {
                 ApiFoodResponse results = response.body();
                 if (results != null) {
-                    Toast.makeText(requireContext(), results.getResults().get(0).getTitle(), Toast.LENGTH_SHORT).show();
+                    Toasty.info(requireContext(), results.getResults().get(0).getTitle(), Toast.LENGTH_SHORT, true).show();
                 }
 //                textView.setText(response.body().toString());
             }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="@dimen/_140sdp"
-    android:layout_height="@dimen/_160sdp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:background="@drawable/mealtype_shape"
     android:layout_margin="@dimen/_8sdp"
     android:orientation="vertical">
@@ -10,8 +10,13 @@
         android:src="@drawable/breakfast"
         android:id="@+id/img_suggest_mealtype"
         android:contentDescription="@string/app_name"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_100sdp" />
+        android:layout_width="@dimen/_130sdp"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/_100sdp"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:maxHeight="@dimen/_200sdp"
+         />
     <TextView
         android:gravity="center"
         android:id="@+id/tv_suggest_mealtype"

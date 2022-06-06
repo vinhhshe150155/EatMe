@@ -6,70 +6,87 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="#FCF7F3"
+    android:background="@drawable/gradient"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/tv_title"
-        android:fontFamily="@font/siro_font"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_12sdp"
-        android:text="What is LMAO?"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:fontFamily="@font/siro_font"
+        android:text="@string/suggestion_question"
         android:textSize="@dimen/_17ssp"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/main_sv_search_ingredients"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_8sdp"
-        android:layout_marginTop="@dimen/_12sdp"
-        android:background="@drawable/search_ingredient_bg"
-        app:iconifiedByDefault="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_title"
-        app:queryHint="Search..." />
 
     <HorizontalScrollView
         android:id="@+id/layout_ingredient_suggest"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/_8sdp"
-        android:layout_marginTop="@dimen/_3sdp"
-        android:scrollbars="horizontal"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:layout_marginRight="@dimen/_8sdp"
+        android:background="@drawable/suggest_ingre_shape"
+        android:scrollbars="none"
         app:layout_constraintTop_toBottomOf="@id/main_sv_search_ingredients">
 
         <LinearLayout
             android:id="@+id/linear_ingredient_suggest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:orientation="horizontal" />
     </HorizontalScrollView>
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/main_sv_search_ingredients"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_24sdp"
+        android:layout_margin="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:background="@drawable/search_ingredient_bg"
+        app:iconifiedByDefault="false"
+        android:theme="@style/SearchViewStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title"
+        app:queryHint="Search..." />
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_activity_rcv_mealtype"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/_140sdp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_ingredient_suggest" />
 
-
-    <Button
-        android:id="@+id/button"
+    <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
         android:layout_width="200dp"
-        android:layout_height="64dp"
-        android:text="Button"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:backgroundTint="@color/violet"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        card_view:cardCornerRadius="4dp">
+
+        <TextView
+            android:id="@+id/info_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/find_recipe"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+    </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_activity_rcv_search_ingredient"
