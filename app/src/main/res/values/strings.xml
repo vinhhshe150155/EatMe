@@ -1,6 +1,13 @@
 <resources>
-    <string name="app_name">AFood</string>
+    <string name="app_name">Bruh</string>
     <string name="notification_channel_id">push_notification_id</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="suggestion_question">What is LMAO?</string>
+    <string name="main_course">Main Course</string>
+    <string name="find_recipe">Find Recipe</string>
+    <string name="home">Home</string>
+
+    <string name="settings">Settings</string>
+    <string name="sign_out">Sign out</string>
+    <string name="saved">Saved</string>
 </resources>

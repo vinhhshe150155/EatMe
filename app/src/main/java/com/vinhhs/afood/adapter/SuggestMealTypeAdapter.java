@@ -3,6 +3,7 @@ package com.vinhhs.afood.adapter;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,8 +44,9 @@ public class SuggestMealTypeAdapter extends RecyclerView.Adapter<SuggestMealType
     @Override
     public void onBindViewHolder(@NonNull SuggestionMealTypeViewHolder holder, int position) {
         MealType mealType = mealTypes.get(position);
-        holder.tvMealType.setText(StringUtil.toCaptalizedString(mealType.getName()));
-        holder.imgMealType.setImageResource(R.drawable.ic_baseline_elderly_24);
+        Resources res = context.getResources();
+        holder.tvMealType.setText(res.getString(mealType.getStrResource()));
+        holder.imgMealType.setImageResource(mealType.getImage());
         holder.itemView.setOnClickListener(view -> {
             holder.itemView.animate()
                     .rotationX(360)
@@ -65,7 +67,7 @@ public class SuggestMealTypeAdapter extends RecyclerView.Adapter<SuggestMealType
                 holder.itemView.setBackgroundResource(R.drawable.selected_mealtype);
             }
             onClickItemMealType.onClickItemMealType(mealType);
-            Toast.makeText(context, holder.tvMealType.getText().toString(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, mealType.getName(), Toast.LENGTH_SHORT).show();
         });
     }
 

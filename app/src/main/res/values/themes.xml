@@ -22,4 +22,7 @@
         <item name="colorSecondaryVariant">@color/floral_white</item>
         <item name="colorOnSecondary">@color/floral_white</item>
     </style>
+    <style name="SearchViewStyle" parent="Widget.AppCompat.Light.SearchView">
+        <item name="android:textSize">@dimen/_12ssp</item>
+    </style>
 </resources>

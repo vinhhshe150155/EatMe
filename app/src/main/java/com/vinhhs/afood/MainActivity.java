@@ -3,62 +3,34 @@ package com.vinhhs.afood;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.vinhhs.afood.adapter.SearchIngredientAdapter;
-import com.vinhhs.afood.adapter.SuggestMealTypeAdapter;
-import com.vinhhs.afood.foodinterface.IClickItemIngredient;
 import com.vinhhs.afood.fragment.HomeFragment;
+import com.vinhhs.afood.fragment.LanguageFragment;
 import com.vinhhs.afood.fragment.ListRecipeFragment;
-import com.vinhhs.afood.model.ApiFoodResponse;
-import com.vinhhs.afood.model.Ingredient;
-import com.vinhhs.afood.model.MealType;
-import com.vinhhs.afood.util.ListIngredient;
-import com.vinhhs.afood.util.StringUtil;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    private static final int FRAGMENT_LANGUAGE = 3;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private static final int FRAGMENT_HOME = 0;
     private static final int FRAGMENT_LIST_RECIPE = 1;
     private static final int FRAGMENT_SIGNOUT = 2;
     private int currentFragment = FRAGMENT_HOME;
+    private Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +55,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = findViewById(R.id.drawerlayout);
         navigationView = findViewById(R.id.nav_main);
         navigationView.setNavigationItemSelectedListener(this);
+        toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("");
     }
 
     public void closeKeyboard() {
@@ -92,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             manager.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
@@ -110,15 +85,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(this, SignInActivity.class);
             startActivity(intent);
             finish();
+        }else if(id == R.id.language){
+            if(currentFragment != FRAGMENT_LANGUAGE){
+                replaceFragment(new LanguageFragment());
+                currentFragment = FRAGMENT_LANGUAGE;
+            }
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
     private void replaceFragment(Fragment fragment){
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_replace, fragment);
         transaction.commit();
     }
+
     @Override
     public void onBackPressed() {
         if(drawerLayout.isDrawerOpen(GravityCompat.START)){
