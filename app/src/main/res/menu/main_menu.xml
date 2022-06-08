@@ -8,7 +8,7 @@
     </group>
     <item android:title="@string/app_name">
         <menu>
-            <item android:id="@+id/language" android:title="@string/settings"
+            <item android:id="@+id/settíngs" android:title="@string/settings"
                 android:icon="@drawable/ic_baseline_elderly_24"/>
             <item android:id="@+id/signout" android:title="@string/sign_out"
                 android:icon="@drawable/ic_baseline_elderly_24"/>

@@ -75,7 +75,6 @@ public class SignInActivity extends AppCompatActivity {
 //        getString(R.string.default_web_client_id)
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         mAuth = FirebaseAuth.getInstance();
-
     }
 
     @Override
@@ -116,27 +115,25 @@ public class SignInActivity extends AppCompatActivity {
                     progressDialog.dismiss();
                     if (task.isSuccessful()) {
                         Intent intent = new Intent(SignInActivity.this, MainActivity.class);
-                        startActivity(intent);
                         finishAffinity();
+                        startActivity(intent);
                     } else {
-                        Toast.makeText(SignInActivity.this, "Authentication failed.",
-                                Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignInActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
     private void firebaseAuthWithGoogle(String idToken) {
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, task -> {
-                    if (task.isSuccessful()) {
-                        Intent intent = new Intent(SignInActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finishAffinity();
-                    } else {
-                        Log.w(TAG, "signInWithCredential:failure", task.getException());
-                    }
-                });
+        mAuth.signInWithCredential(credential).addOnCompleteListener(this, task -> {
+            if (task.isSuccessful()) {
+                Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+                finishAffinity();
+                startActivity(intent);
+            } else {
+                Log.w(TAG, "signInWithCredential:failure", task.getException());
+            }
+        });
     }
 
     private void signInWithGoogle() {
