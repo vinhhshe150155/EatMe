@@ -2,12 +2,24 @@
     <string name="app_name">Bruh</string>
     <string name="notification_channel_id">push_notification_id</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="suggestion_question">What is LMAO?</string>
+    <string name="suggestion_question">What to cook?</string>
     <string name="main_course">Main Course</string>
     <string name="find_recipe">Find Recipe</string>
     <string name="home">Home</string>
-
     <string name="settings">Settings</string>
     <string name="sign_out">Sign out</string>
     <string name="saved">Saved</string>
+    <string name="size_dish">Size Dish</string>
+    <string name="dessert">Dessert</string>
+    <string name="appetizer">Appetizer</string>
+    <string name="salad">Salad</string>
+    <string name="bread">Bread</string>
+    <string name="breakfast">Breakfast</string>
+    <string name="soup">Soup</string>
+    <string name="beverage">Beverage</string>
+    <string name="sauce">Sauce</string>
+    <string name="fingerfood">Fingerfood</string>
+    <string name="marinade">Marinade</string>
+    <string name="snack">Snack</string>
+    <string name="drink">Drink</string>
 </resources>

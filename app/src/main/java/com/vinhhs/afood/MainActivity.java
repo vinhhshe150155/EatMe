@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -16,6 +17,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.android.material.navigation.NavigationView;
 import com.vinhhs.afood.fragment.HomeFragment;
@@ -23,7 +25,7 @@ import com.vinhhs.afood.fragment.LanguageFragment;
 import com.vinhhs.afood.fragment.ListRecipeFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    private static final int FRAGMENT_LANGUAGE = 3;
+    private static final int FRAGMENT_SETTINGS = 3;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private static final int FRAGMENT_HOME = 0;
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static final int FRAGMENT_SIGNOUT = 2;
     private int currentFragment = FRAGMENT_HOME;
     private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         initUI();
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout, toolbar, R.string.app_name,  R.string.app_name);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
         replaceFragment(new HomeFragment());
         navigationView.getMenu().findItem(R.id.home).setChecked(true);
         drawerLayout.addDrawerListener(toggle);
@@ -70,32 +73,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        if(id == R.id.home){
-            if(currentFragment != FRAGMENT_HOME){
+        if (id == R.id.home) {
+            if (currentFragment != FRAGMENT_HOME) {
                 replaceFragment(new HomeFragment());
                 currentFragment = FRAGMENT_HOME;
             }
-        }else if(id == R.id.list_saved){
-            if(currentFragment != FRAGMENT_LIST_RECIPE){
+        } else if (id == R.id.list_saved) {
+            if (currentFragment != FRAGMENT_LIST_RECIPE) {
                 replaceFragment(new ListRecipeFragment());
                 currentFragment = FRAGMENT_LIST_RECIPE;
             }
-        }else if(id == R.id.signout){
+        } else if (id == R.id.signout) {
             FirebaseAuth.getInstance().signOut();
             Intent intent = new Intent(this, SignInActivity.class);
             startActivity(intent);
             finish();
-        }else if(id == R.id.language){
-            if(currentFragment != FRAGMENT_LANGUAGE){
+        } else if (id == R.id.settíngs) {
+            if (currentFragment != FRAGMENT_SETTINGS) {
                 replaceFragment(new LanguageFragment());
-                currentFragment = FRAGMENT_LANGUAGE;
+                currentFragment = FRAGMENT_SETTINGS;
             }
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    private void replaceFragment(Fragment fragment){
+    private void replaceFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_replace, fragment);
         transaction.commit();
@@ -103,9 +106,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
-        }else{
+        } else {
             super.onBackPressed();
         }
     }

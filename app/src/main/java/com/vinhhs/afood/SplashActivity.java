@@ -30,16 +30,8 @@ public class SplashActivity extends AppCompatActivity {
         if (lang == null) {
             lang = Locale.getDefault().getLanguage();
         }
-//        Locale locale = new Locale(lang);
-//        Locale.setDefault(locale);
-//        Configuration config = this.resources.getConfiguration();
-//        config.setLocale(locale);
-//        this.createConfigurationContext(config);
-//        this.resources.updateConfiguration(config, this.resources.getDisplayMetrics());
-//        context = LocaleHelper.setLocale(this, lang);
-//        resources = context.getResources();
         Handler handler = new Handler();
-        handler.postDelayed(this::nextActivity, 1000);
+        handler.postDelayed(this::nextActivity, 4500);
         setAppLocale(this, lang);
         setContentView(R.layout.activity_splash);
 

@@ -24,5 +24,9 @@
     </style>
     <style name="SearchViewStyle" parent="Widget.AppCompat.Light.SearchView">
         <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="android:editTextColor">@color/white</item>
+        <item name="android:color">@color/white</item>
     </style>
 </resources>

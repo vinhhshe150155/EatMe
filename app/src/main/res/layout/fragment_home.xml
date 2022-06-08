@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@drawable/gradient"
+    android:background="#14462D
+"
     tools:context=".MainActivity">
 
     <TextView
@@ -18,6 +19,8 @@
         android:text="@string/suggestion_question"
         android:textSize="@dimen/_17ssp"
         android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_marginBottom="@dimen/_3sdp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,10 +28,9 @@
         android:id="@+id/layout_ingredient_suggest"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_8sdp"
+        android:layout_marginLeft="@dimen/_16sdp"
         android:layout_marginTop="@dimen/_4sdp"
-        android:layout_marginRight="@dimen/_8sdp"
-        android:background="@drawable/suggest_ingre_shape"
+        android:layout_marginRight="@dimen/_16sdp"
         android:scrollbars="none"
         app:layout_constraintTop_toBottomOf="@id/main_sv_search_ingredients">
 
@@ -43,9 +45,11 @@
     <androidx.appcompat.widget.SearchView
         android:id="@+id/main_sv_search_ingredients"
         android:layout_width="0dp"
-        android:layout_height="@dimen/_24sdp"
-        android:layout_margin="@dimen/_8sdp"
-        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_height="@dimen/_32sdp"
+        android:layout_marginLeft="@dimen/_16sdp"
+        android:layout_marginRight="@dimen/_16sdp"
+        app:searchIcon="@drawable/ic_search"
+        android:layout_marginTop="@dimen/_4sdp"
         android:background="@drawable/search_ingredient_bg"
         app:iconifiedByDefault="false"
         android:theme="@style/SearchViewStyle"
@@ -62,11 +66,13 @@
         android:layout_height="wrap_content"
         android:clipToPadding="false"
         android:paddingBottom="@dimen/_140sdp"
+        android:layout_marginTop="@dimen/_4sdp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_ingredient_suggest" />
 
-    <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    <com.google.android.material.card.MaterialCardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/card_view"
         android:layout_width="200dp"
         android:layout_height="@dimen/_30sdp"
@@ -76,8 +82,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        card_view:cardCornerRadius="4dp">
-
+        app:cardCornerRadius="@dimen/_4sdp"
+       >
         <TextView
             android:id="@+id/info_text"
             android:layout_width="match_parent"
@@ -86,7 +92,7 @@
             android:text="@string/find_recipe"
             android:textColor="@color/white"
             android:textStyle="bold" />
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_activity_rcv_search_ingredient"
