@@ -3,6 +3,7 @@ package com.vinhhs.afood;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +21,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseUser;
 import com.vinhhs.afood.fragment.HomeFragment;
 import com.vinhhs.afood.fragment.LanguageFragment;
 import com.vinhhs.afood.fragment.ListRecipeFragment;
@@ -33,15 +35,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static final int FRAGMENT_SIGNOUT = 2;
     private int currentFragment = FRAGMENT_HOME;
     private Toolbar toolbar;
-
+    private TextView tvUsername;
+    private TextView tvEmail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initUI();
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        Toolbar toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
+        showUser();
         replaceFragment(new HomeFragment());
         navigationView.getMenu().findItem(R.id.home).setChecked(true);
         drawerLayout.addDrawerListener(toggle);
@@ -58,8 +62,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = findViewById(R.id.drawerlayout);
         navigationView = findViewById(R.id.nav_main);
         navigationView.setNavigationItemSelectedListener(this);
-        toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("");
+//        toolbar = findViewById(R.id.toolbar);
+        View layout = LayoutInflater.from(this).inflate(R.layout.layout_header_nav, null, false);
+        View headerView = navigationView.getHeaderView(0);
+        tvUsername = headerView.findViewById(R.id.drawerlayout_tv_username);
+        tvEmail = headerView.findViewById(R.id.drawerlayout_tv_email);
+//        toolbar.setTitle("");
     }
 
     public void closeKeyboard() {
@@ -111,5 +119,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else {
             super.onBackPressed();
         }
+    }
+    private void showUser() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) {
+            return;
+        }
+        String name = user.getDisplayName();
+        String email = user.getEmail();
+        tvUsername.setText(name);
+        tvEmail.setText(email);
+    }
+    public void openDrawer() {
+        drawerLayout.openDrawer(GravityCompat.START);
     }
 }

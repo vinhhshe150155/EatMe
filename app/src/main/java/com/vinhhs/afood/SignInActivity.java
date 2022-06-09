@@ -69,10 +69,10 @@ public class SignInActivity extends AppCompatActivity {
         btnSignInGoogle = findViewById(R.id.btnSignInGoogle);
         progressDialog = new ProgressDialog(this);
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("164966780531-nd5bgk2sfjde7s6u1f8qjvi4ut0pkj6h.apps.googleusercontent.com")
+                .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
-//        getString(R.string.default_web_client_id)
+//
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         mAuth = FirebaseAuth.getInstance();
     }

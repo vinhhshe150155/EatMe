@@ -2,6 +2,7 @@ package com.vinhhs.afood.fragment;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -22,6 +24,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.google.android.material.card.MaterialCardView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.vinhhs.afood.ApiService;
 import com.vinhhs.afood.MainActivity;
 import com.vinhhs.afood.R;
@@ -32,6 +36,7 @@ import com.vinhhs.afood.model.Ingredient;
 import com.vinhhs.afood.model.MealType;
 import com.vinhhs.afood.model.Recipe;
 import com.vinhhs.afood.util.ListIngredient;
+import com.vinhhs.afood.util.NetworkUtil;
 import com.vinhhs.afood.util.StringUtil;
 
 import java.util.ArrayList;
@@ -58,8 +63,8 @@ public class HomeFragment extends Fragment {
     private MealType mealType;
     private TextView tvTitile;
     private HorizontalScrollView hrvIngredient;
-    private TextView tvUsername;
-    private TextView tvEmail;
+    private ImageView imgMenu;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -72,13 +77,12 @@ public class HomeFragment extends Fragment {
     }
 
     private void initUI(View view) {
-        tvUsername = view.findViewById(R.id.tv_username);
-        tvEmail = view.findViewById(R.id.tv_email);
+        drawerLayout = getActivity().findViewById(R.id.drawerlayout);
+        imgMenu = view.findViewById(R.id.img_home_menu);
         cvFindRecipe = view.findViewById(R.id.card_view);
         layoutIngredientSuggest = view.findViewById(R.id.linear_ingredient_suggest);
         rcvMealType = view.findViewById(R.id.main_activity_rcv_mealtype);
         svIngregient = view.findViewById(R.id.main_sv_search_ingredients);
-        drawerLayout = view.findViewById(R.id.drawerlayout);
         tvTitile = view.findViewById(R.id.tv_title);
         rcvIngredientSearch = view.findViewById(R.id.main_activity_rcv_search_ingredient);
         layoutMain = view.findViewById(R.id.layout_main);
@@ -102,7 +106,6 @@ public class HomeFragment extends Fragment {
         initRandomIngredients();
         initSuggestListIngredientLayout();
         initMealTypeRcv();
-        showUser();
     }
 
     private void initMealTypeRcv() {
@@ -126,7 +129,6 @@ public class HomeFragment extends Fragment {
         imageView.setOnClickListener(view -> {
             layoutIngredientSuggest.removeView(viewItem);
             searchIngredient.remove(ingredient);
-            Toast.makeText(requireContext(), Integer.toString(searchIngredient.size()), Toast.LENGTH_SHORT).show();
         });
         layoutIngredientSuggest.addView(viewItem);
     }
@@ -191,6 +193,12 @@ public class HomeFragment extends Fragment {
                 return false;
             }
         });
+        imgMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
     }
 
     private void filterList(String newText) {
@@ -208,6 +216,10 @@ public class HomeFragment extends Fragment {
     }
 
     private void callApi(View view) {
+        if (!NetworkUtil.isNetworkAvailable(requireContext())) {
+            Toasty.normal(requireContext(), "No internet connection.").show();
+            return;
+        }
         ApiService.apiService.getListRecipe(true, true, 10, getSearchIngredient(), false).enqueue(new Callback<ApiFoodResponse>() {
             @Override
             public void onResponse(@NonNull Call<ApiFoodResponse> call, @NonNull Response<ApiFoodResponse> response) {
@@ -230,14 +242,5 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    private void showUser() {
-//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//        if (user == null) {
-//            return;
-//        }
-//        String name = user.getDisplayName();
-//        String email = user.getEmail();
-//        tvUsername.setText(name);
-//        tvEmail.setText(email);
-    }
+
 }

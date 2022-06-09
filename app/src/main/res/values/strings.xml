@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Bruh</string>
+    <string name="app_name">날 먹어</string>
     <string name="notification_channel_id">push_notification_id</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="suggestion_question">What to cook?</string>

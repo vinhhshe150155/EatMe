@@ -6,23 +6,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="#14462D
-"
+    android:background="#14462D"
     tools:context=".MainActivity">
-
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_toolbar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp">
+        <ImageView
+            android:id="@+id/img_home_menu"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_marginStart="@dimen/_12sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/menu"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_12sdp"
-        android:fontFamily="@font/siro_font"
+        android:fontFamily="@font/jost_regular"
         android:text="@string/suggestion_question"
-        android:textSize="@dimen/_17ssp"
+        android:textSize="@dimen/_20ssp"
         android:textStyle="bold"
         android:textColor="@color/white"
         android:layout_marginBottom="@dimen/_3sdp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/layout_toolbar" />
 
     <HorizontalScrollView
         android:id="@+id/layout_ingredient_suggest"
@@ -48,7 +63,7 @@
         android:layout_height="@dimen/_32sdp"
         android:layout_marginLeft="@dimen/_16sdp"
         android:layout_marginRight="@dimen/_16sdp"
-        app:searchIcon="@drawable/ic_search"
+        app:searchIcon="@drawable/search"
         android:layout_marginTop="@dimen/_4sdp"
         android:background="@drawable/search_ingredient_bg"
         app:iconifiedByDefault="false"
