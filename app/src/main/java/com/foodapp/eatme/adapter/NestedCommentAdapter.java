@@ -14,6 +14,7 @@ import com.foodapp.eatme.model.ChildComment;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -24,6 +25,16 @@ public class NestedCommentAdapter extends RecyclerView.Adapter<NestedCommentAdap
     public NestedCommentAdapter(Map<String, ChildComment> comments, IClickNestedComment iClickNestedComment) {
         childCommentMap = comments;
         childCommentList = new ArrayList<>(childCommentMap.values());
+        Collections.sort(childCommentList, (c1, c2) -> {
+            if (c1.getTimestamp() > c2.getTimestamp()) {
+                return 1;
+            }
+            if (c1.getTimestamp() == c2.getTimestamp()) {
+                return 0;
+            }
+            return -1;
+
+        });
         this.iClickNestedComment = iClickNestedComment;
     }
 
@@ -39,12 +50,11 @@ public class NestedCommentAdapter extends RecyclerView.Adapter<NestedCommentAdap
         ChildComment comment = childCommentList.get(position);
         holder.tvContent.setText(comment.getContent());
         holder.tvUsername.setText(comment.getUsername());
-        holder.tvReply.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                iClickNestedComment.onClickReplyNestedComment1(comment);
-            }
-        });
+        if(comment.getUsername() != null && !comment.getUsername().trim().equals("")){
+            holder.tvReplyUsername.setText(comment.getUserReply());
+        }
+
+        holder.tvReply.setOnClickListener(view -> iClickNestedComment.onClickReplyNestedComment1(comment));
     }
 
     @Override
@@ -56,12 +66,14 @@ public class NestedCommentAdapter extends RecyclerView.Adapter<NestedCommentAdap
         private TextView tvContent;
         private TextView tvUsername;
         private TextView tvReply;
+        private TextView tvReplyUsername;
 
         public NestedCommentViewHolder(@NonNull View itemView) {
             super(itemView);
             tvReply = itemView.findViewById(R.id.tv_reply);
             tvContent = itemView.findViewById(R.id.tv_content);
             tvUsername = itemView.findViewById(R.id.tv_username);
+            tvReplyUsername = itemView.findViewById(R.id.tv_reply_user);
         }
     }
 

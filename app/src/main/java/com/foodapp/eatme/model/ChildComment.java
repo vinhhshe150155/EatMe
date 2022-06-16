@@ -7,6 +7,15 @@ public class ChildComment {
     private long timestamp;
     private String username;
     private String parentId;
+    private String userReply;
+
+    public String getUserReply() {
+        return userReply;
+    }
+
+    public void setUserReply(String userReply) {
+        this.userReply = userReply;
+    }
 
     public String getParentId() {
         return parentId;
