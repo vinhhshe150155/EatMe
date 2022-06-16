@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="#14462D"
+    tools:context=".activity.MainActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_toolbar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp">
+        <ImageView
+            android:id="@+id/img_home_menu"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_marginStart="@dimen/_12sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/menu"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:fontFamily="@font/jost_regular"
+        android:text="@string/suggestion_question"
+        android:textSize="@dimen/_20ssp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_marginBottom="@dimen/_3sdp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_toolbar" />
+
+    <HorizontalScrollView
+        android:id="@+id/layout_ingredient_suggest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:layout_marginRight="@dimen/_16sdp"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@id/main_sv_search_ingredients">
+
+        <LinearLayout
+            android:id="@+id/linear_ingredient_suggest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:orientation="horizontal" />
+    </HorizontalScrollView>
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/main_sv_search_ingredients"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_32sdp"
+        android:layout_marginLeft="@dimen/_16sdp"
+        android:layout_marginRight="@dimen/_16sdp"
+        app:searchIcon="@drawable/search"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:background="@drawable/search_ingredient_bg"
+        app:iconifiedByDefault="false"
+        android:theme="@style/SearchViewStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title"
+        app:queryHint="Search..." />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/main_activity_rcv_mealtype"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/_140sdp"
+        android:layout_marginTop="@dimen/_4sdp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_ingredient_suggest" />
+
+    <com.google.android.material.card.MaterialCardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/card_view"
+        android:layout_width="200dp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:backgroundTint="@color/violet"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:cardCornerRadius="@dimen/_4sdp"
+       >
+        <TextView
+            android:id="@+id/info_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/find_recipe"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/main_activity_rcv_search_ingredient"
+        android:layout_width="@dimen/_290sdp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_sv_search_ingredients" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

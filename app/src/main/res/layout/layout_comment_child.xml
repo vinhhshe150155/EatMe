@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView
+        android:id="@+id/tv_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_8sdp"
+        android:text="@string/app_name"
+        android:textColor="@color/black"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_8sdp"
+        android:text="@string/app_name"
+        android:textColor="@color/black"
+        app:layout_constraintLeft_toRightOf="@id/tv_username"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/tv_reply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="reply"
+        android:textColor="@color/black"
+        android:layout_marginLeft="@dimen/_8sdp"
+        app:layout_constraintLeft_toLeftOf="@id/tv_username"
+        app:layout_constraintTop_toBottomOf="@id/tv_username" />
+</androidx.constraintlayout.widget.ConstraintLayout>

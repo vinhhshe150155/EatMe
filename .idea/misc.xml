@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2115" />
+        <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/font/siro_font.xml" value="0.21197916666666666" />
+        <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/layout/activity_list_recipe.xml" value="0.18229166666666666" />
+        <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/layout/activity_main.xml" value="0.1757852077001013" />
+        <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/layout/activity_recipe.xml" value="0.18229166666666666" />
+        <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/layout/activity_sign_in.xml" value="0.18229166666666666" />
+        <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/layout/activity_sign_up.xml" value="0.18229166666666666" />
+        <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/layout/activity_splash.xml" value="0.18229166666666666" />
+        <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/layout/fragment_home.xml" value="0.18229166666666666" />
+        <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/layout/fragment_language.xml" value="0.18229166666666666" />
+        <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/layout/fragment_list_recipe.xml" value="0.18229166666666666" />
+        <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/layout/header_navigattion_drawer.xml" value="0.18229166666666666" />
+        <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/layout/item_ingredient_search.xml" value="0.18229166666666666" />
+        <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/layout/item_ingredient_suggestion.xml" value="0.18229166666666666" />
+        <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/layout/item_recipe_layout.xml" value="0.18229166666666666" />
+        <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/layout/item_suggest_mealtype.xml" value="0.18229166666666666" />
+        <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/layout/layout_comment.xml" value="0.18229166666666666" />
+        <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/layout/layout_comment_child.xml" value="0.18229166666666666" />
+        <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/layout/layout_header_nav.xml" value="0.18229166666666666" />
+        <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/layout/layout_step.xml" value="0.18229166666666666" />
+        <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/menu/main_menu.xml" value="0.18177083333333333" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
