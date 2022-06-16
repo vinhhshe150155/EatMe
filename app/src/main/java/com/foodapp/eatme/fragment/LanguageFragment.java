@@ -21,7 +21,6 @@ public class LanguageFragment extends Fragment {
     Resources resources;
     private Button btnEnglish;
     private Button btnKor;
-    private Button btnTest;
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -29,7 +28,6 @@ public class LanguageFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_language, container, false);
         btnEnglish = view.findViewById(R.id.btn_english);
         btnKor = view.findViewById(R.id.btn_kOr);
-        btnTest = view.findViewById(R.id.btn_test);
         bindingAction();
         return view;
     }
@@ -45,8 +43,10 @@ public class LanguageFragment extends Fragment {
             context = LocaleHelper.setLocale(requireContext(), "ko");
             resources = context.getResources();
             Intent intent = new Intent(getActivity(), SplashActivity.class);
-            getActivity().finishAffinity();
-            startActivity(intent);
+            if(getActivity()!=null){
+                getActivity().finishAffinity();
+                startActivity(intent);
+            }
         });
     }
 

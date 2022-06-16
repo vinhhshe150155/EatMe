@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -45,13 +44,10 @@ public class HomeFragment extends Fragment {
     private List<Ingredient> allIngredients;
     private RecyclerView rcvMealType;
     private RecyclerView rcvIngredientSearch;
-    private SearchView svIngregient;
+    private SearchView svIngredient;
     private SearchIngredientAdapter searchIngredientAdapter;
     private DrawerLayout drawerLayout;
     private ConstraintLayout layoutMain;
-    private MealType mealType;
-    private TextView tvTitile;
-    private HorizontalScrollView hrvIngredient;
     private ImageView imgMenu;
 
 
@@ -66,24 +62,24 @@ public class HomeFragment extends Fragment {
     }
 
     private void initUI(View view) {
-        drawerLayout = getActivity().findViewById(R.id.drawerlayout);
+        if(getActivity()!=null){
+            drawerLayout = getActivity().findViewById(R.id.drawerlayout);
+        }
         imgMenu = view.findViewById(R.id.img_home_menu);
         cvFindRecipe = view.findViewById(R.id.card_view);
         layoutIngredientSuggest = view.findViewById(R.id.linear_ingredient_suggest);
         rcvMealType = view.findViewById(R.id.main_activity_rcv_mealtype);
-        svIngregient = view.findViewById(R.id.main_sv_search_ingredients);
-        tvTitile = view.findViewById(R.id.tv_title);
+        svIngredient = view.findViewById(R.id.main_sv_search_ingredients);
         rcvIngredientSearch = view.findViewById(R.id.main_activity_rcv_search_ingredient);
         layoutMain = view.findViewById(R.id.layout_main);
-        svIngregient.clearFocus();
-        hrvIngredient = view.findViewById(R.id.layout_ingredient_suggest);
+        svIngredient.clearFocus();
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(requireContext(), DividerItemDecoration.HORIZONTAL);
         rcvIngredientSearch.addItemDecoration(itemDecoration);
         rcvIngredientSearch.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false));
         searchIngredientAdapter = new SearchIngredientAdapter(ingredient -> {
             searchIngredient.add(ingredient);
             addIngredientView(ingredient);
-            svIngregient.setQuery("", false);
+            svIngredient.setQuery("", false);
             rcvIngredientSearch.setVisibility(View.GONE);
         });
         rcvIngredientSearch.setAdapter(searchIngredientAdapter);
@@ -99,7 +95,7 @@ public class HomeFragment extends Fragment {
 
     private void initMealTypeRcv() {
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-        SuggestMealTypeAdapter mealTypeAdapter = new SuggestMealTypeAdapter(mealTypes, requireContext(), mtype -> mealType = mtype);
+        SuggestMealTypeAdapter mealTypeAdapter = new SuggestMealTypeAdapter(mealTypes, requireContext());
         rcvMealType.setAdapter(mealTypeAdapter);
         rcvMealType.setLayoutManager(staggeredGridLayoutManager);
     }
@@ -168,7 +164,7 @@ public class HomeFragment extends Fragment {
     private void bindingAction() {
         layoutMain.setOnClickListener(view -> closeKeyboard());
         cvFindRecipe.setOnClickListener(this::onCvFindRecipeClicked);
-        svIngregient.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        svIngredient.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 rcvIngredientSearch.setVisibility(View.GONE);
@@ -182,12 +178,7 @@ public class HomeFragment extends Fragment {
                 return false;
             }
         });
-        imgMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                drawerLayout.openDrawer(GravityCompat.START);
-            }
-        });
+        imgMenu.setOnClickListener(view -> drawerLayout.openDrawer(GravityCompat.START));
     }
 
     private void onCvFindRecipeClicked(View view) {

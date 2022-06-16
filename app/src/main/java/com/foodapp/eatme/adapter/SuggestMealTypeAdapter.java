@@ -20,12 +20,10 @@ import java.util.List;
 public class SuggestMealTypeAdapter extends RecyclerView.Adapter<SuggestMealTypeAdapter.SuggestionMealTypeViewHolder> {
     private final List<MealType> mealTypes;
     private final Context context;
-    private final IClickItemMealType onClickItemMealType;
 
-    public SuggestMealTypeAdapter(List<MealType> mealTypes, Context context, IClickItemMealType onClickItemMealType) {
+    public SuggestMealTypeAdapter(List<MealType> mealTypes, Context context) {
         this.mealTypes = mealTypes;
         this.context = context;
-        this.onClickItemMealType = onClickItemMealType;
     }
 
     @NonNull

@@ -36,7 +36,8 @@ public class SignUpActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         edtNickname = findViewById(R.id.edtNickname);
     }
-    private void bindingAction(){
+
+    private void bindingAction() {
         btnSignIn.setOnClickListener(view -> onClickSignUp());
     }
 
@@ -51,15 +52,17 @@ public class SignUpActivity extends AppCompatActivity {
                         FirebaseUser user = auth.getCurrentUser();
                         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                                 .setDisplayName(edtNickname.getText().toString().trim()).build();
-                        user.updateProfile(profileUpdates)
-                                .addOnCompleteListener(task1 -> {
-                                    progressDialog.dismiss();
-                                    if (task1.isSuccessful()) {
-                                        Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
-                                        startActivity(intent);
-                                        finishAffinity();
-                                    }
-                                });
+                        if (user != null) {
+                            user.updateProfile(profileUpdates)
+                                    .addOnCompleteListener(task1 -> {
+                                        progressDialog.dismiss();
+                                        if (task1.isSuccessful()) {
+                                            Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+                                            startActivity(intent);
+                                            finishAffinity();
+                                        }
+                                    });
+                        }
                     } else {
                         Toast.makeText(SignUpActivity.this, "FAILED", Toast.LENGTH_SHORT).show();
                     }

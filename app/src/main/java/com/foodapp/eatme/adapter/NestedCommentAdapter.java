@@ -1,11 +1,13 @@
 package com.foodapp.eatme.adapter;
 
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.foodapp.eatme.R;
@@ -15,26 +17,17 @@ import com.foodapp.eatme.model.ChildComment;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
 public class NestedCommentAdapter extends RecyclerView.Adapter<NestedCommentAdapter.NestedCommentViewHolder> {
-    private Map<String, ChildComment> childCommentMap;
-    private List<ChildComment> childCommentList;
+    private final List<ChildComment> childCommentList;
     private final IClickNestedComment iClickNestedComment;
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public NestedCommentAdapter(Map<String, ChildComment> comments, IClickNestedComment iClickNestedComment) {
-        childCommentMap = comments;
-        childCommentList = new ArrayList<>(childCommentMap.values());
-        Collections.sort(childCommentList, (c1, c2) -> {
-            if (c1.getTimestamp() > c2.getTimestamp()) {
-                return 1;
-            }
-            if (c1.getTimestamp() == c2.getTimestamp()) {
-                return 0;
-            }
-            return -1;
-
-        });
+        childCommentList = new ArrayList<>(comments.values());
+        Collections.sort(childCommentList, Comparator.comparingLong(ChildComment::getTimestamp));
         this.iClickNestedComment = iClickNestedComment;
     }
 
@@ -62,11 +55,11 @@ public class NestedCommentAdapter extends RecyclerView.Adapter<NestedCommentAdap
         return (childCommentList != null) ? childCommentList.size() : 0;
     }
 
-    public class NestedCommentViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvContent;
-        private TextView tvUsername;
-        private TextView tvReply;
-        private TextView tvReplyUsername;
+    public static class NestedCommentViewHolder extends RecyclerView.ViewHolder {
+        private final TextView tvContent;
+        private final TextView tvUsername;
+        private final TextView tvReply;
+        private final TextView tvReplyUsername;
 
         public NestedCommentViewHolder(@NonNull View itemView) {
             super(itemView);
