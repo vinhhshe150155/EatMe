@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SearchIngredientAdapter extends RecyclerView.Adapter<SearchIngredientAdapter.SearchIngredientViewHolder> {
-    private List<Ingredient> ingredients = new ArrayList<>();
+    private final List<Ingredient> ingredients = new ArrayList<>();
     private final IClickItemIngredient iClickItemIngredient;
 
     public SearchIngredientAdapter(IClickItemIngredient iClickItemIngredient) {

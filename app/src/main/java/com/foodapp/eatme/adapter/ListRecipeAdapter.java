@@ -18,8 +18,8 @@ import com.foodapp.eatme.model.Recipe;
 import java.util.List;
 
 public class ListRecipeAdapter extends RecyclerView.Adapter<ListRecipeAdapter.ListRecipeViewHolder> {
-    private List<Recipe> recipes;
-    private Context context;
+    private final List<Recipe> recipes;
+    private final Context context;
     public ListRecipeAdapter(List<Recipe> recipes, Context context){
         this.recipes = recipes;
         this.context = context;
@@ -50,7 +50,7 @@ public class ListRecipeAdapter extends RecyclerView.Adapter<ListRecipeAdapter.Li
     }
 
     public static class ListRecipeViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvRecipeName;
+        private final TextView tvRecipeName;
 
         public ListRecipeViewHolder(@NonNull View itemView) {
             super(itemView);

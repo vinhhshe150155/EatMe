@@ -3,7 +3,6 @@ package com.foodapp.eatme.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,7 +12,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -38,9 +36,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView navigationView;
     private static final int FRAGMENT_HOME = 0;
     private static final int FRAGMENT_LIST_RECIPE = 1;
-    private static final int FRAGMENT_SIGNOUT = 2;
     private int currentFragment = FRAGMENT_HOME;
-    private Toolbar toolbar;
+//    private Toolbar toolbar;
     private TextView tvUsername;
     private TextView tvEmail;
 
@@ -49,13 +46,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initUI();
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, null, R.string.app_name, R.string.app_name);
         showUser();
         replaceFragment(new HomeFragment());
         navigationView.getMenu().findItem(R.id.home).setChecked(true);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        addUserIfnotExist();
+        addUserIfNotExist();
     }
 
     @Override
@@ -68,7 +65,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = findViewById(R.id.drawerlayout);
         navigationView = findViewById(R.id.nav_main);
         navigationView.setNavigationItemSelectedListener(this);
-        View layout = LayoutInflater.from(this).inflate(R.layout.layout_header_nav, null, false);
         View headerView = navigationView.getHeaderView(0);
         tvUsername = headerView.findViewById(R.id.drawerlayout_tv_username);
         tvEmail = headerView.findViewById(R.id.drawerlayout_tv_email);
@@ -136,16 +132,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         tvEmail.setText(email);
     }
 
-    public void openDrawer() {
-        drawerLayout.openDrawer(GravityCompat.START);
-    }
-
-    private void addUserIfnotExist() {
+    private void addUserIfNotExist() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if(user==null){
+            return;
+        }
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference().child("user").child(user.getUid());
         rootRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot snapshot) {
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.getValue() == null) {
                     DatabaseReference db = FirebaseDatabase.getInstance().getReference();
                     DatabaseReference users = db.child("user").child(user.getUid());

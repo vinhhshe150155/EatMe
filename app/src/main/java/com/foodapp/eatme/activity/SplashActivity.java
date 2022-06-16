@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -21,8 +20,7 @@ import java.util.Locale;
 
 @SuppressLint("CustomSplashScreen")
 public class SplashActivity extends AppCompatActivity {
-    Context context;
-    Resources resources;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,15 +48,14 @@ public class SplashActivity extends AppCompatActivity {
     }
     private void nextActivity() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        Intent intent;
         if (user == null) {
-            Intent intent = new Intent(this, SignInActivity.class);
-            finish();
-            startActivity(intent);
+            intent = new Intent(this, SignInActivity.class);
         } else {
-            Intent intent = new Intent(this, MainActivity.class);
-            finish();
-            startActivity(intent);
+            intent = new Intent(this, MainActivity.class);
         }
+        finish();
+        startActivity(intent);
         finish();
     }
 }

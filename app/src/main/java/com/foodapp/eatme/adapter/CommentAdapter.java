@@ -1,6 +1,8 @@
 package com.foodapp.eatme.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,22 +20,16 @@ import com.foodapp.eatme.clickinterface.IClickReplyComment;
 import com.foodapp.eatme.model.ChildComment;
 import com.foodapp.eatme.model.Comment;
 
-
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentViewHolder> {
-    private List<Comment> comments;
+    private final List<Comment> comments;
     Context context;
-    private Map<String, ChildComment> childComments = new HashMap<>();
-    private boolean isExpandable;
     private final IClickReplyComment iClickReplyComment;
     private final IClickNestedComment iClickReplyNestedComment;
     public CommentAdapter(List<Comment> comments, Context context, IClickReplyComment iClickReplyComment, IClickNestedComment iClickReplyNestedComment) {
         this.comments = comments;
         this.context = context;
-        isExpandable = false;
         this.iClickReplyNestedComment = iClickReplyNestedComment;
         this.iClickReplyComment = iClickReplyComment;
     }
@@ -44,6 +41,8 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
         return new CommentViewHolder(view);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull CommentViewHolder holder, int position) {
         Comment comment = comments.get(position);
@@ -72,8 +71,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
         holder.tvUsername.setText(comment.getUsername());
         holder.tvViewReply.setOnClickListener(view -> {
             comment.setExpandable(!comment.isExpandable());
-            childComments = comment.getReply();
-//            adapter.updateCommentList(childComments);
+            //            adapter.updateCommentList(childComments);
             notifyItemChanged(holder.getAdapterPosition());
         });
         holder.tvReply.setOnClickListener(view -> iClickReplyComment.onClickReplyComment(comment));
@@ -84,17 +82,15 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
         return comments==null?0:comments.size();
     }
 
-    public class CommentViewHolder extends RecyclerView.ViewHolder {
-        private LinearLayout linearLayout;
-        private LinearLayout layoutChild;
-        private TextView tvViewReply;
-        private TextView tvContent;
-        private TextView tvReply;
-        private RecyclerView nestedRcv;
-        private TextView tvUsername;
+    public static class CommentViewHolder extends RecyclerView.ViewHolder {
+        private final LinearLayout layoutChild;
+        private final TextView tvViewReply;
+        private final TextView tvContent;
+        private final TextView tvReply;
+        private final RecyclerView nestedRcv;
+        private final TextView tvUsername;
         public CommentViewHolder(@NonNull View itemView) {
             super(itemView);
-            linearLayout = itemView.findViewById(R.id.linear_layout);
             layoutChild = itemView.findViewById(R.id.linear_list_child);
             tvViewReply = itemView.findViewById(R.id.tv_view_reply);
             nestedRcv = itemView.findViewById(R.id.rcv_comment_child);

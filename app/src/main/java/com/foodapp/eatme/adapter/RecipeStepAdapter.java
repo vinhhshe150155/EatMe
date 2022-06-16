@@ -1,5 +1,6 @@
 package com.foodapp.eatme.adapter;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ public class RecipeStepAdapter extends RecyclerView.Adapter<RecipeStepAdapter.Re
         return new RecipeStepViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull RecipeStepViewHolder holder, int position) {
         Step step = steps.get(position);
@@ -38,9 +40,9 @@ public class RecipeStepAdapter extends RecyclerView.Adapter<RecipeStepAdapter.Re
         return steps.size();
     }
 
-    public class RecipeStepViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvStepNumber;
-        private TextView tvStepContent;
+    public static class RecipeStepViewHolder extends RecyclerView.ViewHolder {
+        private final TextView tvStepNumber;
+        private final TextView tvStepContent;
         public RecipeStepViewHolder(@NonNull View itemView) {
             super(itemView);
             tvStepNumber = itemView.findViewById(R.id.tv_step_number);
