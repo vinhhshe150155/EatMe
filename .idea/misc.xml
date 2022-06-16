@@ -3,7 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/drawable-anydpi/ic_avt.xml" value="0.1935" />
         <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2115" />
+        <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/drawable/gradient.xml" value="0.1935" />
+        <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/drawable/ic_baseline_elderly_24.xml" value="0.1935" />
+        <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1935" />
+        <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/drawable/ic_search.xml" value="0.1935" />
+        <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/drawable/suggest_ingre_shape.xml" value="0.1935" />
         <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/font/siro_font.xml" value="0.21197916666666666" />
         <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/layout/activity_list_recipe.xml" value="0.18229166666666666" />
         <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/layout/activity_main.xml" value="0.1757852077001013" />
@@ -19,8 +25,8 @@
         <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/layout/item_ingredient_suggestion.xml" value="0.18229166666666666" />
         <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/layout/item_recipe_layout.xml" value="0.18229166666666666" />
         <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/layout/item_suggest_mealtype.xml" value="0.18229166666666666" />
-        <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/layout/layout_comment.xml" value="0.18229166666666666" />
-        <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/layout/layout_comment_child.xml" value="0.18229166666666666" />
+        <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/layout/layout_comment.xml" value="0.22" />
+        <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/layout/layout_comment_child.xml" value="0.22" />
         <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/layout/layout_header_nav.xml" value="0.18229166666666666" />
         <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/layout/layout_step.xml" value="0.18229166666666666" />
         <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/menu/main_menu.xml" value="0.18177083333333333" />

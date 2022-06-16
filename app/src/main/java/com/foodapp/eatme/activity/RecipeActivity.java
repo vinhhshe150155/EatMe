@@ -158,10 +158,12 @@ public class RecipeActivity extends AppCompatActivity {
             reference = FirebaseDatabase.getInstance().getReference().child("recipe").child(Integer.toString(recipe.getId())).child("comments").child(id).child("reply");
             String key = reference.push().getKey();
             Map<String, Object> map = new HashMap<>();
+
             map.put("content", content);
             map.put("commentId", key);
             map.put("timestamp", System.currentTimeMillis());
             map.put("username", user.getDisplayName() == null ? "User" : user.getDisplayName());
+            map.put("userReply", currentReplyComment.getUsername());
             reference.child(key).setValue(map);
         } else {
             reference = FirebaseDatabase.getInstance().getReference();
@@ -189,6 +191,7 @@ public class RecipeActivity extends AppCompatActivity {
                     Comment comment = postSnapshot.getValue(Comment.class);
                     comment.setExpandable(false);
                     if (comment != null) {
+
                         newComment.add(comment);
                     }
                 }
@@ -202,6 +205,7 @@ public class RecipeActivity extends AppCompatActivity {
                             return 0;
                         }
                         return -1;
+
                     });
                     comments.clear();
                     comments.addAll(newComment);
