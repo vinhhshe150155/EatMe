@@ -1,8 +1,8 @@
 package com.foodapp.eatme.clickinterface;
 
 
-import com.foodapp.eatme.model.Ingredient;
+import com.foodapp.eatme.model.IngredientLocale;
 
 public interface IClickItemIngredient{
-    void onClickItemIngredient(Ingredient ingredient);
+    void onClickItemIngredient(IngredientLocale ingredient);
 }

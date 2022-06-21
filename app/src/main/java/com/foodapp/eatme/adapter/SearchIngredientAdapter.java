@@ -11,23 +11,29 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.foodapp.eatme.R;
 import com.foodapp.eatme.clickinterface.IClickItemIngredient;
-import com.foodapp.eatme.model.Ingredient;
+import com.foodapp.eatme.model.IngredientLocale;
+import com.foodapp.eatme.util.LocaleHelper;
 import com.foodapp.eatme.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SearchIngredientAdapter extends RecyclerView.Adapter<SearchIngredientAdapter.SearchIngredientViewHolder> {
-    private final List<Ingredient> ingredients = new ArrayList<>();
+    private final List<IngredientLocale> ingredients = new ArrayList<>();
     private final IClickItemIngredient iClickItemIngredient;
+    private String currentLanguage;
 
     public SearchIngredientAdapter(IClickItemIngredient iClickItemIngredient) {
         this.iClickItemIngredient = iClickItemIngredient;
     }
 
-    public void setIngredientList(List<Ingredient> ingredients) {
+    public void setCurrentLanguage(String currentLanguage) {
+        this.currentLanguage = currentLanguage;
+    }
+
+    public void setIngredientList(List<IngredientLocale> ingredients) {
         DiffUtil.DiffResult diffResult = DiffUtil
-                .calculateDiff(new CustomDiffUtilCallBack(ingredients, this.ingredients));
+                .calculateDiff(new CustomDiffUtilCallBack(ingredients, this.ingredients, currentLanguage));
         diffResult.dispatchUpdatesTo(this);
         this.ingredients.clear();
         this.ingredients.addAll(ingredients);
@@ -44,8 +50,17 @@ public class SearchIngredientAdapter extends RecyclerView.Adapter<SearchIngredie
 
     @Override
     public void onBindViewHolder(@NonNull SearchIngredientViewHolder holder, int position) {
-        Ingredient ingredient = ingredients.get(position);
-        holder.tvSearchIngredient.setText(StringUtil.toCaptalizedString(ingredient.getName()));
+        IngredientLocale ingredient = ingredients.get(position);
+        switch (currentLanguage) {
+            case LocaleHelper
+                    .LANG_KR:
+                holder.tvSearchIngredient.setText(StringUtil.toCaptalizedString(ingredient.getKrName()));
+                break;
+            case LocaleHelper
+                    .LANG_EN:
+                holder.tvSearchIngredient.setText(StringUtil.toCaptalizedString(ingredient.getEnName()));
+                break;
+        }
         holder.itemView.setOnClickListener(view -> iClickItemIngredient.onClickItemIngredient(ingredient));
     }
 

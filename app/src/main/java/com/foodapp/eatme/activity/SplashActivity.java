@@ -13,6 +13,8 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.foodapp.eatme.R;
+import com.foodapp.eatme.util.ListIngredient;
+import com.foodapp.eatme.util.LocaleHelper;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -20,7 +22,6 @@ import java.util.Locale;
 
 @SuppressLint("CustomSplashScreen")
 public class SplashActivity extends AppCompatActivity {
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +33,14 @@ public class SplashActivity extends AppCompatActivity {
         }
         Handler handler = new Handler();
         handler.postDelayed(this::nextActivity, 400);
-        Log.e("Lang",lang);
+        Log.e("Lang", lang);
         setAppLocale(this, lang);
         setContentView(R.layout.activity_splash);
 
-
     }
+
     private void setAppLocale(Context context, String language) {
+        LocaleHelper.context = this;
         Locale locale = new Locale(language);
         Locale.setDefault(locale);
         Configuration config = context.getResources().getConfiguration();
@@ -46,6 +48,7 @@ public class SplashActivity extends AppCompatActivity {
         context.createConfigurationContext(config);
         context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
     }
+
     private void nextActivity() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Intent intent;

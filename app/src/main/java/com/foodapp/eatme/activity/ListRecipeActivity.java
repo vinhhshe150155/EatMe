@@ -2,6 +2,8 @@ package com.foodapp.eatme.activity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -57,8 +59,11 @@ public class ListRecipeActivity extends AppCompatActivity {
                 if (results != null) {
                     recipes = results.getResults();
                     ListRecipeAdapter adapter = new ListRecipeAdapter(recipes, ListRecipeActivity.this);
-                    rcvListRecipe.setAdapter(adapter);
                     rcvListRecipe.setLayoutManager(new GridLayoutManager(ListRecipeActivity.this, 2));
+                    rcvListRecipe.setAdapter(adapter);
+                    if(recipes.isEmpty()){
+                        Toasty.normal(ListRecipeActivity.this, "Empty list recipe.").show();
+                    }
                 }
             }
 

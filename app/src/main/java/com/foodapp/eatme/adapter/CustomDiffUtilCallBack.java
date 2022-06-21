@@ -3,16 +3,20 @@ package com.foodapp.eatme.adapter;
 import androidx.recyclerview.widget.DiffUtil;
 
 import com.foodapp.eatme.model.Ingredient;
+import com.foodapp.eatme.model.IngredientLocale;
+import com.foodapp.eatme.util.LocaleHelper;
 
 import java.util.List;
 
 public class CustomDiffUtilCallBack extends DiffUtil.Callback {
-    List<Ingredient> newList;
-    List<Ingredient> oldList;
+    List<IngredientLocale> newList;
+    List<IngredientLocale> oldList;
+    private String currentLanguage;
 
-    public CustomDiffUtilCallBack(List<Ingredient> newList, List<Ingredient> oldList) {
+    public CustomDiffUtilCallBack(List<IngredientLocale> newList, List<IngredientLocale> oldList, String currentLanguage) {
         this.newList = newList;
         this.oldList = oldList;
+        this.currentLanguage = currentLanguage;
     }
 
     @Override
@@ -33,7 +37,17 @@ public class CustomDiffUtilCallBack extends DiffUtil.Callback {
 
     @Override
     public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-        int result = newList.get(newItemPosition).getName().compareTo(oldList.get(oldItemPosition).getName());
+        int result = -1;
+        switch (currentLanguage) {
+            case LocaleHelper
+                    .LANG_KR:
+                result = newList.get(newItemPosition).getKrName().compareTo(oldList.get(oldItemPosition).getKrName());
+                break;
+            case LocaleHelper
+                    .LANG_EN:
+                result = newList.get(newItemPosition).getEnName().compareTo(oldList.get(oldItemPosition).getEnName());
+                break;
+        }
         return result == 0;
     }
 }

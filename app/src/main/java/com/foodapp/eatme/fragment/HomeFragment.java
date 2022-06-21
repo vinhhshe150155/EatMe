@@ -26,8 +26,10 @@ import com.foodapp.eatme.activity.MainActivity;
 import com.foodapp.eatme.adapter.SearchIngredientAdapter;
 import com.foodapp.eatme.adapter.SuggestMealTypeAdapter;
 import com.foodapp.eatme.model.Ingredient;
+import com.foodapp.eatme.model.IngredientLocale;
 import com.foodapp.eatme.model.MealType;
 import com.foodapp.eatme.util.ListIngredient;
+import com.foodapp.eatme.util.LocaleHelper;
 import com.foodapp.eatme.util.StringUtil;
 import com.google.android.material.card.MaterialCardView;
 
@@ -40,8 +42,8 @@ public class HomeFragment extends Fragment {
     private MaterialCardView cvFindRecipe;
     private LinearLayout layoutIngredientSuggest;
     private List<MealType> mealTypes;
-    private List<Ingredient> searchIngredient;
-    private List<Ingredient> allIngredients;
+    private List<IngredientLocale> searchIngredient;
+    private List<IngredientLocale> allIngredientsLocale;
     private RecyclerView rcvMealType;
     private RecyclerView rcvIngredientSearch;
     private SearchView svIngredient;
@@ -49,7 +51,8 @@ public class HomeFragment extends Fragment {
     private DrawerLayout drawerLayout;
     private ConstraintLayout layoutMain;
     private ImageView imgMenu;
-
+    private ListIngredient listIngredient;
+    private String currentLanguage = LocaleHelper.LANG_EN;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,7 +65,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void initUI(View view) {
-        if(getActivity()!=null){
+        if (getActivity() != null) {
             drawerLayout = getActivity().findViewById(R.id.drawerlayout);
         }
         imgMenu = view.findViewById(R.id.img_home_menu);
@@ -82,15 +85,21 @@ public class HomeFragment extends Fragment {
             svIngredient.setQuery("", false);
             rcvIngredientSearch.setVisibility(View.GONE);
         });
+        searchIngredientAdapter.setCurrentLanguage(currentLanguage);
         rcvIngredientSearch.setAdapter(searchIngredientAdapter);
     }
 
     private void initData() {
+        initLanguage();
         initMealType();
         initAllIngredients();
         initRandomIngredients();
         initSuggestListIngredientLayout();
         initMealTypeRcv();
+    }
+
+    private void initLanguage() {
+        currentLanguage = LocaleHelper.getCurrentLanguage();
     }
 
     private void initMealTypeRcv() {
@@ -101,16 +110,27 @@ public class HomeFragment extends Fragment {
     }
 
     private void initSuggestListIngredientLayout() {
-        for (Ingredient ingredient : searchIngredient) {
+        for (IngredientLocale ingredient : searchIngredient) {
             addIngredientView(ingredient);
         }
     }
 
-    private void addIngredientView(Ingredient ingredient) {
+    private void addIngredientView(IngredientLocale ingredient) {
         View viewItem = LayoutInflater.from(requireContext()).inflate(R.layout.item_ingredient_suggestion, layoutIngredientSuggest, false);
         TextView textView = viewItem.findViewById(R.id.tv_suggest_ingredient);
         ImageView imageView = viewItem.findViewById(R.id.img_remove_ingredient_suggestion);
-        textView.setText(StringUtil.toCaptalizedString(ingredient.getName()));
+        String ingredientName;
+        switch (currentLanguage) {
+            case LocaleHelper.LANG_KR:
+                ingredientName = ingredient.getKrName();
+                break;
+            case LocaleHelper.LANG_EN:
+                ingredientName = ingredient.getEnName();
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + currentLanguage);
+        }
+        textView.setText(StringUtil.toCaptalizedString(ingredientName));
         imageView.setOnClickListener(view -> {
             layoutIngredientSuggest.removeView(viewItem);
             searchIngredient.remove(ingredient);
@@ -142,17 +162,19 @@ public class HomeFragment extends Fragment {
     }
 
     private void initRandomIngredients() {
-        searchIngredient = ListIngredient.getRandomMainIngredients();
+        searchIngredient = listIngredient.getRandomMainIngredients();
     }
 
     private void initAllIngredients() {
-        allIngredients = ListIngredient.getAllIngredient();
+        listIngredient = ListIngredient.getInstance();
+        listIngredient.setContext(requireContext());
+        allIngredientsLocale = listIngredient.getAllIngredient();
     }
 
     private String getSearchIngredient() {
         StringBuilder sb = new StringBuilder();
-        for (Ingredient ingredient : searchIngredient) {
-            sb.append(ingredient.getName()).append(",");
+        for (IngredientLocale ingredient : searchIngredient) {
+            sb.append(ingredient.getEnName()).append(",");
         }
         String str = sb.toString();
         if (str.endsWith(",")) {
@@ -188,20 +210,26 @@ public class HomeFragment extends Fragment {
     }
 
     private void filterList(String newText) {
-        List<Ingredient> filterIngredientList = new ArrayList<>();
-        for (Ingredient ingredient : allIngredients) {
-            if (ingredient.getName().toLowerCase().contains(newText.toLowerCase())) {
-                filterIngredientList.add(ingredient);
+        List<IngredientLocale> filterIngredientList = new ArrayList<>();
+        for (IngredientLocale ingredient : allIngredientsLocale) {
+            switch (currentLanguage) {
+                case LocaleHelper.LANG_KR:
+                    if (ingredient.getKrName().toLowerCase().contains(newText.toLowerCase())) {
+                        filterIngredientList.add(ingredient);
+                    }
+                    break;
+                case LocaleHelper.LANG_EN:
+                    if (ingredient.getEnName().toLowerCase().contains(newText.toLowerCase())) {
+                        filterIngredientList.add(ingredient);
+                    }
+                    break;
             }
         }
         if (filterIngredientList.isEmpty()) {
             Toast.makeText(requireContext(), "Empty", Toast.LENGTH_SHORT).show();
         } else {
+            searchIngredientAdapter.setCurrentLanguage(currentLanguage);
             searchIngredientAdapter.setIngredientList(filterIngredientList);
         }
     }
-
-
-
-
 }
