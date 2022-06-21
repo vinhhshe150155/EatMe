@@ -17,9 +17,11 @@ import java.util.List;
 
 public class RecipeStepAdapter extends RecyclerView.Adapter<RecipeStepAdapter.RecipeStepViewHolder> {
     List<Step> steps;
-    public RecipeStepAdapter(List<Step> steps){
+
+    public RecipeStepAdapter(List<Step> steps) {
         this.steps = steps;
     }
+
     @NonNull
     @Override
     public RecipeStepViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -32,17 +34,18 @@ public class RecipeStepAdapter extends RecyclerView.Adapter<RecipeStepAdapter.Re
     public void onBindViewHolder(@NonNull RecipeStepViewHolder holder, int position) {
         Step step = steps.get(position);
         holder.tvStepContent.setText(step.getStep());
-        holder.tvStepNumber.setText(Integer.toString(position+1));
+        holder.tvStepNumber.setText(Integer.toString(position + 1));
     }
 
     @Override
     public int getItemCount() {
-        return steps.size();
+        return steps != null ? steps.size() : 0;
     }
 
     public static class RecipeStepViewHolder extends RecyclerView.ViewHolder {
         private final TextView tvStepNumber;
         private final TextView tvStepContent;
+
         public RecipeStepViewHolder(@NonNull View itemView) {
             super(itemView);
             tvStepNumber = itemView.findViewById(R.id.tv_step_number);

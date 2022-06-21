@@ -2,73 +2,106 @@
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fillViewport="true">
-
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:context=".RecipeActivity">
-
-        <TextView
-            android:id="@+id/tv_recipe_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_50sdp"
-            android:gravity="center"
-            android:text="TextView"
-            app:layout_constraintTop_toTopOf="parent" />
-        <ImageView
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_recipe_name"
-            app:layout_constraintRight_toRightOf="parent"
-            android:id="@+id/img_recipe"
-            android:layout_width="@dimen/_200sdp"
-            android:layout_height="@dimen/_200sdp"/>
-    <LinearLayout
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/img_recipe"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcv_list_step"
-            android:nestedScrollingEnabled="false"
-            android:layout_width="match_parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_recipe_name"
-            android:layout_height="wrap_content" />
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcv_list_comment"
-            android:layout_width="match_parent"
-            app:layout_constraintTop_toBottomOf="@id/rcv_list_step"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:layout_marginTop="@dimen/_20sdp"
-            android:id="@+id/tv_comment_empty"
-            android:text="Be first to comment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+        android:layout_height="match_parent">
         <LinearLayout
-            android:layout_marginTop="@dimen/_20sdp"
-            android:orientation="horizontal"
+            android:id="@+id/layout_loading"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
-                android:background="@color/floral_white"
-                android:id="@+id/edt_comment"
-                android:hint="Comment"
-                android:layout_width="@dimen/_200sdp"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:id="@+id/btn_comment_submit"
-                android:text="Send"
-                android:layout_width="@dimen/_100sdp"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
+            android:background="@color/floral_white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:gravity="center"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="@dimen/_180sdp"
+                android:layout_height="@dimen/_120sdp">
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/animationView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:lottie_autoPlay="true"
+                    app:lottie_fileName="pink_circle_loading.json"
+                    app:lottie_imageAssetsFolder="assets/"
+                    app:lottie_loop="true" />
+            </LinearLayout>
 
-    </LinearLayout>
+        </LinearLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="gone"
+            android:id="@+id/layout_recipe"
+            android:layout_height="wrap_content"
+            tools:context=".RecipeActivity">
+
+            <TextView
+                android:id="@+id/tv_recipe_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_50sdp"
+                android:gravity="center"
+                android:text="TextView"
+                app:layout_constraintTop_toTopOf="parent" />
+            <ImageView
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_recipe_name"
+                app:layout_constraintRight_toRightOf="parent"
+                android:id="@+id/img_recipe"
+                android:layout_width="@dimen/_200sdp"
+                android:layout_height="@dimen/_200sdp"/>
+            <LinearLayout
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/img_recipe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcv_list_step"
+                    android:nestedScrollingEnabled="false"
+                    android:layout_width="match_parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_recipe_name"
+                    android:layout_height="wrap_content" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcv_list_comment"
+                    android:layout_width="match_parent"
+                    app:layout_constraintTop_toBottomOf="@id/rcv_list_step"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:id="@+id/tv_comment_empty"
+                    android:text="Be first to comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:background="@color/floral_white"
+                        android:id="@+id/edt_comment"
+                        android:hint="Comment"
+                        android:layout_width="@dimen/_200sdp"
+                        android:layout_height="wrap_content"/>
+                    <Button
+                        android:id="@+id/btn_comment_submit"
+                        android:text="Send"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </androidx.core.widget.NestedScrollView>

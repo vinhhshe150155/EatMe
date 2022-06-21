@@ -52,37 +52,14 @@ public class SuggestMealTypeAdapter extends RecyclerView.Adapter<SuggestMealType
                 holder.itemView.setBackgroundResource(R.drawable.pink_background);
                 break;
             case 3:
-
                 holder.itemView.setBackgroundResource(R.drawable.red_background);
                 break;
         }
-//        holder.itemView.setOnClickListener(view -> {
-//            holder.itemView.animate()
-//                    .rotationX(360)
-//                    .setDuration(500)
-//                    .setInterpolator(new LinearInterpolator())
-//                    .setListener(new AnimatorListenerAdapter() {
-//                        @Override
-//                        public void onAnimationEnd(Animator animator) {
-//                            holder.itemView.setRotationX(0);
-//                            holder.itemView.setRotationY(0);
-//                        }
-//                    });
-//            if (mealType.isSelected()) {
-//                mealTypes.get(position).setSelected(false);
-//                holder.itemView.setBackgroundResource(R.drawable.mealtype_shape);
-//            } else {
-//                mealTypes.get(position).setSelected(true);
-//                holder.itemView.setBackgroundResource(R.drawable.selected_mealtype);
-//            }
-//            onClickItemMealType.onClickItemMealType(mealType);
-//            Toast.makeText(context, mealType.getName(), Toast.LENGTH_SHORT).show();
-//        });
     }
 
     @Override
     public int getItemCount() {
-        return mealTypes.size();
+        return mealTypes == null ? 0 : mealTypes.size();
     }
 
     public static class SuggestionMealTypeViewHolder extends RecyclerView.ViewHolder {

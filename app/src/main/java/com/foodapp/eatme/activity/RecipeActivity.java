@@ -1,19 +1,19 @@
 package com.foodapp.eatme.activity;
 
 import android.annotation.SuppressLint;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,6 +26,8 @@ import com.foodapp.eatme.model.ChildComment;
 import com.foodapp.eatme.model.Comment;
 import com.foodapp.eatme.model.Recipe;
 import com.foodapp.eatme.model.Step;
+import com.foodapp.eatme.util.LocaleHelper;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -45,7 +47,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 public class RecipeActivity extends AppCompatActivity {
@@ -56,12 +57,11 @@ public class RecipeActivity extends AppCompatActivity {
     ImageView imgRecipe;
     TextView tvCommentEmpty;
     private final TranslatorOptions options = new TranslatorOptions.Builder()
-                                                .setSourceLanguage(TranslateLanguage.ENGLISH)
-                                                .setTargetLanguage(TranslateLanguage.KOREAN)
-                                                .build();
+            .setSourceLanguage(TranslateLanguage.ENGLISH)
+            .setTargetLanguage(TranslateLanguage.KOREAN)
+            .build();
     final Translator englishKoreanTranslator = Translation.getClient(options);
     List<Step> steps;
-    private final static String LANG_KR = "ko";
     private RecyclerView rcvListComment;
     private RecyclerView rcvListStep;
     private final List<Comment> comments = new ArrayList<>();
@@ -69,11 +69,14 @@ public class RecipeActivity extends AppCompatActivity {
     private Button btnComment;
     private EditText edtComment;
     private Comment currentReplyComment;
+    private LinearLayout layoutLoading;
     private ChildComment childComment;
     private static final int COMMENT_NORMAL = 0;
     private static final int COMMENT_REPLY = 1;
     private static final int COMMENT_NESTED_REPLY = 2;
     private int commentStatus = COMMENT_NORMAL;
+    private String currentLanguage;
+    private ConstraintLayout layoutRecipe;
     RemoteModelManager modelManager = RemoteModelManager.getInstance();
 
     @Override
@@ -86,6 +89,8 @@ public class RecipeActivity extends AppCompatActivity {
     }
 
     private void initUI() {
+        layoutRecipe = findViewById(R.id.layout_recipe);
+        layoutLoading = findViewById(R.id.layout_loading);
         tvCommentEmpty = findViewById(R.id.tv_comment_empty);
         tvCommentEmpty.setVisibility(View.GONE);
         imgRecipe = findViewById(R.id.img_recipe);
@@ -123,22 +128,18 @@ public class RecipeActivity extends AppCompatActivity {
         tvRecipeName.setText(recipe.getSourceName());
         Glide.with(this).load(recipe.getImage()).into(imgRecipe);
         steps = recipe.getAnalyzedInstructions().get(0).getSteps();
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String lang = preferences.getString("Locale.Helper.Selected.Language", null);
+        currentLanguage = LocaleHelper.getCurrentLanguage();
         getComments();
-        if (lang == null) {
-            lang = Locale.getDefault().getLanguage();
-        }
-        if (lang.equals(LANG_KR)) {
-            for (int i = 0; i < steps.size(); i++) {
-                Step step = steps.get(i);
-                translate(step.getStep(), i);
-            }
-            toKor();
-        } else {
-            RecipeStepAdapter adapter = new RecipeStepAdapter(steps);
-            rcvListStep.setLayoutManager(new LinearLayoutManager(this));
-            rcvListStep.setAdapter(adapter);
+        switch (currentLanguage) {
+            case LocaleHelper.LANG_KR:
+                toKor();
+                break;
+            default:
+                RecipeStepAdapter adapter = new RecipeStepAdapter(steps);
+                rcvListStep.setLayoutManager(new LinearLayoutManager(this));
+                rcvListStep.setAdapter(adapter);
+                layoutLoading.setVisibility(View.GONE);
+                layoutRecipe.setVisibility(View.VISIBLE);
         }
     }
 
@@ -147,7 +148,7 @@ public class RecipeActivity extends AppCompatActivity {
     }
 
     private void sendComment() {
-        switch (commentStatus){
+        switch (commentStatus) {
             case 0:
                 normalComment();
                 break;
@@ -175,7 +176,7 @@ public class RecipeActivity extends AppCompatActivity {
         map.put("timestamp", System.currentTimeMillis());
         map.put("username", user.getDisplayName() == null ? "User" : user.getDisplayName());
         map.put("userReply", childComment.getUsername());
-        if(key!=null){
+        if (key != null) {
             reference.child(key).setValue(map);
         }
     }
@@ -194,7 +195,7 @@ public class RecipeActivity extends AppCompatActivity {
         map.put("timestamp", System.currentTimeMillis());
         map.put("username", user.getDisplayName() == null ? "User" : user.getDisplayName());
         map.put("userReply", currentReplyComment.getUsername());
-        if(key!=null){
+        if (key != null) {
             reference.child(key).setValue(map);
         }
     }
@@ -214,7 +215,7 @@ public class RecipeActivity extends AppCompatActivity {
         map.put("timestamp", System.currentTimeMillis());
         map.put("userId", user.getUid() + "");
         map.put("commentId", key);
-        if(key!=null){
+        if (key != null) {
             reference.child("recipe").child(Integer.toString(recipe.getId())).child("comments").child(key).setValue(map);
         }
     }
@@ -228,7 +229,7 @@ public class RecipeActivity extends AppCompatActivity {
                 List<Comment> newComment = new ArrayList<>();
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     Comment comment = postSnapshot.getValue(Comment.class);
-                    if(comment != null){
+                    if (comment != null) {
                         comment.setExpandable(false);
                         newComment.add(comment);
                     }
@@ -258,54 +259,34 @@ public class RecipeActivity extends AppCompatActivity {
                 .build();
         englishKoreanTranslator.downloadModelIfNeeded(conditions)
                 .addOnSuccessListener(
-                        v -> Log.e("Translate", "Success"))
-                .addOnFailureListener(
-                        e -> {
-                            TranslateRemoteModel germanModel =
-                                    new TranslateRemoteModel.Builder(TranslateLanguage.KOREAN).build();
-                            modelManager.deleteDownloadedModel(germanModel)
-                                    .addOnSuccessListener(v -> {
-                                        TranslateRemoteModel frenchModel =
-                                                new TranslateRemoteModel.Builder(TranslateLanguage.KOREAN).build();
-                                        DownloadConditions conditions1 = new DownloadConditions.Builder()
-                                                .requireWifi()
-                                                .build();
-                                        modelManager.download(frenchModel, conditions1)
-                                                .addOnSuccessListener(v1 -> {
-                                                    // Model downloaded.
-                                                })
-                                                .addOnFailureListener(e1 -> {
-                                                    // Error.
-                                                });
-                                    })
-                                    .addOnFailureListener(e12 -> {
-                                        // Error.
-                                    });
-                            Log.e("Translate", e.getMessage());
-                        });
-
-        englishKoreanTranslator.translate(recipe.getSourceName())
-                .addOnSuccessListener(
-                        translatedText -> tvRecipeName.setText(translatedText))
-                .addOnFailureListener(
-                        e -> Log.e("Translate", e.getMessage()));
-    }
-
-    private void translate(String s, int i) {
-        englishKoreanTranslator.translate(s)
-                .addOnSuccessListener(
-                        str -> {
-                            steps.get(i).setStep(str);
-                            if (i == steps.size() - 1) {
-                                RecipeStepAdapter adapter = new RecipeStepAdapter(steps);
-                                rcvListStep.setLayoutManager(new LinearLayoutManager(this));
-                                rcvListStep.setAdapter(adapter);
+                        v -> {
+                            Log.e("Translate", "Success");
+                            englishKoreanTranslator.translate(recipe.getSourceName())
+                                    .addOnSuccessListener(
+                                            translatedText -> tvRecipeName.setText(translatedText))
+                                    .addOnFailureListener(
+                                            e -> Log.e("Translate", e.getMessage()));
+                            for (int i = 0; i < steps.size(); i++) {
+                                Step step = steps.get(i);
+                                int index = i;
+                                englishKoreanTranslator.translate(step.getStep())
+                                        .addOnSuccessListener(
+                                                str -> {
+                                                    steps.get(index).setStep(str);
+                                                    if (index == steps.size() - 1) {
+                                                        RecipeStepAdapter adapter = new RecipeStepAdapter(steps);
+                                                        rcvListStep.setLayoutManager(new LinearLayoutManager(this));
+                                                        rcvListStep.setAdapter(adapter);
+                                                        layoutLoading.setVisibility(View.GONE);
+                                                        layoutRecipe.setVisibility(View.VISIBLE);
+                                                    }
+                                                }
+                                        )
+                                        .addOnFailureListener(
+                                                e -> Log.e("Translate", e.getMessage()));
                             }
-                        }
-                )
-                .addOnFailureListener(
-                        e -> Log.e("Translate", e.getMessage()));
+                        })
+                .addOnFailureListener(e -> Log.e("Error", "Model could n’t be downloaded " + e));
     }
-
 
 }
