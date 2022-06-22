@@ -69,8 +69,9 @@ public class SignInActivity extends AppCompatActivity {
         tvForgot = findViewById(R.id.tvForgot);
         btnSignInGoogle = findViewById(R.id.btnSignInGoogle);
         progressDialog = new ProgressDialog(this);
+        String id="164966780531-nd5bgk2sfjde7s6u1f8qjvi4ut0pkj6h.apps.googleusercontent.com";
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestIdToken(id)
                 .requestEmail()
                 .build();
 

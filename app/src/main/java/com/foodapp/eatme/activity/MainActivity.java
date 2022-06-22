@@ -19,8 +19,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.foodapp.eatme.R;
 import com.foodapp.eatme.fragment.HomeFragment;
-import com.foodapp.eatme.fragment.LanguageFragment;
 import com.foodapp.eatme.fragment.ListRecipeFragment;
+import com.foodapp.eatme.fragment.SettingsFragment;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static final int FRAGMENT_HOME = 0;
     private static final int FRAGMENT_LIST_RECIPE = 1;
     private int currentFragment = FRAGMENT_HOME;
-//    private Toolbar toolbar;
+    //    private Toolbar toolbar;
     private TextView tvUsername;
     private TextView tvEmail;
 
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             finish();
         } else if (id == R.id.settíngs) {
             if (currentFragment != FRAGMENT_SETTINGS) {
-                replaceFragment(new LanguageFragment());
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_replace, new SettingsFragment()).commit();
                 currentFragment = FRAGMENT_SETTINGS;
             }
         }
@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void addUserIfNotExist() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if(user==null){
+        if (user == null) {
             return;
         }
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference().child("user").child(user.getUid());

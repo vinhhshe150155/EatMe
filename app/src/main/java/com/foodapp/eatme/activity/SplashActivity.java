@@ -27,7 +27,7 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String lang = preferences.getString("Locale.Helper.Selected.Language", null);
+        String lang = preferences.getString("languageKey", null);
         if (lang == null) {
             lang = Locale.getDefault().getLanguage();
         }

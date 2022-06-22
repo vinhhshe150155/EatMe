@@ -23,4 +23,6 @@
     <string name="marinade">마리네이드</string>
     <string name="snack">간식</string>
     <string name="drink">마시다</string>
+    <string name="language">Language</string>
+    <string name="key_language">languageKey</string>
 </resources>
