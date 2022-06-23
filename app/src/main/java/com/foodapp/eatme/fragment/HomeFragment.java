@@ -124,11 +124,8 @@ public class HomeFragment extends Fragment {
             case LocaleHelper.LANG_KR:
                 ingredientName = ingredient.getKrName();
                 break;
-            case LocaleHelper.LANG_EN:
-                ingredientName = ingredient.getEnName();
-                break;
             default:
-                throw new IllegalStateException("Unexpected value: " + currentLanguage);
+                ingredientName = ingredient.getEnName();
         }
         textView.setText(StringUtil.toCaptalizedString(ingredientName));
         imageView.setOnClickListener(view -> {
@@ -218,11 +215,10 @@ public class HomeFragment extends Fragment {
                         filterIngredientList.add(ingredient);
                     }
                     break;
-                case LocaleHelper.LANG_EN:
+                default:
                     if (ingredient.getEnName().toLowerCase().contains(newText.toLowerCase())) {
                         filterIngredientList.add(ingredient);
                     }
-                    break;
             }
         }
         if (filterIngredientList.isEmpty()) {

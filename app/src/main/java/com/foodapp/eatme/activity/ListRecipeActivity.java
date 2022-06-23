@@ -35,7 +35,6 @@ public class ListRecipeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_recipe);
         initUI();
         initData();
-
     }
 
     private void initUI() {

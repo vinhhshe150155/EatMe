@@ -1,0 +1,1000 @@
+1002002; 향신료 분말;5 spice powder
+11482; 도토리 호박;acorn squash
+6979; 아도보 소스;adobo sauce
+19912; 아가베 과즙;agave nectar
+15117; 참치;ahi tuna
+93606; 알프레도 파스타 소스;alfredo pasta sauce
+1002050; 아몬드 추출물;almond extract
+93740; 아몬드 가루;almond flour
+93607; 아몬드 우유;almond milk
+12061; 아몬드;almonds
+10014534; 아마레또;amaretto
+10211962; 안초 칠리;ancho chiles
+15001; 멸치;anchovies
+7064; 안두이 소시지;andouille sausage
+18087; 엔젤 푸드 케이크 믹스;angel food cake mix
+10020420; 엔젤헤어파스타;angel hair pasta
+93653; 앙고스투라 비터스;angostura bitters
+9003; 사과;apple
+19294; 사과 버터 스프레드;apple butter spread
+1009016; 사과 사이다;apple cider
+9016; 사과 주스;apple juice
+1042035; 애플파이 향신료;apple pie spice
+19719; 살구 보존;apricot preserves
+9021; 살구;apricots
+10020052; 아르보리오 쌀;arborio rice
+20003; 칡가루;arrowroot powder
+93828; 아티초크 하트 쿼터;artichoke heart quarters
+11007; 아티초크;artichokes
+11959; 루꼴라;arugula
+1032035; 아사포에티다;asafoetida
+0; 아사포에티다 분말;asafoetida powder
+1001033; 아시아고 치즈;asiago cheese
+9252; 아시아 배;asian pear
+11011; 아스파라거스 스피어스;asparagus spears
+9037; 아보카도;avocado
+4581; 아보카도 오일;avocado oil
+10311821; 아기 피망;baby bell peppers
+93636; 아기 청경채;baby bok choy
+11960; 아기 당근;baby carrots
+10011168;아기 옥수수;baby corn
+11457; 아기 시금치 잎;baby spinach leaves
+10010204; 베이비백 갈비뼈;baby-back ribs
+10192; 베이비백 갈비뼈;baby-back ribs
+10123; 베이컨;bacon
+4609; 베이컨 지방;bacon fat
+18033; 바게트;baguette
+19078; 베이킹 바;baking bar
+18371; 베이킹 파우더;baking powder
+18372; 베이킹 소다;baking soda
+98998; 발사믹 글레이즈;balsamic glaze
+2069; 발사믹 식초;balsamic vinegar
+11028; 죽순;bamboo shoots
+9040; 바나나;banana
+10020444; 바스마티 쌀;basmati rice
+2004; 월계수잎;bay leaves
+6150; 바베큐 소스;bbq sauce
+16069; 콩;beans
+23572; 쇠고기;beef
+13023; 쇠고기 양지머리;beef brisket
+6008; 쇠고기 육수;beef broth
+13786; 쇠고기 척 로스트;beef chuck roast
+6170; 쇠고기 육수;beef stock
+13926; 쇠고기 안심;beef tenderloin
+14003; 맥주;beer
+14006; 맥주;beer
+11080; 사탕무;beets
+10211821; 피망;bell pepper
+1009054; 딸기;berries
+18010; 비스킷 믹스;biscuit mix
+18009; 비스킷;biscuits
+19903; 달콤쌉싸름한 초콜릿;bittersweet chocolate
+99210; 검은콩 소스;black bean sauce
+16015; 검은 콩;black beans
+1059195; 블랙 올리브;black olives
+1002030; 후추;black pepper
+10012023; 검은깨;black sesame seeds
+9042; 블랙베리;blackberries
+12062; 데친 아몬드;blanched almonds
+1009200; 블러드 오렌지;blood orange
+1004; 블루 치즈;blue cheese
+9050; 블루베리;blueberries
+11116;청경채;bok choy
+1055062; 뼈없는 껍질없는 닭 가슴살;boneless skinless chicken breast
+10014037; 버번;bourbon
+10114037; 브랜디;brandy
+18064; 빵;bread
+10120129; 빵가루;bread flour
+7919; 아침 식사 링크;breakfast links
+1006; 브리;brie
+11090; 브로콜리;broccoli
+10011090; 브로콜리 작은 꽃;broccoli florets
+20040; 현미;brown rice
+20090; 현미가루;brown rice flour
+19334; 흑설탕;brown sugar
+18632; 브라우니 믹스;brownie mix
+11098; 브뤼셀 콩나물;brussel sprouts
+20012;불구르;bulgur
+1001; 버터;butter
+11250; 버터 헤드 상추;butterhead lettuce
+1230; 버터밀크;buttermilk
+11485; 버터넛 스쿼시;butternut squash
+19070; 버터스카치 칩;butterscotch chips
+11109; 양배추;cabbage
+43015; 시저 드레싱;caesar dressing
+1032028; 케이준양념;cajun seasoning
+10020129; 케이크 가루;cake flour
+93759; 사탕 지팡이;candy canes
+98857; 사탕 코팅;candy coating
+93775; 사탕이 녹다;candy melts
+16018; 통조림 검은 콩;canned black beans
+11531; 깍둑썰기한 토마토 통조림;canned diced tomatoes
+16058; 통조림 garbanzo 콩;canned garbanzo beans
+11980; 통조림 그린 칠리;canned green chiles
+16034; 통조림 강낭콩;canned kidney beans
+11264; 통조림 버섯;canned mushrooms
+16044; 통조림 핀토 콩;canned pinto beans
+10016034; 붉은 강낭콩 통조림;canned red kidney beans
+10011693; 통조림 토마토;canned tomatoes
+10115121; 통조림 참치;canned tuna
+16051;통조림 흰 콩;canned white beans
+10016051; 통조림 흰색 카넬리니 콩;canned white cannellini beans
+10716050; 카넬리니 콩;cannellini beans
+9181; 멜론;cantaloupe
+2054; 케이퍼;capers
+19364; 카라멜 소스;caramel sauce
+19074; 카라멜;caramels
+2005; 캐러웨이 시드;caraway seed
+2006; 카다멈;cardamom
+1002006; 카다멈 꼬투리;cardamom pods
+15008; 잉어;carp
+11124; 당근;carrots
+15010; 고양이 물고기 파일;cat fish filets
+11135; 콜리플라워;cauliflower
+10011135; 콜리플라워 꽃송이;cauliflower florets
+10111135; 콜리플라워 라이스;cauliflower rice
+11143; 셀러리;celery
+10111143; 샐러리 갈비;celery ribs
+11141; 셀러리 뿌리;celery root
+1052047; 셀러리 소금;celery salt
+2007; 셀러리 씨앗;celery seed
+8029; 시리얼;cereal
+10043155; 샴페인;champagne
+99236; 찬나달;chana dal
+1009; 체다;cheddar
+1041009; 치즈;cheese
+98921; 치즈 커드;cheese curds
+1188; 치즈 딥;cheese dip
+6038; 치즈 수프;cheese soup
+10093727; 치즈 토르텔리니;cheese tortellini
+9070; 체리;cherry
+19314; 체리 파이 필링;cherry pie filling
+10311529; 체리 토마토;cherry tomatoes
+12098; 밤;chestnuts
+12006; 치아씨드;chia seeds
+6080; 치킨베이스;chicken base
+6480; 치킨 부용;chicken bouillon
+1006080; 치킨 부용 알갱이;chicken bouillon granules
+5062; 닭 가슴살;chicken breasts
+6194; 닭 육수;chicken broth
+5066;치킨 나지만;chicken drumsticks
+5075; 닭 다리;chicken legs
+1005006; 치킨 조각;chicken pieces
+93668; 치킨 소시지;chicken sausage
+6172; 치킨 스톡;chicken stock
+1015062; 치킨텐더;chicken tenders
+5091; 닭 허벅지;chicken thighs
+5100; 닭 날개;chicken wings
+16057; 병아리콩;chickpea
+93749; 칠리 마늘 소스;chile garlic sauce
+6973; 칠리 페이스트;chili paste
+11962; 칠리 페퍼;chili peppers
+2009; 칠리 파우더;chili powder
+6972; 칠리 소스;chili sauce
+11632; adobo의 치폴레 칠레;chipotle chiles in adobo
+98839; 치폴레 칠리;chipotle chilies
+99223; adobo의 치폴레 고추;chipotle peppers in adobo
+93748; 골파 & 양파 크림 치즈 스프레드;chive & onion cream cheese spread
+19081; 초콜릿;chocolate
+28027; 초콜릿 칩 쿠키;chocolate chip cookies
+10419903; 초콜릿 덩어리;chocolate chunks
+19270; 초콜릿 아이스크림;chocolate ice cream
+1102; 초콜릿 우유;chocolate milk
+18166; 초콜릿 샌드위치 쿠키;chocolate sandwich cookies
+14181; 초콜릿 시럽;chocolate syrup
+10118157; 초콜릿 웨이퍼 쿠키;chocolate wafer cookies
+7019; 초리조 소시지;chorizo sausage
+2048; 사이다 식초;cider vinegar
+11165; 고수;cilantro
+99020; 시나몬롤;cinnamon roll
+1002010; 계피 스틱;cinnamon stick
+10219335; 계피 설탕;cinnamon sugar
+18047; 계피 소용돌이 빵;cinnamon swirl bread
+14187; 조개 주스;clam juice
+15157; 조개;clams
+93632;매혹적인 버터;clarified butter
+1002011; 정향;clove
+1002047; 굵은 소금;coarse salt
+2035; 거칠게 갈은 후추;coarsely ground pepper
+98846; 코코아 닙스;cocoa nibs
+19165; 코코아 가루;cocoa powder
+12104; 코코넛;coconut
+98929; 코코넛 아미노;coconut aminos
+93746; 코코넛 버터;coconut butter
+12115; 코코넛 크림;coconut cream
+1032050; 코코넛 추출물;coconut extract
+93747; 코코넛 가루;coconut flour
+12118; 코코넛 밀크;coconut milk
+4047; 코코넛 오일;coconut oil
+12119; 코코넛 워터;coconut water
+15015; 대구;cod
+14209; 커피;coffee
+10414037; 코냑;cognac
+14400; 콜라;cola
+1011; 콜비 잭;colby jack
+11161; 콜라드 그린;collard greens
+6010; 샐러리 수프 연크림;condensed cream of celery soup
+6147; 버섯탕수육크림;condensed cream of mushroom soup
+99084; 과자 장수의 선회;confectioner's swerve
+10862; 구운 베이컨;cooked bacon
+20041; 현미밥;cooked brown rice
+5064; 조리된 닭 가슴살;cooked chicken breast
+10802; 조리된 햄;cooked ham
+10220445; 긴 곡물 쌀 요리;cooked long grain rice
+20421; 요리 파스타;cooked pasta
+1008166; 요리 폴렌타;cooked polenta
+20137; 요리된 퀴노아;cooked quinoa
+20088; 볶음밥;cooked wild rice
+10118192; 쿠키;cookies
+2012; 고수풀;coriander
+11168; 옥수수;corn
+18022; 옥수수 빵 믹스;corn bread mix
+19003; 옥수수 칩;corn chips
+8020;콘플레이크 시리얼;corn flakes cereal
+20019; 옥수수 가루;corn flour
+11172; 옥수수 커널;corn kernels
+42289; 옥수수 기름;corn oil
+18363; 옥수수 토르티야;corn tortillas
+18023; 옥수수 빵;cornbread
+13346; 콘비프;corned beef
+5307; 콘월 암탉;cornish hens
+35137; 옥수수 가루;cornmeal
+20027; 옥수수 전분;cornstarch
+1001019; 코티자 치즈;cotija cheese
+1012; 코티지 치즈;cottage cheese
+10018029; 컨트리 빵;country bread
+11477; 애호박;courgettes
+20028; 쿠스쿠스;couscous
+16063; 암소 완두콩;cow pea
+10015136; 게살;crabmeat
+2030; 금이 간 후추;cracked pepper
+9078; 크랜베리;cranberries
+43382; 크랜베리 주스;cranberry juice
+1053; 크림;cream
+1017; 크림 치즈;cream cheese
+1186; 크림 치즈 블록;cream cheese block
+6016; 치킨 수프 크림;cream of chicken soup
+18373; 타르타르 크림;cream of tartar
+11174; 크림 옥수수;creamed corn
+10116098; 크림 피넛버터;creamy peanut butter
+1001056; 크림 프레슈;creme fraiche
+11266; 크레미니 버섯;cremini mushrooms
+1002031; 크리올 조미료;creole seasoning
+8066; 파삭 파삭 한 쌀 시리얼;crisp rice cereal
+18242; 크루통;croutons
+93751; 결정화된 생강;crystallized ginger
+11206; 오이;cucumber
+2014; 커민 씨앗;cumin seeds
+18139; 컵 케이크;cup cake
+9085; 건포도;currants
+93604; 카레 잎;curry leaves
+10016223; 유제품 무료 우유;dairy free milk
+10019334; 암갈색 설탕;dark brown sugar
+19904;다크 초콜릿;dark chocolate
+10019904; 다크 초콜릿 캔디 바;dark chocolate candy bars
+10019071; 다크 초콜릿 칩;dark chocolate chips
+1004058; 검은 참기름;dark sesame oil
+9087; 날짜;dates
+18945; 깊은 접시 파이 크러스트;deep dish pie crust
+10010151; 델리햄;deli ham
+7259; 델리 터키;deli turkey
+8121; 디저트 귀리;dessert oats
+10014057; 디저트 와인;dessert wine
+99186; 깍둑썰기한 햄;diced ham
+14146; 다이어트 팝;diet pop
+1002046; 디종 머스타드;dijon mustard
+2045; 딜;dill
+10011937; 딜 피클;dill pickles
+21118; 핫도그;hot dog
+1011053; 더블크림;double cream
+9032; 말린 살구;dried apricots
+2003; 말린 바질;dried basil
+93822; 말린 체리;dried cherries
+99233; 말린 초리조;dried chorizo
+9079; 말린 크랜베리;dried cranberries
+2017; 말린 딜;dried dill
+11284; 말린 양파;dried onion
+10011268; 말린 포르치니 버섯;dried porcini mushrooms
+1002038; 말린 세이지;dried rubbed sage
+2042; 말린 백리향;dried thyme
+11955; 말린 토마토;dried tomatoes
+18079; 마른 빵 부스러기;dry bread crumbs
+1090; 분유;dry milk
+1002024; 마른 머스타드;dry mustard
+14097; 드라이 레드 와인;dry red wine
+16090; 건조 볶은 땅콩;dry roasted peanuts
+4574; 오리 지방;duck fat
+10019165; 네덜란드 공정 코코아 가루;dutch process cocoa powder
+11212; 완두콩;edamame
+1226; 계란 대체품;egg substitute
+20409; 계란 당면;egg vermicelli
+1124;계란 흰자;egg whites
+1125; 계란 노른자;egg yolk
+1057; 에그노그;eggnog
+11209; 가지;eggplant
+10120499; 팔꿈치 마카로니;elbow macaroni
+6599; 엔칠라다 소스;enchilada sauce
+10111205; 영어 오이;english cucumber
+18439; 잉글리쉬 머핀;english muffin
+98887; 에리스리톨;erythritol
+11213; 에스카롤;escarole
+14210; 에스프레소;espresso
+1214; 증발 우유;evaporated milk
+16163; 여분의 단단한 두부;extra firm tofu
+1034053; 엑스트라 버진 올리브 오일;extra virgin olive oil
+10120420; 파르팔레;farfalle
+10020005; 파로;farro
+42193; 무지방 마요네즈;fat free mayo
+6984; 무지방 저염 닭고기 육수;fat-free less-sodium chicken broth
+11957; 회향;fennel
+2018; 회향 씨앗;fennel seeds
+98963; 호로파 잎;fenugreek leaf
+2019; 호로파 씨앗;fenugreek seeds
+1019; 페타 치즈;feta cheese
+10020409; 페투치니;fettuccine
+98849; 불에 구운 토마토;fire roasted tomatoes
+10115261; 물고기;fish
+6179; 생선 소스;fish sauce
+6963; 생선 스톡;fish stock
+23657; 플랭크 스테이크;flank steak
+10012220; 아마씨;flax seeds
+1022047; 플뢰르 드 셀;fleur de sel
+20081; 밀가루;flour
+10218364; 밀가루 또띠야;flour tortillas
+1020; 폰티나 치즈;fontina cheese
+10711111; 식용 염료;food dye
+98878; 프랭크의 레드핫 소스;frank's redhot sauce
+1123; 방목 계란;free range eggs
+18029; 프랑스 빵;french bread
+2044; 신선한 바질;fresh basil
+11043;신선한 콩나물;fresh bean sprouts
+11156; 신선한 골파;fresh chives
+11167; 신선한 옥수수;fresh corn
+10011167; 신선한 옥수수 알갱이;fresh corn kernels
+9089; 신선한 무화과;fresh figs
+9431; 신선한 과일;fresh fruit
+10111297; 신선한 허브;fresh herbs
+2064; 신선한 민트;fresh mint
+1026; 신선한 모짜렐라;fresh mozzarella
+2063; 신선한 로즈마리;fresh rosemary
+2049; 신선한 백리향 잎;fresh thyme leaves
+93709; 튀긴 양파;fried onions
+19230; 설탕을 입힘;frosting
+93629; 프로요 바;froyo bars
+11913; 냉동 옥수수;frozen corn
+11463; 냉동 시금치;frozen spinach
+19100; 퍼지;fudge
+10019348; 퍼지 토핑;fudge topping
+19065; 재미있는 크기의 아몬드 조이바;fun size almond joy bar
+93663; 가람 마살라;garam masala
+16157; 가르반조 콩가루;garbanzo bean flour
+11215; 마늘;garlic
+10111215; 마늘장;garlic paste
+1022020; 마늘 가루;garlic powder
+2020; 마늘 가루;garlic powder
+1062047; 마늘 소금;garlic salt
+19177; 젤라틴;gelatin
+99040; gf 초콜릿 케이크 믹스;gf chocolate cake mix
+10514037; 진;gin
+11216; 생강;ginger
+14136; 진저에일;ginger ale
+93754; 생강 페이스트;ginger paste
+10093754; 생강 마늘 페이스트;ginger-garlic paste
+18172; 진저스냅 쿠키;gingersnap cookies
+98853; 뇨끼;gnocchi
+1159; 염소 치즈;goat cheese
+9297; 황금 건포도;golden raisins
+1011004; 고르곤졸라;gorgonzola
+1022; 고다 치즈;gouda cheese
+10018617;그레이엄 크래커 부스러기;graham cracker crumbs
+18942; 그레이엄 크래커 파이 크러스트;graham cracker pie crust
+18617; 그레이엄 크래커;graham crackers
+10020088; 곡물 혼합;grain blend
+10314534; 그랑마르니에;grand marnier
+1089003; 할머니 스미스 사과;granny smith apples
+8212; 그래놀라;granola
+1002020; 알갱이 마늘;granulated garlic
+10111529; 포도 토마토;grape tomatoes
+9112; 자몽;grapefruit
+4517; 포도씨유;grapeseed oil
+6997; 그레이비;gravy
+16025; 그레이트 북부 콩;great northern beans
+1256; 그릭 요거트;greek yogurt
+11052; 녹두;green beans
+11333; 녹색 피망;green bell pepper
+31015; 청양고추;green chili pepper
+1441111; 녹색 식용 색소;green food coloring
+1019132; 청포도;green grapes
+1029195; 그린 올리브;green olives
+11291; 파;green onions
+21052; 채소;greens
+10093624; 그릴 치즈;grill cheese
+1022034; 그릴 조미료;grill seasoning
+2001; 지상 딸기;ground allspice
+1022009; 간 멸치 고추;ground ancho chili
+10023572; 갈은 쇠고기;ground beef
+5332; 갈은 닭고기;ground chicken
+1052009; 그라운드 치폴레 칠리 페퍼;ground chipotle chile pepper
+1012010; 계피가루;ground cinnamon
+2010; 지상 계피;ground cinnamon
+2011; 지상 정향;ground cloves
+1002013; 지상 고수 씨앗;ground coriander seeds
+1002014; 지상 커민;ground cumin
+12220; 지상 아마씨;ground flaxseed
+2021; 지상 생강;ground ginger
+17224;갈은 양고기;ground lamb
+2022; 그라운드 메이스;ground mace
+2025; 지상 육두구;ground nutmeg
+10219; 갈은 돼지고기;ground pork
+7063; 갈은 돼지고기 소시지;ground pork sausage
+17142; 갈은 송아지 고기;ground veal
+1023; 그뤼에르;gruyere
+1009037; 과카몰리;guacamole
+1049; 하프 앤 하프;half n half
+15036; 넙치 필레;halibut fillet
+10151; 햄;ham
+18350; 햄버거 빵;hamburger buns
+1129; 완숙 계란;hard cooked eggs
+1006972; 하리사;harissa
+11390; 해시 브라운 감자;hash brown potatoes
+12120; 헤이즐넛;hazelnuts
+6987; 셀러리 수프의 건강 요청 크림;healthy request cream of celery soup
+93602; 대마 씨앗;hemp seeds
+1012042; 허브 드 프로방스;herbes de provence
+1002044; 허브;herbs
+93743; 허쉬 키스 브랜드 밀크 초콜릿;hershey's kisses brand milk chocolates
+6175; 호이신 소스;hoisin sauce
+99227; 허니 머스타드;honey mustard
+1002055; 양 고추 냉이;horseradish
+6168; 핫 소스;hot sauce
+16158; 후무스;hummus
+10014412; 얼음;ice
+19095; 아이스크림;ice cream
+19184; 인스턴트 초콜릿 푸딩 믹스;instant chocolate pudding mix
+14214; 인스턴트 커피 가루;instant coffee powder
+10014214; 인스턴트 에스프레소 가루;instant espresso powder
+19332; 인스턴트 레몬 푸딩 믹스;instant lemon pudding mix
+10118375; 인스턴트 효모;instant yeast
+93764; 아이리쉬 크림;irish cream
+10028033; 이탈리아 빵;italian bread
+93651; 이탈리아 치즈 블렌드;italian cheese blend
+7036; 이탈리안 소시지;italian sausages
+1022027;이탈리안 조미료;italian seasoning
+99002; 재기;jaggery
+11979; 할라피뇨;jalapeno
+10120444; 재스민 쌀;jasmine rice
+19297; 젤리;jelly
+11603; 히카마;jicama
+93645; 지미;jimmies
+1019016; 주스;juice
+10520420; 점보 쉘 파스타;jumbo shell pasta
+93633; 카피르 라임 잎;kaffir lime leaves
+93716; 깔루아;kahlua
+1009195; 칼라마타 올리브;kalamata olives
+11233; 케일;kale
+11935; 케첩;ketchup
+93768; 부엌 꽃다발;kitchen bouquet
+9148; 키위;kiwis
+1082047; 코셔 소금;kosher salt
+18423; 레이디 핑거;ladyfingers
+10017224; 양고기;lamb
+10620420; 라자냐 국수;lasagna noodles
+18133; 파운드 케이크;lb cake
+23557; 마른 갈은 쇠고기;lean ground beef
+5662; 마른 땅 칠면조;lean ground turkey
+10060; 살코기 돼지고기 안심;lean pork tenderloin
+11246; 파;leeks
+17013; 양다리;leg of lamb
+9150; 레몬;lemon
+93834; 레몬 커드;lemon curd
+12311111; 레몬 추출물;lemon extract
+9152; 레몬 주스;lemon juice
+9156; 레몬 껍질;lemon peel
+1012030; 레몬 페퍼;lemon pepper
+1029150; 레몬 웨지;lemon wedges
+11972; 레몬그라스;lemongrass
+11252; 상추;lettuce
+93623; 상추 잎;lettuce leaves
+4602; 라이트 버터;light butter
+99009; 가벼운 코코넛 밀크;light coconut milk
+19350; 가벼운 옥수수 시럽;light corn syrup
+43274; 라이트 크림 치즈;light cream cheese
+4641; 가벼운 마요네즈;light mayonnaise
+1054053;라이트 올리브 오일;light olive oil
+10216124; 가벼운 간장;light soy sauce
+9159; 라임;lime
+9160; 라임 주스;lime juice
+1029159; 라임 웨지;lime wedges
+1009159; 라임 제스트;lime zest
+10720420; 링귀니;linguine
+93627; 액체 연기;liquid smoke
+10811111; 액체 스테비아;liquid stevia
+14037; 술;liquor
+15147; 살아있는 랍스터;live lobster
+10220444; 긴 곡물 쌀;long-grain rice
+1088; 저지방 버터밀크;low fat buttermilk
+1082; 저지방 우유;low fat milk
+1174; 저지방 우유;low fat milk
+1117; 저지방 플레인 요구르트;low fat plain yogurt
+1037; 저지방 리코타 치즈;low fat ricotta cheese
+1179; 저지방 사워 크림;low fat sour cream
+6970; 저염 닭육수;low sodium chicken broth
+16424; 저염 간장;low sodium soy sauce
+1006970; 저염 치킨 스톡;low-sodium chicken stock
+10093741; 저염 소고기 육수;lower sodium beef broth
+10115136; 덩어리 게;lump crab
+19157; m&m 캔디;m&m candies
+12131; 마카다미아 넛;macadamia nuts
+32004; 마카로니와 치즈 믹스;macaroni and cheese mix
+2015; 마드라스 카레 가루;madras curry powder
+14311; 맥아 믹스;malt drink mix
+9383; 만다린 오렌지 섹션;mandarin orange sections
+9218; 만다린 오렌지;mandarin oranges
+9176; 망고;mango
+19911; 메이플 시럽;maple syrup
+9328; 마라스키노 체리;maraschino cherries
+4073; 마가린;margarine
+10111549; 마리나라 소스;marinara sauce
+2023; 마조람;marjoram
+14057; 마르살라 와인;marsala wine
+93644;마시멜로 보풀;marshmallow fluff
+19116; 마시멜로;marshmallows
+20317; 마사 하리나;masa harina
+93820; 마스카포네;mascarpone
+99144; 매트 콩;mat beans
+98932; 말차;matcha tea
+4025; 마요네즈;mayonnaise
+1015006; 고기;meat
+1065062; 고기;meat
+10110219; 미트볼;meatballs
+9421; 메줄 날짜;medjool dates
+93772; 멕시칸 크림;mexican cream
+1009152; 마이어 레몬 주스;meyer lemon juice
+1077; 우유;milk
+10019146; 밀크초코칩;milk chocolate chips
+98991; 민트 처트니;mint chutney
+20048; 분밥;minute rice
+4014; 기적의 채찍;miracle whip
+93830; 미림;mirin
+16112; 된장;miso
+19304; 당밀;molasses
+1001025; 몬테레이 잭 치즈;monterey jack cheese
+11260; 버섯;mushroom
+15164; 홍합;mussels
+2046; 머스타드;mustard
+2024; 겨자씨;mustard seeds
+11119; 배추;napa cabbage
+9202; 네이블 오렌지;navel oranges
+9191; 천도 복숭아;nectarine
+11352; 새로운 감자;new potatoes
+1011256; 무지방 그릭 요거트;non-fat greek yogurt
+1200; 무지방 쿨채찍;nonfat cool whip
+1085; 무지방 우유;nonfat milk
+11446; 노리;nori
+12195; 너트 버터;nut butter
+93620; 견과류 식사;nut meal
+19125; 누텔라;nutella
+93690; 영양 효모;nutritional yeast
+20132; 와트 밀가루;oat flour
+8120; 귀리;oats
+4582; 오일;oil
+11956; 오일 포장된 태양 건조 토마토;oil packed sun dried tomatoes
+11278; 오크라;okra
+1052034;올드 베이 조미료;old bay seasoning
+4053; 올리브 오일;olive oil
+9195; 올리브;olives
+11282; 양파;onion
+2026; 양파 가루;onion powder
+6094; 양파 수프 믹스;onion soup mix
+9200; 오렌지;orange
+10011821; 오렌지 피망;orange bell pepper
+9206; 오렌지 주스;orange juice
+9214; 오렌지 주스 농축액;orange juice concentrate
+10414534; 오렌지 리큐어;orange liqueur
+19303; 오렌지 마멀레이드;orange marmalade
+12511111; 오렌지 오일;orange oil
+9216; 오렌지 제스트;orange zest
+2027; 오레가노;oregano
+10018166; 오레오 쿠키;oreo cookies
+10920420; 오르조;orzo
+6176; 굴 소스;oyster sauce
+15167; 굴;oysters
+93831; 야자 설탕;palm sugar
+10410123; 판체타;pancetta
+98847; 파니르;paneer
+10018079; 판코;panko
+9226; 파파야;papaya
+2028; 파프리카;paprika
+1033; 파르미지아노 레지아노;parmigiano reggiano
+11297; 파슬리;parsley
+2029; 파슬리 플레이크;parsley flakes
+11298; 파스닙;parsnip
+1028; 부분 탈지 모짜렐라 치즈;part-skim mozzarella cheese
+20420; 파스타;pasta
+99036; 파스타 샐러드 믹스;pasta salad mix
+10011549; 파스타 소스;pasta sauce
+10020080; 밀가루 반죽;pastry flour
+9236; 복숭아;peach
+16098; 땅콩 버터;peanut butter
+93762; 땅콩 버터 칩;peanut butter chips
+19150; 땅콩 버터 컵;peanut butter cups
+4042; 땅콩 기름;peanut oil
+16091; 땅콩;peanuts
+98988; 배 리큐어;pear liqueur
+20005; 진주 보리;pearl barley
+10111282;진주 양파;pearl onions
+11304; 완두콩;peas
+12142; 피칸;pecan
+10012142; 피칸 조각;pecan pieces
+1038; 페코리노;pecorino
+11120420; 펜네;penne
+11976; 페페론치노;peperoncino
+1025; 페퍼 잭 치즈;pepper jack cheese
+1022030; 후추;peppercorns
+98858; 박하 베이킹 칩;peppermint baking chips
+1022050; 페퍼민트 추출물;peppermint extract
+7057; 페퍼로니;pepperoni
+10111333; 고추;peppers
+93698; 페스토;pesto
+11944; 피클 맛;pickle relish
+11937; 피클;pickles
+27027; 피코 데 갈로;pico de gallo
+18334; 파이 크러스트;pie crust
+1049195; 피멘토 박제 올리브;pimento stuffed olives
+11943; 피미엔토스;pimientos
+12147; 잣;pine nuts
+9266; 파인애플;pineapple
+1029354; 파인애플 덩어리;pineapple chunks
+9354; 주스에 파인애플;pineapple in juice
+9273; 파인애플 주스;pineapple juice
+1032047; 핑크 히말라야 소금;pink himalayan salt
+16043; 핀토 콩;pinto beans
+12151; 피스타치오;pistachios
+18413; 피타;pita
+93770; 피자 크러스트;pizza crust
+98924; 피자 믹스;pizza mix
+1001256; 플레인 그릭 요거트;plain greek yogurt
+1118; 일반 무지방 요구르트;plain nonfat yogurt
+1001116; 플레인 요거트;plain yogurt
+9277; 질경이;plantain
+9279; 자두;plum
+10411529; 매실 토마토;plum tomatoes
+10011333; 포블라노 고추;poblano peppers
+10035137; 폴렌타;polenta
+7059; 폴란드어 소시지;polish sausage
+9442;석류 주스;pomegranate juice
+10042040; 석류 당밀;pomegranate molasses
+9286; 석류 씨앗;pomegranate seeds
+19034; 팝콘;popcorn
+2033; 양귀비 씨앗;poppy seeds
+10010219; 돼지고기;pork
+16009; 돼지고기 & 콩;Pork & Beans
+10005; 삼겹살;pork belly
+10084; 돼지 엉덩이;pork butt
+10010062; 돼지 갈비;pork chops
+1007063; 돼지고기 링크;pork links
+10062; 돼지 등심 볶음;pork loin chops
+10225; 돼지 등심 구이;pork loin roast
+10010225; 돼지고기 구이;pork roast
+10072; 돼지 어깨;pork shoulder
+10218; 돼지고기 안심;pork tenderloin
+10114057; 포트;port
+11265; 포타벨라 버섯;portabella mushrooms
+23612; 냄비 로스트;pot roast
+19411; 감자 칩;potato chips
+11413; 감자 전분;potato starch
+11362; 감자;potatoes
+2034; 가금류 조미료;poultry seasoning
+19336; 가루 설탕;powdered sugar
+19047; 프레즐 샌드위치;pretzel sandwiches
+1253; 가공 아메리칸 치즈;processed american cheese
+10010123; 프로슈토;prosciutto
+1035; 프로볼로네 치즈;provolone cheese
+9291; 자두;prunes
+18337; 퍼프 페이스트리;puff pastry
+11422; 호박;pumpkin
+11426; 호박 파이 충전물;pumpkin pie filling
+1002035; 호박 파이 향신료;pumpkin pie spice
+11424; 호박 퓌레;pumpkin puree
+12014; 호박 씨앗;pumpkin seeds
+1228; 퀘소 프레스코;queso fresco
+8402; 빠른 요리 귀리;quick cooking oats
+20035; 퀴노아;quinoa
+93773; 퀴노아 가루;quinoa flour
+11952;라디키오;radicchio
+11429; 무;radishes
+9299; 건포도;raisins
+10193663; 라지마 마살라;rajma masala
+6583; 라면;ramen noodles
+4639; 목장 드레싱;ranch dressing
+93733; 랜치 드레싱 믹스;ranch dressing mix
+9302; 라즈베리;raspberries
+10719297; 라즈베리 잼;raspberry jam
+12087; 생 캐슈;raw cashews
+15152; 원시;raw shrimp
+93721; 즉석 아시아 볶음밥;ready-to-serve Asian fried rice
+99229; 리얼 베이컨 레시피 조각;real bacon recipe pieces
+1079003; 빨간 사과;red apples
+11821; 빨간 피망;red bell peppers
+11112; 붉은 양배추;red cabbage
+11819; 붉은 고추;red chilli
+1059003; 빨간 맛있는 사과;red delicious apples
+1451111; 붉은 식용 색소;red food coloring
+98926; 붉은 자몽 주스;red grapefruit juice
+9132; 붉은 포도;red grapes
+16033; 붉은 강낭콩;red kidney beans
+10016069; 빨간 렌즈콩;red lentils
+10011282; 적양파;red onion
+1032009; 고추가루;red pepper flakes
+2031; 고추가루;red pepper powder
+10011355; 빨간 감자;red potatoes
+18157; 레드벨벳 쿠키;red velvet cookie
+14096; 적포도주;red wine
+1022068; 적포도주 식초;red wine vinegar
+1001168; 저지방 체다치즈;reduced fat shredded cheddar cheese
+16202; 튀긴 콩;refried beans
+93618; 굴절된 초승달 롤;refrigerated crescent rolls
+93610; 구운 피자 도우;refrigerated pizza dough
+18205; 구운 설탕 쿠키 반죽;refrigerated sugar cookie dough
+9307;대황;rhubarb
+98937; 리브 팁;rib tips
+20444; 쌀;rice
+20061; 쌀가루;rice flour
+8065; 라이스 크리스피 시리얼;rice krispies cereal
+93761; 쌀 우유;rice milk
+20133; 쌀국수;rice noodles
+10118368; 라이스페이퍼;rice paper
+93784; 쌀 시럽;rice syrup
+1022053; 쌀 식초;rice vinegar
+43479; 막걸리;rice wine
+1036; 리코타 살라타;ricotta salata
+18621; 리츠 크래커;ritz crackers
+93713; 로스트 비프;roast beef
+5114; 구운 치킨;roasted chicken
+12135; 구운 견과류;roasted nuts
+16092; 볶은 땅콩;roasted peanuts
+11916; 구운 고추;roasted red peppers
+10211529; 로마 토마토;roma tomatoes
+10111251; 로메인 상추;romaine lettuce
+10011298; 뿌리채소;root vegetables
+2036; 로즈마리;rosemary
+11320420; 로티니 파스타;rotini pasta
+5348; 로티세리 치킨;rotisserie chicken
+23617; 라운드 스테이크;round steak
+1012034; 문지르다;rub
+12211111; 럼 추출물;rum extract
+19296; 콧물 꿀;runny honey
+11353; 적갈색 감자;russet potatoes
+11435; 루타바가;rutabaga
+18060; 호밀 빵;rye bread
+98905; 호밀가루;rye meal
+2037; 사프란 스레드;saffron threads
+2038; 세이지;sage
+99226; 세이지 잎;sage leaves
+4114; 샐러드 드레싱;salad dressing
+7071; 살라미 소시지;salami
+15076; 연어 필레;salmon fillet
+6164; 살사;salsa
+27028; 살사 베르데;salsa verde
+2047; 소금;salt
+1102047; 소금과 후추;salt and pepper
+1001001;소금에 절인 버터;salted butter
+18228; 짠맛 크래커;saltine crackers
+18353; 샌드위치 롤빵;sandwich bun
+11439; 소금에 절인 양배추;sauerkraut
+1017063; 소시지;sausage
+1037063; 소시지 링크;sausage links
+10011819; 스카치 보닛 칠리;scotch bonnet chili
+1012047; 바다 소금;sea salt
+10015172; 바다 가리비;sea scallops
+18376; 양념된 빵 부스러기;seasoned bread crumbs
+1032053; 양념된 식초;seasoned rice vinegar
+1042047; 양념 소금;seasoned salt
+1042027; 조미료;seasoning
+1032027; 조미료 혼합;seasoning blend
+93818; 씨앗;seeds
+20129; 자가 상승 밀가루;self-rising flour
+10019903; 세미 스위트 초콜릿 칩;semi sweet chocolate chips
+11977; 세라노 칠레;serrano chile
+4058; 참기름;sesame oil
+10018350; 참깨 햄버거 빵;sesame seed hamburger buns
+12023; 참깨;sesame seeds
+11677; 샬롯;shallot
+1031009; 샤프 체다 치즈;sharp cheddar cheese
+1011019; 양 우유 치즈;sheeps milk cheese
+11020420; 조개;shells
+10114106; 셰리;sherry
+10214106; 셰리;sherry
+1012068; 셰리 식초;sherry vinegar
+11238; 표고버섯 모자;shiitake mushroom caps
+10120052; 짧은 곡물 쌀;short grain rice
+20499; 짧은 파스타;short pasta
+10013149; 갈비뼈;short ribs
+18192; 쇼트 브레드 쿠키;shortbread cookies
+10018338; 쇼트크러스트 페이스트리;shortcrust pastry
+4615; 단축;shortening
+1001009; 체다 치즈;shredded cheddar cheese
+1011026;파쇄된 치즈;shredded cheese
+1005114; 갈가리 찢긴 치킨;shredded chicken
+12108; 코코넛;shredded coconut
+1001251; 갈가리 찢긴 멕시코 치즈 블렌드;shredded mexican cheese blend
+1251; 파쇄 된 멕시코 치즈 블렌드;shredded mexican cheese blend
+1001026; 파쇄된 모짜렐라;shredded mozzarella
+16161; 순두부;silken tofu
+23625; 등심 스테이크;sirloin steak
+93630; 탈지유 리코타;skim milk ricotta
+99033; 탈지 바닐라 그릭 요거트;skim vanilla greek yogurt
+1005091; 뼈에 붙은 닭다리 쿼터;skin-on bone-in chicken leg quarters
+1045062; 껍질없는 뼈없는 닭 가슴살 반쪽;skinless boneless chicken breast halves
+5096; 껍질 없는 뼈 없는 닭 허벅지;skinless boneless chicken thighs
+93718; 스킨 블랙 그램;skinned black gram
+43016; 슬로 드레싱;slaw dressing
+10011109; 슬로 믹스;slaw mix
+10012061; 슬라이스 아몬드;slivered almonds
+1012028; 훈제 파프리카;smoked paprika
+15077; 훈제 연어;smoked salmon
+7916; 훈제 소시지;smoked sausage
+16150; 부드러운 땅콩 버터;smooth peanut butter
+15101; 도미 필레;snapper fillets
+11300; 눈 완두콩;snow peas
+14121; 소다수;soda water
+1056; 사워 크림;sour cream
+99169; 사워도우 그릇;sourdough bowl
+10118029; 사워도우 빵;sourdough bread
+16223; 두유;soy milk
+16122; 콩 단백질 분말;soy protein powder
+16124; 간장;soy sauce
+11420420; 스파게티;spaghetti
+11492; 스파게티 스쿼시;spaghetti squash
+43155; 스파클링 와인;sparkling wine
+93823;철자 밀가루;spelt flour
+1022046; 매운 브라운 겨자;spicy brown mustard
+10011457; 시금치;spinach
+14144; 스프라이트;sprite
+11001; 새싹;sprouts
+10011485; 스쿼시;squash
+1016168; 스리라차 소스;sriracha sauce
+23232; 스테이크;steaks
+93695; 스틸 컷 귀리;steel cut oats
+93628; 스테비아;stevia
+10023618; 고기 스튜;stew meat
+11583; 야채 스튜;stew vegetables
+1006615; 주식;stock
+18338; 상점에서 구입한 필로;store-bought phyllo
+93619; 스타우트;stout
+9316; 딸기;strawberries
+10819297; 딸기잼;strawberry jam
+10219172; 딸기 젤리;strawberry jello
+18082; 스터핑;stuffing
+18081; 스터핑 믹스;stuffing mix
+98940; 서브 롤;sub rolls
+19335; 설탕;sugar
+10011300; 설탕 스냅 완두콩;sugar snap peas
+90480; 설탕 시럽;sugar syrup
+99190; 수린 감미료;sukrin sweetener
+98961; 여름 풍미;summer savory
+11641; 여름 스쿼시;summer squash
+4584; 해바라기 기름;sunflower oil
+12036; 해바라기 씨;sunflower seeds
+98962; 스위트 칠리 소스;sweet chilli sauce
+11294; 달콤한 양파;sweet onion
+1002028; 달콤한 파프리카;sweet paprika
+93640; 달콤한 피클 주스;sweet pickle juice
+11945; 달콤한 피클 맛;sweet pickle relish
+11507; 고구마;sweet potato
+14355; 달콤한 차;sweet tea
+12109; 가당 코코넛;sweetened coconut
+1095; 가당 연유;sweetened condensed milk
+12179; 가당 파쇄 코코넛;sweetened shredded coconut
+11147;스위스 근대;swiss chard
+1040; 스위스 치즈;swiss cheese
+2073; 타코 시즈닝 믹스;taco seasoning mix
+18360; 타코 쉘;taco shells
+12698; 타히니;tahini
+10116124; 타마리;tamari
+93696; 타피오카 가루;tapioca flour
+2041; 타라곤;tarragon
+1029003; 타르트 사과;tart apple
+10111111; 티백;tea bags
+10814037; 데킬라;tequila
+6112; 데리야끼 소스;teriyaki sauce
+1012044; 타이 바질;thai basil
+11670; 태국 칠레;thai chiles
+93605; 타이 레드 카레 페이스트;thai red curry paste
+10310123; 두툼한 베이컨;thick-cut bacon
+15261; 틸라피아 필레;tilapia fillets
+18070; 토스트;toast
+19383; 토피 비트;toffee bits
+16213; 두부;tofu
+11954; 토마틸로;tomatillos
+11886; 토마토 주스;tomato juice
+11887; 토마토 페이스트;tomato paste
+11547; 토마토 퓌레;tomato puree
+11549; 토마토 소스;tomato sauce
+6159; 토마토 수프;tomato soup
+11529; 토마토;tomatoes
+13523; 탑 블레이드 스테이크;top blade steak
+23636; 탑 라운드 스테이크;top round steak
+23584; 최고 등심;Top Sirloin
+18364; 또띠아;tortilla
+19056; 토르티야 칩;tortilla chips
+14534; 트리플 초;triple sec
+1024053; 트러플 오일;truffle oil
+10015121; 참치;tuna
+19908; 터비나도 설탕;turbinado sugar
+5165; 터키;turkey
+5696; 칠면조 가슴살;turkey breast
+7955; 터키 키엘바사;turkey kielbasa
+2043;심황;turmeric
+11564; 순무;turnips
+10020081; 표백되지 않은 밀가루;unbleached flour
+1145;무염 버터;unsalted butter
+10130; 훈제 백 베이컨;unsmoked back bacon
+9019; 무가당 사과 소스;unsweetened applesauce
+12117; 코코넛 밀크;unsweetened coconut milk
+10012108; 무가당 코코넛 코코넛;unsweetened shredded coconut
+93622; 바닐라 빈;vanilla bean
+93813; 바닐라빈 페이스트;vanilla bean paste
+1012050; 바닐라 에센스;vanilla essence
+2050; 바닐라 추출물;vanilla extract
+10019230; 바닐라 프로스팅;vanilla frosting
+19206; 바닐라 인스턴트 푸딩 믹스;vanilla instant pudding mix
+99076; 바닐라 프로틴 파우더;vanilla protein powder
+18609; 바닐라 웨이퍼;vanilla wafers
+1119; 바닐라 요거트;vanilla yogurt
+93701; 비건 치즈;vegan cheese
+98848; 비건 초콜릿 칩;vegan chocolate chips
+4673; 비건 마가린;vegan margarine
+6615; 야채 국물;vegetable broth
+4513; 식물성 기름;vegetable oil
+16542; 채식 베이컨;vegetarian bacon
+14132; 베르무트;vermouth
+4135; 비네그레트;vinaigrette
+2053; 식초;vinegar
+14051; 보드카;vodka
+12155; 호두;walnuts
+14412; 물;water
+11590; 물 밤;water chestnuts
+15121; 물에 가득 찬 참치;water-packed tuna
+11591; 물냉이;watercress
+9326; 수박 덩어리;watermelon chunks
+20077; 밀기울;wheat bran
+20078; 밀 배아;wheat germ
+1054; 휘핑크림;whipped cream
+42135; 휘핑 토핑;whipped topping
+1001053; 휘핑 크림;whipping cream
+14052; 위스키;whiskey
+1012069; 화이트 발사믹 식초;white balsamic vinegar
+18069;흰 빵;white bread
+18137; 화이트 케이크 믹스;white cake mix
+1011009; 화이트 체다;white cheddar
+19087; 화이트 초콜릿;white chocolate
+10019087; 화이트초코칩;white chocolate chips
+10611282; 흰 양파;white onion
+2032; 흰 후추;white pepper
+93824; 흰색 통밀가루;white whole wheat flour
+14106; 화이트 와인;white wine
+1002068; 화이트 와인 식초;white wine vinegar
+1002001; 전체 딸기 열매;whole allspice berries
+5006; 통닭;whole chicken
+2013; 전체 고수 씨앗;whole coriander seeds
+9081; 전체 크랜베리 소스;whole cranberry sauce
+11177; 전체 커널 옥수수;whole kernel corn
+1012002; 홀스타 아니스;whole star anise
+18075; 통밀 빵;whole wheat bread
+20080; 통밀가루;whole wheat flour
+93675; 통밀 또띠야;whole wheat tortillas
+1012046; 통곡물 겨자;whole-grain mustard
+14084; 와인;wine
+2068; 와인 식초;wine vinegar
+10111485; 겨울 호박;winter squash
+10018368; 원톤랩;won ton wraps
+6971; 우스터 소스;worcestershire sauce
+10018364; 랩;wraps
+93626; 잔탄검;xanthan gum
+18375; 효모;yeast
+11951; 노란 피망;yellow bell pepper
+18144; 노란색 케이크 믹스;yellow cake mix
+10511282; 노란 양파;yellow onion
+1116; 요구르트;yogurt
+10211362; 유콘 금감자;yukon gold potato

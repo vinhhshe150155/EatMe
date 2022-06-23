@@ -16,7 +16,7 @@ import com.foodapp.eatme.model.Step;
 import java.util.Locale;
 
 public class LocaleHelper {
-    private static final String SELECTED_LANGUAGE = "Locale.Helper.Selected.Language";
+    private static final String SELECTED_LANGUAGE = "languageKey";
     public final static String LANG_KR = "ko";
     public final static String LANG_EN = "en";
     public static Context context;
@@ -62,8 +62,8 @@ public class LocaleHelper {
 
     public static String getCurrentLanguage() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        String lang = preferences.getString("Locale.Helper.Selected.Language", null);
-        if (lang == null) {
+        String lang = preferences.getString(SELECTED_LANGUAGE, null);
+        if (lang == null || lang.equals("")) {
             lang = Locale.getDefault().getLanguage();
         }
         return lang;

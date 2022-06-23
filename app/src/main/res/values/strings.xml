@@ -22,4 +22,14 @@
     <string name="marinade">Marinade</string>
     <string name="snack">Snack</string>
     <string name="drink">Drink</string>
+    <string name="language">Language</string>
+    <string name="key_language">languageKey</string>
+    <string-array name="languages">
+        <item>English</item>
+        <item>한국어</item>
+    </string-array>
+    <string-array name="languages_value">
+        <item>en</item>
+        <item>ko</item>
+    </string-array>
 </resources>

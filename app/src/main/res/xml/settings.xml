@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    android:key="preference_root"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Language">
+        <ListPreference
+            android:defaultValue="3"
+            android:dialogTitle="@string/language"
+            android:entries="@array/languages"
+            android:entryValues="@array/languages_value"
+            android:key="@string/key_language"
+            android:title="@string/language" />
+
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Polus">
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="+10 polus project"
+            android:summary="+10 polus vì leader đanh đá"
+            android:title="+10 polus project" />
+    </PreferenceCategory>
+</PreferenceScreen>
