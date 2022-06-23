@@ -193,7 +193,6 @@ public class HomeFragment extends Fragment {
             @Override
             public boolean onQueryTextChange(String newText) {
                 filterList(newText);
-                rcvIngredientSearch.setVisibility(View.VISIBLE);
                 return false;
             }
         });
@@ -222,8 +221,9 @@ public class HomeFragment extends Fragment {
             }
         }
         if (filterIngredientList.isEmpty()) {
-            Toast.makeText(requireContext(), "Empty", Toast.LENGTH_SHORT).show();
+            rcvIngredientSearch.setVisibility(View.GONE);
         } else {
+            rcvIngredientSearch.setVisibility(View.VISIBLE);
             searchIngredientAdapter.setCurrentLanguage(currentLanguage);
             searchIngredientAdapter.setIngredientList(filterIngredientList);
         }
