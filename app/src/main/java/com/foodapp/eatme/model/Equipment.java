@@ -18,6 +18,16 @@ public class Equipment {
         return name;
     }
 
+    public Equipment() {
+    }
+
+    public Equipment(int id, String name, String localizedName, String image) {
+        this.id = id;
+        this.name = name;
+        this.localizedName = localizedName;
+        this.image = image;
+    }
+
     public void setName(String name) {
         this.name = name;
     }

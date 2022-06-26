@@ -9,6 +9,18 @@ public class ChildComment {
     private String parentId;
     private String userReply;
 
+    public ChildComment() {
+    }
+
+    public ChildComment(String commentId, String content, long timestamp, String username, String parentId, String userReply) {
+        this.commentId = commentId;
+        this.content = content;
+        this.timestamp = timestamp;
+        this.username = username;
+        this.parentId = parentId;
+        this.userReply = userReply;
+    }
+
     public String getUserReply() {
         return userReply;
     }
@@ -48,7 +60,6 @@ public class ChildComment {
     public void setCommentId(String commentId) {
         this.commentId = commentId;
     }
-
 
 
     public String getContent() {

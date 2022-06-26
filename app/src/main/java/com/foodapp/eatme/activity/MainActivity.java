@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static final int FRAGMENT_HOME = 0;
     private static final int FRAGMENT_LIST_RECIPE = 1;
     private int currentFragment = FRAGMENT_HOME;
-    //    private Toolbar toolbar;
     private TextView tvUsername;
     private TextView tvEmail;
 
@@ -98,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             finish();
         } else if (id == R.id.settíngs) {
             if (currentFragment != FRAGMENT_SETTINGS) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_replace, new SettingsFragment()).commit();
+                replaceFragment(new SettingsFragment());
                 currentFragment = FRAGMENT_SETTINGS;
             }
         }

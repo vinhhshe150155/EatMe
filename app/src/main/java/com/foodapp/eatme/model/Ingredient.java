@@ -12,6 +12,25 @@ public class Ingredient {
     private List<String> possibleUnits;
     private String consistency;
     private List<String> shoppingListUnits;
+
+    public Ingredient() {
+    }
+
+    public Ingredient(int id, String name, String localizedName, String image, String original, String originalName, List<String> possibleUnits, String consistency, List<String> shoppingListUnits, List<String> meta, List<String> categoryPath, String aisle) {
+        this.id = id;
+        this.name = name;
+        this.localizedName = localizedName;
+        this.image = image;
+        this.original = original;
+        this.originalName = originalName;
+        this.possibleUnits = possibleUnits;
+        this.consistency = consistency;
+        this.shoppingListUnits = shoppingListUnits;
+        this.meta = meta;
+        this.categoryPath = categoryPath;
+        this.aisle = aisle;
+    }
+
     private List<String> meta;
     private List<String> categoryPath;
     private String aisle;
