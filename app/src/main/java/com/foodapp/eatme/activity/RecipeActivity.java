@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -22,21 +23,26 @@ import com.foodapp.eatme.R;
 import com.foodapp.eatme.adapter.CommentAdapter;
 import com.foodapp.eatme.adapter.RecipeStepAdapter;
 import com.foodapp.eatme.clickinterface.IClickNestedComment;
+import com.foodapp.eatme.dao.RecipeDatabase;
 import com.foodapp.eatme.model.ChildComment;
 import com.foodapp.eatme.model.Comment;
 import com.foodapp.eatme.model.Recipe;
 import com.foodapp.eatme.model.Step;
 import com.foodapp.eatme.util.LocaleHelper;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.mlkit.common.model.DownloadConditions;
 import com.google.mlkit.common.model.RemoteModelManager;
+import com.google.mlkit.nl.languageid.LanguageIdentification;
+import com.google.mlkit.nl.languageid.LanguageIdentifier;
 import com.google.mlkit.nl.translate.TranslateLanguage;
 import com.google.mlkit.nl.translate.TranslateRemoteModel;
 import com.google.mlkit.nl.translate.Translation;
@@ -49,13 +55,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import es.dmoral.toasty.Toasty;
+
 public class RecipeActivity extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseUser user;
     Recipe recipe;
     TextView tvRecipeName;
+    ImageView imgSave;
     ImageView imgRecipe;
     TextView tvCommentEmpty;
+    private boolean isLiked;
     private final TranslatorOptions options = new TranslatorOptions.Builder()
             .setSourceLanguage(TranslateLanguage.ENGLISH)
             .setTargetLanguage(TranslateLanguage.KOREAN)
@@ -77,7 +87,7 @@ public class RecipeActivity extends AppCompatActivity {
     private int commentStatus = COMMENT_NORMAL;
     private String currentLanguage;
     private ConstraintLayout layoutRecipe;
-    RemoteModelManager modelManager = RemoteModelManager.getInstance();
+    RecipeDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +99,7 @@ public class RecipeActivity extends AppCompatActivity {
     }
 
     private void initUI() {
+        imgSave = findViewById(R.id.img_save_recipe);
         layoutRecipe = findViewById(R.id.layout_recipe);
         layoutLoading = findViewById(R.id.layout_loading);
         tvCommentEmpty = findViewById(R.id.tv_comment_empty);
@@ -122,6 +133,7 @@ public class RecipeActivity extends AppCompatActivity {
     }
 
     private void initData() {
+        database = RecipeDatabase.getInstance(getApplicationContext());
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
         recipe = getIntent().getParcelableExtra("recipe");
@@ -129,22 +141,35 @@ public class RecipeActivity extends AppCompatActivity {
         Glide.with(this).load(recipe.getImage()).into(imgRecipe);
         steps = recipe.getAnalyzedInstructions().get(0).getSteps();
         currentLanguage = LocaleHelper.getCurrentLanguage();
+        checkIfLiked();
         getComments();
         switch (currentLanguage) {
             case LocaleHelper.LANG_KR:
-                toKor();
+                detectLanguage();
                 break;
             default:
-                RecipeStepAdapter adapter = new RecipeStepAdapter(steps);
-                rcvListStep.setLayoutManager(new LinearLayoutManager(this));
-                rcvListStep.setAdapter(adapter);
-                layoutLoading.setVisibility(View.GONE);
-                layoutRecipe.setVisibility(View.VISIBLE);
+                initStepAdapter();
         }
     }
 
+    private void initStepAdapter() {
+        RecipeStepAdapter adapter = new RecipeStepAdapter(steps);
+        rcvListStep.setLayoutManager(new LinearLayoutManager(this));
+        rcvListStep.setAdapter(adapter);
+        layoutLoading.setVisibility(View.GONE);
+        layoutRecipe.setVisibility(View.VISIBLE);
+    }
+
     private void initAction() {
+        imgSave.setOnClickListener(view -> saveRecipe());
         btnComment.setOnClickListener(view -> sendComment());
+    }
+
+    private void saveRecipe() {
+        database.recipeDAO().insert(recipe);
+        addRecipeToFirebase();
+        Toasty.normal(this, isLiked ? "Unliked" : "Saved").show();
+        isLiked = !isLiked;
     }
 
     private void sendComment() {
@@ -289,4 +314,73 @@ public class RecipeActivity extends AppCompatActivity {
                 .addOnFailureListener(e -> Log.e("Error", "Model could n’t be downloaded " + e));
     }
 
+    private void detectLanguage() {
+        LanguageIdentifier languageIdentifier =
+                LanguageIdentification.getClient();
+        languageIdentifier.identifyLanguage(steps.get(0).getStep())
+                .addOnSuccessListener(
+                        languageCode -> {
+                            if (languageCode.equals(LocaleHelper.LANG_KR)) {
+                                initStepAdapter();
+                            } else {
+                                toKor();
+                            }
+                        })
+                .addOnFailureListener(
+                        e -> {
+                        });
+
+    }
+
+    private void addRecipeToFirebase() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) {
+            return;
+        }
+        if (isLiked) {
+            deleteRecipeFirebase();
+            database.recipeDAO().delete(recipe.getId());
+            return;
+        }
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("user").child(user.getUid()).child("savedRecipe");
+        ref.push().setValue(recipe);
+    }
+
+    private void deleteRecipeFirebase() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) {
+            return;
+        }
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("user").child(user.getUid()).child("savedRecipe");
+        Query deleteQuery = ref.orderByChild("id").equalTo(recipe.getId());
+        deleteQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot recipeSnapshot : dataSnapshot.getChildren()) {
+                    recipeSnapshot.getRef().removeValue();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(RecipeActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void checkIfLiked() {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("user").child(user.getUid()).child("savedRecipe");
+        Query query = ref.orderByChild("id").equalTo(recipe.getId());
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                isLiked = dataSnapshot.getChildrenCount() > 0;
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 }

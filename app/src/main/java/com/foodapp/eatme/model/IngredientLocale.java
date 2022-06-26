@@ -3,6 +3,15 @@ package com.foodapp.eatme.model;
 public class IngredientLocale {
     private int id;
 
+    public IngredientLocale() {
+    }
+
+    public IngredientLocale(int id, String enName, String krName) {
+        this.id = id;
+        this.enName = enName;
+        this.krName = krName;
+    }
+
     public int getId() {
         return id;
     }

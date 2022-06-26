@@ -24,6 +24,7 @@
     <string name="drink">Drink</string>
     <string name="language">Language</string>
     <string name="key_language">languageKey</string>
+    <string name="keyMenu" translatable="false">keyMenu</string>
     <string-array name="languages">
         <item>English</item>
         <item>한국어</item>

@@ -13,7 +13,6 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.foodapp.eatme.R;
-import com.foodapp.eatme.util.ListIngredient;
 import com.foodapp.eatme.util.LocaleHelper;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -59,6 +58,5 @@ public class SplashActivity extends AppCompatActivity {
         }
         finish();
         startActivity(intent);
-        finish();
     }
 }

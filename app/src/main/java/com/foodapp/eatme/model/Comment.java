@@ -11,8 +11,19 @@ public class Comment {
     private String username;
     private Map<String, ChildComment> reply = new HashMap<>();
     private boolean isExpandable;
+
     public String getCommentId() {
         return commentId;
+    }
+
+    public Comment(String commentId, String content, long timestamp, String userId, String username, Map<String, ChildComment> reply, boolean isExpandable) {
+        this.commentId = commentId;
+        this.content = content;
+        this.timestamp = timestamp;
+        this.userId = userId;
+        this.username = username;
+        this.reply = reply;
+        this.isExpandable = isExpandable;
     }
 
     public void setCommentId(String commentId) {
@@ -34,9 +45,6 @@ public class Comment {
     public void setUsername(String username) {
         this.username = username;
     }
-
-
-
 
 
     public Comment() {

@@ -13,6 +13,13 @@ public class AnalyzedInstruction implements Parcelable {
     @Expose
     private List<Step> steps;
 
+    public AnalyzedInstruction(String name, List<Step> steps) {
+        this.name = name;
+        this.steps = steps;
+    }
+
+    public AnalyzedInstruction() {
+    }
 
     protected AnalyzedInstruction(Parcel in) {
         name = in.readString();

@@ -3,26 +3,27 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:gravity="left"
-    android:background="@color/teal_200"
+    android:background="@color/floral_white"
     android:padding="20dp"
-    android:layout_height="180dp">
+    android:layout_height="@dimen/_130sdp">
     <ImageView
-        android:layout_width="80dp"
-        android:src="@drawable/ic_avt"
-        android:layout_height="80dp"/>
+        android:layout_width="@dimen/_48sdp"
+        android:src="@drawable/user"
+        android:layout_height="@dimen/_48sdp"/>
     <TextView
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/_8sdp"
         android:layout_width="wrap_content"
         android:text="@string/app_name"
-        android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_13ssp"
         android:id="@+id/drawerlayout_tv_username"
         android:layout_height="wrap_content" />
     <TextView
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/_8sdp"
         android:layout_width="wrap_content"
-        android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_10ssp"
         android:text="@string/app_name"
         android:id="@+id/drawerlayout_tv_email"
         android:layout_height="wrap_content" />

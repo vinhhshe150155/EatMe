@@ -39,7 +39,14 @@
             android:id="@+id/layout_recipe"
             android:layout_height="wrap_content"
             tools:context=".RecipeActivity">
-
+            <ImageView
+                android:src="@drawable/ic_like"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_margin="@dimen/_8sdp"
+                android:id="@+id/img_save_recipe"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"/>
             <TextView
                 android:id="@+id/tv_recipe_name"
                 android:layout_width="match_parent"

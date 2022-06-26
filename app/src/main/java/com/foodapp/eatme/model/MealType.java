@@ -6,8 +6,16 @@ public class MealType {
     private int image;
     private boolean selected;
     private int strResource;
+
     public boolean isSelected() {
         return selected;
+    }
+
+    public MealType(String name, int image, boolean selected, int strResource) {
+        this.name = name;
+        this.image = image;
+        this.selected = selected;
+        this.strResource = strResource;
     }
 
     public void setSelected(boolean selected) {
@@ -45,6 +53,7 @@ public class MealType {
         this.name = name;
         this.image = image;
     }
+
     public MealType(String name, int image, int strResource) {
         this.name = name;
         this.image = image;

@@ -3,11 +3,16 @@ package com.foodapp.eatme.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+@Entity(tableName = "recipe")
 public class Recipe implements Parcelable {
     private boolean vegetarian;
     private boolean vegan;
@@ -27,6 +32,7 @@ public class Recipe implements Parcelable {
     private String creditsText;
     private String sourceName;
     private double pricePerServing;
+    @PrimaryKey(autoGenerate = false)
     private int id;
     private String title;
     private int readyInMinutes;
@@ -44,6 +50,43 @@ public class Recipe implements Parcelable {
     @Expose
     private List<AnalyzedInstruction> analyzedInstructions;
 
+    public Recipe(boolean vegetarian, boolean vegan, boolean glutenFree, boolean dairyFree, boolean veryHealthy, boolean cheap, boolean veryPopular, boolean sustainable, boolean lowFodmap, int weightWatcherSmartPoints, String gaps, int preparationMinutes, int cookingMinutes, int aggregateLikes, int healthScore, String creditsText, String sourceName, double pricePerServing, int id, String title, int readyInMinutes, int servings, String sourceUrl, int openLicense, String image, String imageType, String summary, List<String> cuisines, List<String> dishTypes, List<String> diets, List<String> occasions, List<AnalyzedInstruction> analyzedInstructions) {
+        this.vegetarian = vegetarian;
+        this.vegan = vegan;
+        this.glutenFree = glutenFree;
+        this.dairyFree = dairyFree;
+        this.veryHealthy = veryHealthy;
+        this.cheap = cheap;
+        this.veryPopular = veryPopular;
+        this.sustainable = sustainable;
+        this.lowFodmap = lowFodmap;
+        this.weightWatcherSmartPoints = weightWatcherSmartPoints;
+        this.gaps = gaps;
+        this.preparationMinutes = preparationMinutes;
+        this.cookingMinutes = cookingMinutes;
+        this.aggregateLikes = aggregateLikes;
+        this.healthScore = healthScore;
+        this.creditsText = creditsText;
+        this.sourceName = sourceName;
+        this.pricePerServing = pricePerServing;
+        this.id = id;
+        this.title = title;
+        this.readyInMinutes = readyInMinutes;
+        this.servings = servings;
+        this.sourceUrl = sourceUrl;
+        this.openLicense = openLicense;
+        this.image = image;
+        this.imageType = imageType;
+        this.summary = summary;
+        this.cuisines = cuisines;
+        this.dishTypes = dishTypes;
+        this.diets = diets;
+        this.occasions = occasions;
+        this.analyzedInstructions = analyzedInstructions;
+    }
+    @Ignore
+    public Recipe() {
+    }
 
     protected Recipe(Parcel in) {
         vegetarian = in.readByte() != 0;
