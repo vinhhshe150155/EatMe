@@ -28,25 +28,7 @@ public class RequestManager {
     public RequestManager(Context context) {
         this.context = context;
     }
-//    public void getRandomRecipes(RandomRecipeResponseListener listener, List<String> tags){
-//        CallRandomRecipes callRandomRecipes = retrofit.create(CallRandomRecipes.class);
-//        Call<RandomRecipeApiResponse> call = callRandomRecipes.callRandomRecipe(context.getString(R.string.api_key),"10",tags);
-//        call.enqueue(new Callback<RandomRecipeApiResponse>() {
-//            @Override
-//            public void onResponse(Call<RandomRecipeApiResponse> call, Response<RandomRecipeApiResponse> response) {
-//                if (!response.isSuccessful()){
-//                    listener.didError(response.message());
-//                    return;
-//                }
-//                listener.didFetch(response.body(), response.message());
-//            }
-//
-//            @Override
-//            public void onFailure(Call<RandomRecipeApiResponse> call, Throwable t) {
-//                listener.didError(t.getMessage());
-//
-//            }
-//        });}
+
         public void searchRecipes(SearchRecipeResponseListener listener, String query
                 , String sort, String sortDirection,
                                   Integer maxReadyTime,
@@ -111,20 +93,20 @@ public class RequestManager {
 //        );
 //
 //    }
-    private interface SearchRecipes{
-        @GET("recipes/complexSearch")
-        Call<ResultApiResponse> callRandomRecipe(
-                @Query("apiKey") String apiKey,
-                @Query("query") String query,
-                @Query("sort") String sort,
-                @Query("sortDirection") String sortDirection,
-                @Query("maxReadyTime") Integer maxReadyTime,
-                @Query("minCalories") Integer minCalories,
-                @Query("maxCalories") Integer maxCalories,
-                @Query("instructionsRequired") boolean instructionsRequired ,
-                @Query("addRecipeInformation") boolean addRecipeInformation
+private interface SearchRecipes{
+    @GET("recipes/complexSearch")
+    Call<ResultApiResponse> callRandomRecipe(
+            @Query("apiKey") String apiKey,
+            @Query("includeIngredients") String includeIngredients,
+            @Query("sort") String sort,
+            @Query("sortDirection") String sortDirection,
+            @Query("maxReadyTime") Integer maxReadyTime,
+            @Query("minCalories") Integer minCalories,
+            @Query("maxCalories") Integer maxCalories,
+            @Query("instructionsRequired") boolean instructionsRequired ,
+            @Query("addRecipeInformation") boolean addRecipeInformation
 
-        );
+    );
 
     }
     private interface GetRecipes{

@@ -11,9 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.foodapp.eatme.R;
 import com.foodapp.eatme.model.Result;
-import com.squareup.picasso.Picasso;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +44,7 @@ List<Result> list;
         holder.textView_time.setText(list.get(position).readyInMinutes+ " Minutes");
         holder.textView_kcal.setText(String.valueOf((int)list.get(position).nutrition.nutrients.get(0).amount)+" Kcal");
       //  holder.textView_kcal.setText(" Kcal");
-        Picasso.get().load(list.get(position).image).into(holder.imageView_food);
+        Glide.with(context).load(list.get(position).image).into(holder.imageView_food);
 
     }
 

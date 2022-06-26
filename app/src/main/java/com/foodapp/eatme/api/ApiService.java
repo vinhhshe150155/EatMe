@@ -2,6 +2,7 @@ package com.foodapp.eatme.api;
 
 import com.foodapp.eatme.model.ApiFoodResponse;
 import com.foodapp.eatme.model.Ingredient;
+import com.foodapp.eatme.model.ResultApiResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -39,4 +40,20 @@ public interface ApiService {
     })
     @GET("food/ingredients/{id}/information")
     Call<Ingredient> getIngredientById(@Path("id") int id);
+    @Headers({
+            "X-RapidAPI-Host: spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+            "X-RapidAPI-Key: 615484898amsh2a40c4a2d671eb4p1b0769jsn1ee636a8de0b"
+    })
+    @GET("recipes/complexSearch")
+    Call<ResultApiResponse> getSearchList(
+            @Query("includeIngredients") String includeIngredients,
+            @Query("sort") String sort,
+            @Query("sortDirection") String sortDirection,
+            @Query("maxReadyTime") Integer maxReadyTime,
+            @Query("minCalories") Integer minCalories,
+            @Query("maxCalories") Integer maxCalories,
+            @Query("instructionsRequired") boolean instructionsRequired ,
+            @Query("addRecipeInformation") boolean addRecipeInformation
+
+    );
 }

@@ -40,6 +40,7 @@ public class Recipe implements Parcelable {
     private List<String> dishTypes;
     private List<String> diets;
     private List<String> occasions;
+    public Nutrition nutrition;
     @SerializedName("analyzedInstructions")
     @Expose
     private List<AnalyzedInstruction> analyzedInstructions;

@@ -25,6 +25,7 @@
             android:exported="false" />
         <activity
             android:name=".activity.ListRecipeActivity"
+            android:parentActivityName=".activity.MainActivity"
             android:exported="false" />
 
         <meta-data
