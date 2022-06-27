@@ -1,6 +1,7 @@
 package com.foodapp.eatme.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.foodapp.eatme.R;
+import com.foodapp.eatme.activity.ListRecipeActivity;
 import com.foodapp.eatme.clickinterface.IClickItemMealType;
 import com.foodapp.eatme.model.MealType;
 
@@ -56,6 +58,11 @@ public class SuggestMealTypeAdapter extends RecyclerView.Adapter<SuggestMealType
                 holder.itemView.setBackgroundResource(R.drawable.red_background);
                 break;
         }
+        holder.itemView.setOnClickListener(view -> {
+            Intent intent = new Intent(context, ListRecipeActivity.class);
+            intent.putExtra("mealType", res.getString(mealType.getStrResource()));
+            context.startActivity(intent);
+        });
 //        holder.itemView.setOnClickListener(view -> {
 //            holder.itemView.animate()
 //                    .rotationX(360)
@@ -80,6 +87,8 @@ public class SuggestMealTypeAdapter extends RecyclerView.Adapter<SuggestMealType
 //        });
     }
 
+
+
     @Override
     public int getItemCount() {
         return mealTypes.size();
@@ -91,7 +100,6 @@ public class SuggestMealTypeAdapter extends RecyclerView.Adapter<SuggestMealType
 
         public SuggestionMealTypeViewHolder(@NonNull View itemView) {
             super(itemView);
-
             imgMealType = itemView.findViewById(R.id.img_suggest_mealtype);
             tvMealType = itemView.findViewById(R.id.tv_suggest_mealtype);
         }

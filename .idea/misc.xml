@@ -5,12 +5,18 @@
       <map>
         <entry key="..\:/Users/Ottelia/AndroidStudioProjects/EatMe/app/src/main/res/drawable/mealtype_shape.xml" value="0.1" />
         <entry key="..\:/Users/Ottelia/AndroidStudioProjects/EatMe/app/src/main/res/layout/activity_list_recipe.xml" value="0.12291666666666666" />
+        <entry key="..\:/Users/Ottelia/AndroidStudioProjects/EatMe/app/src/main/res/layout/activity_main.xml" value="0.2115036231884058" />
         <entry key="..\:/Users/Ottelia/AndroidStudioProjects/EatMe/app/src/main/res/layout/activity_search_result.xml" value="0.12291666666666666" />
         <entry key="..\:/Users/Ottelia/AndroidStudioProjects/EatMe/app/src/main/res/layout/fragment_home.xml" value="0.13095238095238096" />
         <entry key="..\:/Users/Ottelia/AndroidStudioProjects/EatMe/app/src/main/res/layout/fragment_list_recipe.xml" value="0.20199275362318841" />
         <entry key="..\:/Users/Ottelia/AndroidStudioProjects/EatMe/app/src/main/res/layout/header_navigattion_drawer.xml" value="0.13095238095238096" />
+        <entry key="..\:/Users/Ottelia/AndroidStudioProjects/EatMe/app/src/main/res/layout/item_filter_menu.xml" value="0.17105263157894737" />
         <entry key="..\:/Users/Ottelia/AndroidStudioProjects/EatMe/app/src/main/res/layout/item_suggest_mealtype.xml" value="0.13095238095238096" />
+        <entry key="..\:/Users/Ottelia/AndroidStudioProjects/EatMe/app/src/main/res/layout/layout_header_nav.xml" value="0.2115036231884058" />
         <entry key="..\:/Users/Ottelia/AndroidStudioProjects/EatMe/app/src/main/res/layout/list_random_recipe.xml" value="0.13095238095238096" />
+        <entry key="..\:/Users/Ottelia/AndroidStudioProjects/EatMe/app/src/main/res/menu/filter_search_menu.xml" value="0.2682291666666667" />
+        <entry key="..\:/Users/Ottelia/AndroidStudioProjects/EatMe/app/src/main/res/menu/header_menu.xml" value="0.26927083333333335" />
+        <entry key="..\:/Users/Ottelia/AndroidStudioProjects/EatMe/app/src/main/res/menu/main_menu.xml" value="0.26927083333333335" />
         <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/drawable-anydpi/ic_avt.xml" value="0.1935" />
         <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2115" />
         <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/drawable-xhdpi/green_background.xml" value="0.254" />

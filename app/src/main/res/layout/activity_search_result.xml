@@ -5,23 +5,25 @@
     android:layout_height="match_parent"
     android:background="#14462D"
     tools:context=".activity.ListRecipeActivity">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize">
+
         <androidx.cardview.widget.CardView
-            android:background="@drawable/background_border1"
             android:id="@+id/cardView"
-            app:cardElevation="8dp"
-            android:layout_margin="8dp"
             android:layout_width="340dp"
-            android:layout_height="?attr/actionBarSize">
+            android:layout_height="?attr/actionBarSize"
+            android:layout_margin="8dp"
+            android:background="@drawable/background_border1"
+            app:cardElevation="8dp">
 
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/searchView"
                 android:layout_width="340dp"
                 android:layout_height="match_parent"
-                android:queryHint="Search your food..."
                 android:background="#14462D"
+                android:queryHint="Search your food..."
                 app:iconifiedByDefault="false"
                 app:searchIcon="@drawable/ic_search" />
         </androidx.cardview.widget.CardView>

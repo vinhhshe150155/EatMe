@@ -1,10 +1,13 @@
 package com.foodapp.eatme.activity;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,6 +18,7 @@ import com.foodapp.eatme.api.ApiService;
 import com.foodapp.eatme.model.ApiFoodResponse;
 import com.foodapp.eatme.model.Recipe;
 import com.foodapp.eatme.model.ResultApiResponse;
+import com.foodapp.eatme.request.RequestManager;
 import com.foodapp.eatme.util.NetworkUtil;
 
 import java.util.List;
@@ -27,17 +31,43 @@ import retrofit2.Response;
 
 public class ListRecipeActivity extends AppCompatActivity {
     private RecyclerView rcvListRecipe;
-    private String searchIngredients;
+    private String searchIngredients, mealType;
     private List<Recipe> recipes;
     SearchRecipeAdapter randomRecipeAdapter;
-
+//
+ProgressDialog dialog;
+    RequestManager manager;
+    RecyclerView recyclerView;
+    SearchView searchView;
+    String mquery;
+    ImageView btnFilter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_list_recipe);
         setContentView(R.layout.activity_search_result);
         initUI();
         initData();
+        searchData();
+    }
+
+    private void searchData() { dialog=new ProgressDialog(this);
+        dialog.setTitle("Loading...");
+
+        searchView= findViewById(R.id.searchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                callApi(query,mealType);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+//        btnFilter = findViewById(R.id.btnFilter);
+//        btnFilter.setOnClickListener(this::onFilterClick);
 
     }
 
@@ -47,19 +77,22 @@ public class ListRecipeActivity extends AppCompatActivity {
 
     private void initData() {
         searchIngredients = getIntent().getStringExtra("ingredients");
-        callApi();
+        mealType = getIntent().getStringExtra("mealType");
+        callApi(searchIngredients,mealType);
     }
 
 
-    private void callApi() {
+    private void callApi(String ingredient,String type) {
         if (!NetworkUtil.isNetworkAvailable(this)) {
             Toasty.normal(this, "No internet connection.").show();
             return;
         }
-        ApiService.apiService.getSearchList(searchIngredients,"random", "asc", 1000000, 0, 10000, true, true).enqueue(new Callback<ResultApiResponse>() {
+        ApiService.apiService.getSearchList(ingredient,100, "popularity","asc",
+                1000000, 0, 10000,
+                true, true,type)
+                .enqueue(new Callback<ResultApiResponse>() {
             @Override
             public void onResponse(@NonNull Call<ResultApiResponse> call, @NonNull Response<ResultApiResponse> response) {
-                rcvListRecipe.setHasFixedSize(true);
                 randomRecipeAdapter = new SearchRecipeAdapter(ListRecipeActivity.this,response.body().results);
                 rcvListRecipe.setAdapter(randomRecipeAdapter);
                 rcvListRecipe.setLayoutManager(new GridLayoutManager(ListRecipeActivity.this,2));

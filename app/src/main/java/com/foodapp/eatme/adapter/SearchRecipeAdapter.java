@@ -39,11 +39,8 @@ List<Result> list;
     public void onBindViewHolder(@NonNull SearchRecipeViewHolder holder, int position) {
         holder.textView_title.setText(list.get(position).title);
         holder.textView_title.setSelected(true);
-        //holder.textView_likes.setText(" Likes");
-        //holder.textView_servings.setText(" Servings");
         holder.textView_time.setText(list.get(position).readyInMinutes+ " Minutes");
         holder.textView_kcal.setText(String.valueOf((int)list.get(position).nutrition.nutrients.get(0).amount)+" Kcal");
-      //  holder.textView_kcal.setText(" Kcal");
         Glide.with(context).load(list.get(position).image).into(holder.imageView_food);
 
     }
@@ -62,9 +59,7 @@ class SearchRecipeViewHolder extends RecyclerView.ViewHolder {
     CardView random_list_container;
     TextView textView_title;
     ImageView imageView_food;
-    TextView textView_servings;
     TextView textView_time;
-    TextView textView_likes;
     TextView  textView_kcal;
 
     public SearchRecipeViewHolder(@NonNull View itemView) {

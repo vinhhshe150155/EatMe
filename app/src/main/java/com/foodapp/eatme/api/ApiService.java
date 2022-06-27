@@ -47,13 +47,15 @@ public interface ApiService {
     @GET("recipes/complexSearch")
     Call<ResultApiResponse> getSearchList(
             @Query("includeIngredients") String includeIngredients,
+            @Query("number") Integer number,
             @Query("sort") String sort,
             @Query("sortDirection") String sortDirection,
             @Query("maxReadyTime") Integer maxReadyTime,
             @Query("minCalories") Integer minCalories,
             @Query("maxCalories") Integer maxCalories,
             @Query("instructionsRequired") boolean instructionsRequired ,
-            @Query("addRecipeInformation") boolean addRecipeInformation
+            @Query("addRecipeInformation") boolean addRecipeInformation,
+            @Query("type") String type
 
     );
 }
