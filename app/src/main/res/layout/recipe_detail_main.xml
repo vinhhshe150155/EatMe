@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="#edafa4"
+    android:paddingLeft="6dp"
+    android:paddingRight="6dp"
+
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="270dp"
+
+                    android:gravity="left"
+
+                    android:src="@drawable/ic_arrow_back" />
+
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+
+                    android:src="@drawable/ic_love"
+
+                    />
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="30dp"
+
+                    android:src="@drawable/ic_share" />
+
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="15dp">
+
+                <ImageView
+                    android:id="@+id/imageView_meal_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:scaleType="centerCrop"
+
+                    android:src="@drawable/anh4"
+                    tools:layout_editor_absoluteX="356dp"
+                    tools:layout_editor_absoluteY="16dp" />
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/textView_meal_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="left"
+                android:paddingLeft="4dp"
+                android:text="Grilled salmon with vegetables in oyter sauce"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView_meal_source"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="left"
+                android:padding="8dp"
+                android:text="Source"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="italic" />
+
+            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="*"
+
+
+                >
+
+                <TableRow android:background="@drawable/shapetop">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="kcal" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="protein" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="fat" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="carb" />
+                </TableRow>
+
+                <TableRow android:background="@drawable/shapebottom">
+
+                    <TextView
+                        android:id="@+id/textView_nutri_calo"
+                        android:gravity="center"
+                        android:text="645"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textView_nutri_protein"
+                        android:gravity="center"
+                        android:text="30 g"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textView_nutri_fat"
+                        android:gravity="center"
+                        android:text="10 g"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textView_nutri_carb"
+                        android:gravity="center"
+                        android:text="64 g"
+                        android:textStyle="bold" />
+                </TableRow>
+            </TableLayout>
+
+            <TextView
+                android:id="@+id/textIngredients"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="6dp"
+                android:textStyle="bold"
+                android:text="Ingredients"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_meal_ingredients"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="4dp"
+                android:text="How to cook"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/idd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                android:text="haha"/>
+<!--            <androidx.recyclerview.widget.RecyclerView-->
+<!--                android:id="@+id/recycler_recipe_step"-->
+
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="300dp"-->
+
+<!--                />-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="4dp"
+                android:text="Summary"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView_meal_summary"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Summary"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+            <TextView
+                android:id="@+id/textComments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="4dp"
+                android:layout_marginTop="6dp"
+                android:text="Comments"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclecomment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/loadcomment"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/anh2" />
+
+                <TextView
+                    android:id="@+id/commentname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/loadcomment"
+                    android:text="Annie"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/commenttext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/commentname"
+                    android:layout_toEndOf="@id/loadcomment"
+                    android:layout_toRightOf="@id/loadcomment"
+                    android:text="Actual Comment"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/commenttime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/commenttext"
+                    android:layout_toEndOf="@id/loadcomment"
+                    android:layout_toRightOf="@id/loadcomment"
+                    android:text="12/06/19" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/commentsa"
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/commentimge"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/anh2" />
+
+                <EditText
+                    android:id="@+id/typecommet"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_toStartOf="@id/sendcomment"
+                    android:layout_toEndOf="@id/commentimge"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:textColor="@color/black"
+                    android:hint="Enter Comment..."
+                    android:textColorHint="@color/black"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:padding="12dp" />
+
+                <ImageButton
+                    android:id="@+id/sendcomment"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@color/white"
+                    android:src="@drawable/ic_baseline_send_24" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!--    <androidx.viewpager.widget.ViewPager-->
+    <!--        android:id="@+id/viewpager"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="220dp"-->
+    <!--        tools:ignore="SpeakableTextPresentCheck" />-->
+
+
+</LinearLayout>
