@@ -1,4 +1,4 @@
-package com.example.areal.Models;
+package com.foodapp.eatme.model;
 
 import java.util.ArrayList;
 

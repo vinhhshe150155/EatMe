@@ -1,6 +1,7 @@
-package com.example.areal.Listeners;
+package com.foodapp.eatme.listener;
 
-import com.example.areal.Models.RecipeDetailsResponse;
+
+import com.foodapp.eatme.model.RecipeDetailsResponse;
 
 public interface RecipeDetailsListener {
     void didFetch(RecipeDetailsResponse response, String message);

@@ -22,4 +22,5 @@
     <string name="marinade">Marinade</string>
     <string name="snack">Snack</string>
     <string name="drink">Drink</string>
+    <string name="api_key" translatable="false"> 6a0944ef14f345c29947fe42f311c049 </string>
 </resources>

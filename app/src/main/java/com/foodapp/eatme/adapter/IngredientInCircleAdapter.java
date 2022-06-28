@@ -1,4 +1,4 @@
-package com.example.areal.Adapters;
+package com.foodapp.eatme.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,8 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.areal.Models.ExtendedIngredient;
-import com.example.areal.R;
+import com.foodapp.eatme.R;
+import com.foodapp.eatme.model.ExtendedIngredient;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

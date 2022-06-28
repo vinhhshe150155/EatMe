@@ -1,20 +1,20 @@
-package com.example.areal;
+package com.foodapp.eatme.request;
 
 
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.areal.Listeners.NutriListener;
-import com.example.areal.Listeners.RandomRecipeResponseListener;
-import com.example.areal.Listeners.RecipeDetailsListener;
-import com.example.areal.Listeners.StepsListener;
-import com.example.areal.Models.Nutrient;
-import com.example.areal.Models.Nutrition;
-import com.example.areal.Models.RandomRecipeApiResponse;
-import com.example.areal.Models.RecipeDetailsResponse;
-import com.example.areal.Models.RecipeNutriResponse;
-import com.example.areal.Models.StepsApiResponse;
+
+
+import com.foodapp.eatme.R;
+import com.foodapp.eatme.listener.NutriListener;
+import com.foodapp.eatme.listener.RecipeDetailsListener;
+import com.foodapp.eatme.listener.StepsListener;
+import com.foodapp.eatme.model.RandomRecipeApiResponse;
+import com.foodapp.eatme.model.RecipeDetailsResponse;
+import com.foodapp.eatme.model.RecipeNutriResponse;
+import com.foodapp.eatme.model.StepsApiResponse;
 
 import java.util.List;
 
@@ -37,32 +37,32 @@ public class RequestManagerDetails {
     public RequestManagerDetails(Context context) {
         this.context = context;
     }
-    public void getRandomRecipes(RandomRecipeResponseListener listener, List<String> tags){
-        CallRandomRecipes callRandomRecipes = retrofit.create(CallRandomRecipes.class);
-        Call<RandomRecipeApiResponse> call = callRandomRecipes.callRandomRecipe(context.getString(R.string.api_key),"10",tags);
-        call.enqueue(new Callback<RandomRecipeApiResponse>() {
-            @Override
-            public void onResponse(Call<RandomRecipeApiResponse> call, Response<RandomRecipeApiResponse> response) {
-                if (!response.isSuccessful()){
-                    listener.didError(response.message());
-                    return;
-                }
-                listener.didFetch(response.body(), response.message());
-            }
-
-            @Override
-            public void onFailure(Call<RandomRecipeApiResponse> call, Throwable t) {
-                listener.didError(t.getMessage());
-
-            }
-        });
-    }
+//    public void getRandomRecipes(RandomRecipeResponseListener listener, List<String> tags){
+//        CallRandomRecipes callRandomRecipes = retrofit.create(CallRandomRecipes.class);
+//        Call<RandomRecipeApiResponse> call = callRandomRecipes.callRandomRecipe(context.getString(R.string.api_key),"10",tags);
+//        call.enqueue(new Callback<RandomRecipeApiResponse>() {
+//            @Override
+//            public void onResponse(Call<RandomRecipeApiResponse> call, Response<RandomRecipeApiResponse> response) {
+//                if (!response.isSuccessful()){
+//                    listener.didError(response.message());
+//                    return;
+//                }
+//                listener.didFetch(response.body(), response.message());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<RandomRecipeApiResponse> call, Throwable t) {
+//                listener.didError(t.getMessage());
+//
+//            }
+//        });
+//    }
 
     // get recipe details
     public void getRecipeDetails(RecipeDetailsListener listener, int id){
         CallRecipeDetail callRecipeDetail = retrofit.create(CallRecipeDetail.class);
         Call<RecipeDetailsResponse> call = callRecipeDetail.callRecipeDetails(id, context.getString(R.string.api_key));
-       // Log.println(Log.ERROR,"hu2",call..toString());
+
         call.enqueue(new Callback<RecipeDetailsResponse>() {
             @Override
             public void onResponse(Call<RecipeDetailsResponse> call, Response<RecipeDetailsResponse> response) {
@@ -72,7 +72,7 @@ public class RequestManagerDetails {
 
                     return;
                 }
-                Log.println(Log.ERROR,"huhu2",call.toString());
+               ;
 
                 listener.didFetch(response.body(), response.message());
             }

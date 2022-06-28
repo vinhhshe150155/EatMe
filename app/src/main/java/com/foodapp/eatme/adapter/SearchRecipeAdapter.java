@@ -1,11 +1,13 @@
 package com.foodapp.eatme.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.foodapp.eatme.R;
+import com.foodapp.eatme.activity.RecipeDetailsActivityMain;
 import com.foodapp.eatme.model.Result;
 
 
@@ -42,6 +45,24 @@ List<Result> list;
         holder.textView_time.setText(list.get(position).readyInMinutes+ " Minutes");
         holder.textView_kcal.setText(String.valueOf((int)list.get(position).nutrition.nutrients.get(0).amount)+" Kcal");
         Glide.with(context).load(list.get(position).image).into(holder.imageView_food);
+        holder.random_list_container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(context, RecipeDetailsActivityMain.class);
+                String idd = String.valueOf(list.get(holder.getAdapterPosition()).id);
+                intent.putExtra("id",idd);
+                context.startActivity(intent);
+//                CharSequence text = "Hello toast!";
+//                int duration = Toast.LENGTH_SHORT;
+//
+//                Toast toast = Toast.makeText(context, text, duration);
+//                toast.show();
+
+
+
+            }
+        });
 
     }
 

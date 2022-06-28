@@ -1,4 +1,4 @@
-package com.example.areal.Models;
+package com.foodapp.eatme.model;
 
 public class ModelComment {
     String cId;

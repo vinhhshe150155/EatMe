@@ -1,4 +1,4 @@
-package com.example.areal.Adapters;
+package com.foodapp.eatme.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,8 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.areal.Models.Step;
-import com.example.areal.R;
+
+import com.foodapp.eatme.R;
+import com.foodapp.eatme.model.Step;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +37,7 @@ public class StepsAdapter extends RecyclerView.Adapter<StepViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull StepViewHolder holder, int position) {
-        holder.recipeStep.setText(list.get(position).step);
+        holder.recipeStep.setText(list.get(position).getStep());
         holder.stepDetail.setText("haha");
 
     }

@@ -1,4 +1,4 @@
-package com.example.areal;
+package com.foodapp.eatme.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,17 +9,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.areal.Adapters.AdapterComment;
-import com.example.areal.Adapters.IngredientInCircleAdapter;
-import com.example.areal.Adapters.IngredientsAdapter;
-import com.example.areal.Adapters.StepsAdapter;
-import com.example.areal.Listeners.NutriListener;
-import com.example.areal.Listeners.RecipeDetailsListener;
-import com.example.areal.Listeners.StepsListener;
-import com.example.areal.Models.ModelComment;
-import com.example.areal.Models.RecipeDetailsResponse;
-import com.example.areal.Models.RecipeNutriResponse;
-import com.example.areal.Models.StepsApiResponse;
+
+import com.foodapp.eatme.R;
+import com.foodapp.eatme.adapter.IngredientInCircleAdapter;
+import com.foodapp.eatme.adapter.IngredientsAdapter;
+import com.foodapp.eatme.adapter.StepsAdapter;
+import com.foodapp.eatme.listener.NutriListener;
+import com.foodapp.eatme.listener.RecipeDetailsListener;
+import com.foodapp.eatme.listener.StepsListener;
+import com.foodapp.eatme.model.ModelComment;
+import com.foodapp.eatme.model.RecipeDetailsResponse;
+import com.foodapp.eatme.model.RecipeNutriResponse;
+import com.foodapp.eatme.model.StepsApiResponse;
+import com.foodapp.eatme.request.RequestManagerDetails;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -78,17 +80,17 @@ public class RecipeDetailsActivityMain extends AppCompatActivity {
 
 
     }
-    public void bingComment(){
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        rcvComments.setLayoutManager(layoutManager);
-        listComment = new ArrayList<>();
-       // listComment.add(new ModelComment("1","Hay","30/1/2021 01:44 PM","1"));
-
-        rcvComments.setHasFixedSize(true);
-        rcvComments.setLayoutManager(new LinearLayoutManager(RecipeDetailsActivityMain.this, LinearLayoutManager.VERTICAL, false));
-        AdapterComment adapterComment = new AdapterComment(RecipeDetailsActivityMain.this,listComment,"1","1");
-        rcvComments.setAdapter(adapterComment);
-    }
+//    public void bingComment(){
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+//        rcvComments.setLayoutManager(layoutManager);
+//        listComment = new ArrayList<>();
+//       // listComment.add(new ModelComment("1","Hay","30/1/2021 01:44 PM","1"));
+//
+//        rcvComments.setHasFixedSize(true);
+//        rcvComments.setLayoutManager(new LinearLayoutManager(RecipeDetailsActivityMain.this, LinearLayoutManager.VERTICAL, false));
+//        AdapterComment adapterComment = new AdapterComment(RecipeDetailsActivityMain.this,listComment,"1","1");
+//        rcvComments.setAdapter(adapterComment);
+//    }
     public List getListComment() {
         List<ModelComment> l = new ArrayList<>();
        // l.add(new ModelComment("1","hay",null,null,null,null,null));

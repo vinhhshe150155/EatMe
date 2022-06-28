@@ -1,7 +1,7 @@
-package com.example.areal.Listeners;
+package com.foodapp.eatme.listener;
 
-import com.example.areal.Models.RecipeNutriResponse;
-import com.example.areal.Models.StepsApiResponse;
+
+import com.foodapp.eatme.model.StepsApiResponse;
 
 public interface StepsListener {
     void didFetch(StepsApiResponse response, String message);
