@@ -3,6 +3,7 @@ package com.foodapp.eatme.dao;
 import androidx.room.TypeConverter;
 
 import com.foodapp.eatme.model.AnalyzedInstruction;
+import com.foodapp.eatme.model.Nutrition;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -54,4 +55,25 @@ public class DataConverter {
         return gson.fromJson(analyzedInstructionString, type);
     }
 
+    @TypeConverter
+    public String fromObjectNutrtion(Nutrition nutrition) {
+        if (nutrition == null) {
+            return (null);
+        }
+        Gson gson = new Gson();
+        Type type = new TypeToken<Nutrition>() {
+        }.getType();
+        return gson.toJson(nutrition, type);
+    }
+
+    @TypeConverter
+    public Nutrition toObjectNutrtion(String nutrition) {
+        if (nutrition == null) {
+            return (null);
+        }
+        Gson gson = new Gson();
+        Type type = new TypeToken<Nutrition>() {
+        }.getType();
+        return gson.fromJson(nutrition, type);
+    }
 }

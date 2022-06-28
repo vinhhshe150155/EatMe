@@ -2,6 +2,7 @@ package com.foodapp.eatme.api;
 
 import com.foodapp.eatme.model.ApiFoodResponse;
 import com.foodapp.eatme.model.Ingredient;
+import com.foodapp.eatme.util.StringUtil;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -22,8 +23,8 @@ public interface ApiService {
             .create(ApiService.class);
 
     @Headers({
-            "X-RapidAPI-Host: spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-            "X-RapidAPI-Key: 615484898amsh2a40c4a2d671eb4p1b0769jsn1ee636a8de0b"
+            StringUtil.RAPID_API_HOST,
+            StringUtil.RAPID_API_KEY
     })
     @GET("recipes/complexSearch")
     Call<ApiFoodResponse> getListRecipe(@Query("instructionsRequired") boolean instructionsRequired,
@@ -34,9 +35,28 @@ public interface ApiService {
     );
 
     @Headers({
-            "X-RapidAPI-Host: spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-            "X-RapidAPI-Key: 615484898amsh2a40c4a2d671eb4p1b0769jsn1ee636a8de0b"
+            StringUtil.RAPID_API_HOST,
+            StringUtil.RAPID_API_KEY
     })
     @GET("food/ingredients/{id}/information")
     Call<Ingredient> getIngredientById(@Path("id") int id);
+
+    @Headers({
+            StringUtil.RAPID_API_HOST,
+            StringUtil.RAPID_API_KEY
+    })
+    @GET("recipes/complexSearch")
+    Call<ApiFoodResponse> getSearchList(
+            @Query("includeIngredients") String includeIngredients,
+            @Query("number") Integer number,
+            @Query("sort") String sort,
+            @Query("sortDirection") String sortDirection,
+            @Query("maxReadyTime") Integer maxReadyTime,
+            @Query("minCalories") Integer minCalories,
+            @Query("maxCalories") Integer maxCalories,
+            @Query("instructionsRequired") boolean instructionsRequired,
+            @Query("addRecipeInformation") boolean addRecipeInformation,
+            @Query("type") String type
+
+    );
 }

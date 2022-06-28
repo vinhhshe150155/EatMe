@@ -2,7 +2,6 @@ package com.foodapp.eatme.adapter;
 
 import androidx.recyclerview.widget.DiffUtil;
 
-import com.foodapp.eatme.model.Ingredient;
 import com.foodapp.eatme.model.IngredientLocale;
 import com.foodapp.eatme.util.LocaleHelper;
 

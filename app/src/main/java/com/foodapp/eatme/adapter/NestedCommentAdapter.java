@@ -14,7 +14,6 @@ import com.foodapp.eatme.R;
 import com.foodapp.eatme.clickinterface.IClickNestedComment;
 import com.foodapp.eatme.model.ChildComment;
 
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -24,6 +23,7 @@ import java.util.Map;
 public class NestedCommentAdapter extends RecyclerView.Adapter<NestedCommentAdapter.NestedCommentViewHolder> {
     private final List<ChildComment> childCommentList;
     private final IClickNestedComment iClickNestedComment;
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     public NestedCommentAdapter(Map<String, ChildComment> comments, IClickNestedComment iClickNestedComment) {
         childCommentList = new ArrayList<>(comments.values());
@@ -43,7 +43,7 @@ public class NestedCommentAdapter extends RecyclerView.Adapter<NestedCommentAdap
         ChildComment comment = childCommentList.get(position);
         holder.tvContent.setText(comment.getContent());
         holder.tvUsername.setText(comment.getUsername());
-        if(comment.getUsername() != null && !comment.getUsername().trim().equals("")){
+        if (comment.getUsername() != null && !comment.getUsername().trim().equals("")) {
             holder.tvReplyUsername.setText(comment.getUserReply());
         }
 

@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+
 }
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
@@ -62,6 +63,5 @@ dependencies {
     implementation 'com.makeramen:roundedimageview:2.3.0'
     implementation 'com.google.mlkit:language-id:17.0.3'
     implementation 'com.google.android.gms:play-services-mlkit-language-id:17.0.0-beta1'
-
-
+    implementation 'com.github.jd-alexander:LikeButton:0.2.3'
 }

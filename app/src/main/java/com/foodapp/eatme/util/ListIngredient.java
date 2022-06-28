@@ -1,5 +1,7 @@
 package com.foodapp.eatme.util;
+
 import android.content.Context;
+
 import com.foodapp.eatme.model.IngredientLocale;
 
 import java.io.BufferedReader;
@@ -54,13 +56,13 @@ public class ListIngredient {
 
 
     public List<IngredientLocale> getRandomMainIngredients() {
-        if(ingredients==null){
+        if (ingredients == null) {
             ingredients = getAllIngredient();
         }
         List<IngredientLocale> randomIngredients = null;
         try {
             randomIngredients = new ArrayList<>();
-            while (randomIngredients.size() < 3) {
+            while (randomIngredients.size() < 1) {
                 Random rand = new Random();
                 int i = rand.nextInt(ingredients.size());
                 IngredientLocale randomElement = ingredients.get(i);

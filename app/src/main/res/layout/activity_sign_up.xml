@@ -5,46 +5,49 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.SignUpActivity">
+
     <EditText
         android:id="@+id/edtEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/black"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_width="match_parent"
-        android:hint="Email"
-        android:textColor="@color/black"
-        android:inputType="textEmailAddress"
-        android:layout_height="wrap_content"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/edtPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        app:layout_constraintTop_toTopOf="@id/edtEmail"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:textColor="@color/black"
         android:hint="Password"
         android:inputType="textPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:textColor="@color/black"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/edtEmail" />
+
     <EditText
         android:id="@+id/edtNickname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        app:layout_constraintTop_toBottomOf="@id/edtPassword"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:textColor="@color/black"
         android:hint="NickName"
         android:inputType="textPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <Button
-        android:id="@+id/btnSignIn"
-        app:layout_constraintTop_toBottomOf="@id/edtNickname"
+        android:textColor="@color/black"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edtPassword" />
+
+    <Button
+        android:id="@+id/btnSignIn"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edtNickname" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

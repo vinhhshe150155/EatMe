@@ -21,6 +21,7 @@ public class AnalyzedInstruction implements Parcelable {
     public AnalyzedInstruction() {
     }
 
+
     protected AnalyzedInstruction(Parcel in) {
         name = in.readString();
         steps = in.createTypedArrayList(Step.CREATOR);
@@ -61,7 +62,10 @@ public class AnalyzedInstruction implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+
         parcel.writeString(name);
         parcel.writeTypedList(steps);
     }
+
+
 }

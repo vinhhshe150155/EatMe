@@ -8,11 +8,6 @@ import android.content.res.Resources;
 import android.os.Build;
 import android.preference.PreferenceManager;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-
-import com.foodapp.eatme.adapter.RecipeStepAdapter;
-import com.foodapp.eatme.model.Step;
-
 import java.util.Locale;
 
 public class LocaleHelper {
@@ -20,6 +15,7 @@ public class LocaleHelper {
     public final static String LANG_KR = "ko";
     public final static String LANG_EN = "en";
     public static Context context;
+
     public static Context setLocale(Context context, String language) {
         persist(context, language);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -61,6 +57,9 @@ public class LocaleHelper {
     }
 
     public static String getCurrentLanguage() {
+        if (context == null) {
+            return "en";
+        }
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         String lang = preferences.getString(SELECTED_LANGUAGE, null);
         if (lang == null || lang.equals("")) {
