@@ -3,6 +3,6 @@ package com.foodapp.eatme.clickinterface;
 
 import com.foodapp.eatme.model.IngredientLocale;
 
-public interface IClickItemIngredient{
+public interface IClickItemIngredient {
     void onClickItemIngredient(IngredientLocale ingredient);
 }

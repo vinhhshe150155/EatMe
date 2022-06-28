@@ -1,10 +1,11 @@
 package com.foodapp.eatme.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -12,25 +13,29 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.foodapp.eatme.R;
 import com.foodapp.eatme.adapter.CommentAdapter;
+import com.foodapp.eatme.adapter.IngredientAdapter;
 import com.foodapp.eatme.adapter.RecipeStepAdapter;
+import com.foodapp.eatme.api.ApiRecipeDetailManager;
+import com.foodapp.eatme.api.NutriListener;
+import com.foodapp.eatme.api.RecipeDetailsListener;
 import com.foodapp.eatme.clickinterface.IClickNestedComment;
 import com.foodapp.eatme.dao.RecipeDatabase;
 import com.foodapp.eatme.model.ChildComment;
 import com.foodapp.eatme.model.Comment;
 import com.foodapp.eatme.model.Recipe;
 import com.foodapp.eatme.model.Step;
+import com.foodapp.eatme.model.extend.NutriExtend;
+import com.foodapp.eatme.model.extend.RecipeExtend;
 import com.foodapp.eatme.util.LocaleHelper;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -40,14 +45,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.mlkit.common.model.DownloadConditions;
-import com.google.mlkit.common.model.RemoteModelManager;
 import com.google.mlkit.nl.languageid.LanguageIdentification;
 import com.google.mlkit.nl.languageid.LanguageIdentifier;
 import com.google.mlkit.nl.translate.TranslateLanguage;
-import com.google.mlkit.nl.translate.TranslateRemoteModel;
 import com.google.mlkit.nl.translate.Translation;
 import com.google.mlkit.nl.translate.Translator;
 import com.google.mlkit.nl.translate.TranslatorOptions;
+import com.like.LikeButton;
+import com.like.OnLikeListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -62,7 +67,7 @@ public class RecipeActivity extends AppCompatActivity {
     FirebaseUser user;
     Recipe recipe;
     TextView tvRecipeName;
-    ImageView imgSave;
+    LikeButton btnLike;
     ImageView imgRecipe;
     TextView tvCommentEmpty;
     private boolean isLiked;
@@ -76,7 +81,7 @@ public class RecipeActivity extends AppCompatActivity {
     private RecyclerView rcvListStep;
     private final List<Comment> comments = new ArrayList<>();
     private CommentAdapter adapter;
-    private Button btnComment;
+    private ImageView imgSubmitComment;
     private EditText edtComment;
     private Comment currentReplyComment;
     private LinearLayout layoutLoading;
@@ -87,7 +92,18 @@ public class RecipeActivity extends AppCompatActivity {
     private int commentStatus = COMMENT_NORMAL;
     private String currentLanguage;
     private ConstraintLayout layoutRecipe;
-    RecipeDatabase database;
+    private RecipeDatabase database;
+    private ImageView imgBack;
+    private ApiRecipeDetailManager apiRecipeDetailManager;
+    private NutriListener nutriListener;
+    private RecipeDetailsListener recipeDetailsListener;
+    private RecipeExtend recipeExtend;
+    private TextView tvKcal;
+    private TextView tvProtein;
+    private TextView tvFat;
+    private TextView tvCarbs;
+    private NestedScrollView nestedScrollView;
+    private RecyclerView rcvIngredient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,13 +115,20 @@ public class RecipeActivity extends AppCompatActivity {
     }
 
     private void initUI() {
-        imgSave = findViewById(R.id.img_save_recipe);
+        nestedScrollView = findViewById(R.id.nested_scroll_view);
+        tvKcal = findViewById(R.id.tv_recipe_detail_calories);
+        tvProtein = findViewById(R.id.tv_recipe_detail_protein);
+        tvFat = findViewById(R.id.tv_recipe_detail_fat);
+        tvCarbs = findViewById(R.id.tv_recipe_detail_carbs);
+        rcvIngredient = findViewById(R.id.rcv_recipe_detail_ingredient);
+        btnLike = findViewById(R.id.btn_like_recipe);
         layoutRecipe = findViewById(R.id.layout_recipe);
         layoutLoading = findViewById(R.id.layout_loading);
         tvCommentEmpty = findViewById(R.id.tv_comment_empty);
         tvCommentEmpty.setVisibility(View.GONE);
+        imgBack = findViewById(R.id.img_back);
         imgRecipe = findViewById(R.id.img_recipe);
-        btnComment = findViewById(R.id.btn_comment_submit);
+        imgSubmitComment = findViewById(R.id.img_comment_submit);
         edtComment = findViewById(R.id.edt_comment);
         tvRecipeName = findViewById(R.id.tv_recipe_name);
         rcvListComment = findViewById(R.id.rcv_list_comment);
@@ -115,14 +138,12 @@ public class RecipeActivity extends AppCompatActivity {
         adapter = new CommentAdapter(comments, this, comment3 -> {
             currentReplyComment = comment3;
             commentStatus = COMMENT_REPLY;
-            edtComment.setText(currentReplyComment.getUsername());
         }, new IClickNestedComment() {
             @Override
             public void onClickReplyNestedComment(ChildComment comment, Comment comment2) {
                 currentReplyComment = comment2;
                 childComment = comment;
                 commentStatus = COMMENT_NESTED_REPLY;
-                edtComment.setText(childComment.getUsername());
             }
 
             @Override
@@ -133,6 +154,8 @@ public class RecipeActivity extends AppCompatActivity {
     }
 
     private void initData() {
+        apiRecipeDetailManager = new ApiRecipeDetailManager(this);
+        initApiListener();
         database = RecipeDatabase.getInstance(getApplicationContext());
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
@@ -141,6 +164,9 @@ public class RecipeActivity extends AppCompatActivity {
         Glide.with(this).load(recipe.getImage()).into(imgRecipe);
         steps = recipe.getAnalyzedInstructions().get(0).getSteps();
         currentLanguage = LocaleHelper.getCurrentLanguage();
+        apiRecipeDetailManager.getNutriExtend(nutriListener, recipe.getId());
+        apiRecipeDetailManager.getRecipeDetails(recipeDetailsListener, recipe.getId());
+
         checkIfLiked();
         getComments();
         switch (currentLanguage) {
@@ -161,8 +187,28 @@ public class RecipeActivity extends AppCompatActivity {
     }
 
     private void initAction() {
-        imgSave.setOnClickListener(view -> saveRecipe());
-        btnComment.setOnClickListener(view -> sendComment());
+        btnLike.setOnLikeListener(new OnLikeListener() {
+            @Override
+            public void liked(LikeButton likeButton) {
+                saveRecipe();
+            }
+
+            @Override
+            public void unLiked(LikeButton likeButton) {
+                saveRecipe();
+            }
+        });
+        imgSubmitComment.setOnClickListener(view -> sendComment());
+        imgBack.setOnClickListener(view -> {
+            finish();
+            onBackPressed();
+        });
+        nestedScrollView.setOnClickListener(view -> closeKeyboard());
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
     private void saveRecipe() {
@@ -173,6 +219,7 @@ public class RecipeActivity extends AppCompatActivity {
     }
 
     private void sendComment() {
+        closeKeyboard();
         switch (commentStatus) {
             case 0:
                 normalComment();
@@ -189,7 +236,6 @@ public class RecipeActivity extends AppCompatActivity {
 
     private void replyNestedComment() {
         String content = edtComment.getText().toString().trim();
-        Toast.makeText(this, content, Toast.LENGTH_SHORT).show();
         edtComment.setText("");
         DatabaseReference reference;
         String id = currentReplyComment.getCommentId();
@@ -208,7 +254,6 @@ public class RecipeActivity extends AppCompatActivity {
 
     private void replyComment() {
         String content = edtComment.getText().toString().trim();
-        Toast.makeText(this, content, Toast.LENGTH_SHORT).show();
         edtComment.setText("");
         DatabaseReference reference;
         String id = currentReplyComment.getCommentId();
@@ -227,7 +272,6 @@ public class RecipeActivity extends AppCompatActivity {
 
     private void normalComment() {
         String content = edtComment.getText().toString().trim();
-        Toast.makeText(this, content, Toast.LENGTH_SHORT).show();
         edtComment.setText("");
         DatabaseReference reference;
         reference = FirebaseDatabase.getInstance().getReference();
@@ -375,6 +419,7 @@ public class RecipeActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 isLiked = dataSnapshot.getChildrenCount() > 0;
+                btnLike.setLiked(isLiked);
             }
 
             @Override
@@ -382,5 +427,51 @@ public class RecipeActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void initApiListener() {
+        nutriListener = new NutriListener() {
+            @Override
+            public void didFetch(NutriExtend nutriExtend, String message) {
+                if (nutriExtend != null) {
+                    tvKcal.setText(nutriExtend.getCalories().replace("k", ""));
+                    tvProtein.setText(nutriExtend.getProtein());
+                    tvFat.setText(nutriExtend.getFat());
+                    tvCarbs.setText(nutriExtend.getCarbs());
+                }
+            }
+
+            @Override
+            public void didError(String message) {
+                Log.e("Nutri", message);
+            }
+        };
+        recipeDetailsListener = new RecipeDetailsListener() {
+            @Override
+            public void didFetch(RecipeExtend response, String message) {
+                recipeExtend = response;
+                if (recipeExtend != null) {
+                    IngredientAdapter ingredientsAdapter = new IngredientAdapter(RecipeActivity.this, recipeExtend.getExtendedIngredients());
+                    rcvIngredient.setLayoutManager(new LinearLayoutManager(RecipeActivity.this, LinearLayoutManager.VERTICAL, false));
+                    rcvIngredient.setHasFixedSize(true);
+                    rcvIngredient.setAdapter(ingredientsAdapter);
+                }
+
+            }
+
+            @Override
+            public void didError(String message) {
+                Log.e("recipeDetails", message);
+            }
+        };
+
+    }
+
+    private void closeKeyboard() {
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            manager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 }

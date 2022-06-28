@@ -56,10 +56,8 @@ public class SearchIngredientAdapter extends RecyclerView.Adapter<SearchIngredie
                     .LANG_KR:
                 holder.tvSearchIngredient.setText(StringUtil.toCaptalizedString(ingredient.getKrName()));
                 break;
-            case LocaleHelper
-                    .LANG_EN:
+            default:
                 holder.tvSearchIngredient.setText(StringUtil.toCaptalizedString(ingredient.getEnName()));
-                break;
         }
         holder.itemView.setOnClickListener(view -> iClickItemIngredient.onClickItemIngredient(ingredient));
     }

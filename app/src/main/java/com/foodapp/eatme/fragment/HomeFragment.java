@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -25,14 +24,13 @@ import com.foodapp.eatme.activity.ListRecipeActivity;
 import com.foodapp.eatme.activity.MainActivity;
 import com.foodapp.eatme.adapter.SearchIngredientAdapter;
 import com.foodapp.eatme.adapter.SuggestMealTypeAdapter;
-import com.foodapp.eatme.model.Ingredient;
+import com.foodapp.eatme.clickinterface.IClickItemMealType;
 import com.foodapp.eatme.model.IngredientLocale;
 import com.foodapp.eatme.model.MealType;
 import com.foodapp.eatme.util.ListIngredient;
 import com.foodapp.eatme.util.LocaleHelper;
 import com.foodapp.eatme.util.StringUtil;
 import com.google.android.material.card.MaterialCardView;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,7 +102,15 @@ public class HomeFragment extends Fragment {
 
     private void initMealTypeRcv() {
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-        SuggestMealTypeAdapter mealTypeAdapter = new SuggestMealTypeAdapter(mealTypes, requireContext());
+        SuggestMealTypeAdapter mealTypeAdapter = new SuggestMealTypeAdapter(mealTypes, requireContext(), new IClickItemMealType() {
+            @Override
+            public void onClickItemMealType(MealType mealType) {
+                Intent intent = new Intent(getActivity(), ListRecipeActivity.class);
+                intent.putExtra("mealType", mealType.getName());
+                intent.putExtra("ingredients", getSearchIngredient());
+                startActivity(intent);
+            }
+        });
         rcvMealType.setAdapter(mealTypeAdapter);
         rcvMealType.setLayoutManager(staggeredGridLayoutManager);
     }
@@ -192,7 +198,11 @@ public class HomeFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                filterList(newText);
+                if (newText.trim().equals("")) {
+                    rcvIngredientSearch.setVisibility(View.GONE);
+                } else {
+                    filterList(newText);
+                }
                 return false;
             }
         });

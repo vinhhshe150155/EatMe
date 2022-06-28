@@ -9,4 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="floral_white">#FCF7F3</color>
     <color name="violet">#D291BC</color>
+    <color name="pink_light">#ff9d9f</color>
+    <color name="pink_medium">#ff7e81</color>
+    <color name="gray_light">#BED3D3D3</color>
 </resources>
