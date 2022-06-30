@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">Eat Me</string>
-    <string name="notification_channel_id">push_notification_id</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="notification_channel_id" translatable="false">push_notification_id</string>
     <string name="suggestion_question">What to cook?</string>
     <string name="main_course">Main Course</string>
     <string name="find_recipe">Find Recipe</string>
@@ -23,7 +22,7 @@
     <string name="snack">Snack</string>
     <string name="drink">Drink</string>
     <string name="language">Language</string>
-    <string name="key_language">languageKey</string>
+    <string name="key_language" translatable="false">languageKey</string>
     <string name="keyMenu" translatable="false">keyMenu</string>
     <string name="filter">Filter</string>
     <string name="menu">Menu</string>
@@ -37,6 +36,18 @@
     <string name="user">user</string>
     <string name="view_reply">View reply</string>
     <string name="reply">Reply</string>
+    <string name="back">Back</string>
+    <string name="share">Share</string>
+    <string name="kcal_lowercase">kcal</string>
+    <string name="protein">protein</string>
+    <string name="fat">fat</string>
+    <string name="carbs">carbs</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="steps">Steps</string>
+    <string name="comments">Comments</string>
+    <string name="be_first_to_comment">Be first to comment</string>
+    <string name="what_do_you_think">What do you think…?</string>
+    <string name="send">Send</string>
     <string-array name="languages">
         <item>English</item>
         <item>한국어</item>
