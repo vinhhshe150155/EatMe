@@ -1,5 +1,6 @@
 package com.foodapp.eatme.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +33,7 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
 
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull IngredientViewHolder holder, int position) {
         ExtendedIngredient ingredient = ingredients.get(position);
@@ -47,10 +49,10 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
         return ingredients == null ? 0 : ingredients.size();
     }
 
-    class IngredientViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvIngredientName;
-        private TextView tvIngredienAmount;
-        private ImageView imgIngredient;
+    static class IngredientViewHolder extends RecyclerView.ViewHolder {
+        private final TextView tvIngredientName;
+        private final TextView tvIngredienAmount;
+        private final ImageView imgIngredient;
 
         public IngredientViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -56,7 +56,7 @@ public class DataConverter {
     }
 
     @TypeConverter
-    public String fromObjectNutrtion(Nutrition nutrition) {
+    public String fromObjectNutrition(Nutrition nutrition) {
         if (nutrition == null) {
             return (null);
         }
@@ -67,7 +67,7 @@ public class DataConverter {
     }
 
     @TypeConverter
-    public Nutrition toObjectNutrtion(String nutrition) {
+    public Nutrition toObjectNutrition(String nutrition) {
         if (nutrition == null) {
             return (null);
         }

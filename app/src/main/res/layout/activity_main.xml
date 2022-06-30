@@ -16,7 +16,7 @@
         <FrameLayout
             android:id="@+id/fragment_replace"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></FrameLayout>
+            android:layout_height="match_parent" />
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView

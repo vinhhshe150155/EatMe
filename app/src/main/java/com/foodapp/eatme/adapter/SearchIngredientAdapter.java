@@ -51,13 +51,11 @@ public class SearchIngredientAdapter extends RecyclerView.Adapter<SearchIngredie
     @Override
     public void onBindViewHolder(@NonNull SearchIngredientViewHolder holder, int position) {
         IngredientLocale ingredient = ingredients.get(position);
-        switch (currentLanguage) {
-            case LocaleHelper
-                    .LANG_KR:
-                holder.tvSearchIngredient.setText(StringUtil.toCaptalizedString(ingredient.getKrName()));
-                break;
-            default:
-                holder.tvSearchIngredient.setText(StringUtil.toCaptalizedString(ingredient.getEnName()));
+        if (LocaleHelper
+                .LANG_KR.equals(currentLanguage)) {
+            holder.tvSearchIngredient.setText(StringUtil.toCaptalizedString(ingredient.getKrName()));
+        } else {
+            holder.tvSearchIngredient.setText(StringUtil.toCaptalizedString(ingredient.getEnName()));
         }
         holder.itemView.setOnClickListener(view -> iClickItemIngredient.onClickItemIngredient(ingredient));
     }

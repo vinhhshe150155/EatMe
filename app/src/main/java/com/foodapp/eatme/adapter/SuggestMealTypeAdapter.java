@@ -20,7 +20,7 @@ import java.util.List;
 public class SuggestMealTypeAdapter extends RecyclerView.Adapter<SuggestMealTypeAdapter.SuggestionMealTypeViewHolder> {
     private final List<MealType> mealTypes;
     private final Context context;
-    private IClickItemMealType iClickItemMealType;
+    private final IClickItemMealType iClickItemMealType;
 
     public SuggestMealTypeAdapter(List<MealType> mealTypes, Context context, IClickItemMealType iClickItemMealType) {
         this.mealTypes = mealTypes;
@@ -57,9 +57,7 @@ public class SuggestMealTypeAdapter extends RecyclerView.Adapter<SuggestMealType
                 holder.itemView.setBackgroundResource(R.drawable.red_background);
                 break;
         }
-        holder.itemView.setOnClickListener(view -> {
-            iClickItemMealType.onClickItemMealType(mealType);
-        });
+        holder.itemView.setOnClickListener(view -> iClickItemMealType.onClickItemMealType(mealType));
     }
 
     @Override

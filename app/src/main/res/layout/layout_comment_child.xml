@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginRight="@dimen/_8sdp">
+    android:layout_marginEnd="@dimen/_8sdp">
 
     <ImageView
         android:id="@+id/img_user"
@@ -13,7 +13,8 @@
         android:padding="@dimen/_4sdp"
         android:src="@drawable/user"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/user" />
 
     <TextView
         android:id="@+id/tv_username"
@@ -50,8 +51,8 @@
         android:id="@+id/tv_reply"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_8sdp"
-        android:text="Reply"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:text="@string/reply"
         android:textColor="@color/black"
         app:layout_constraintLeft_toLeftOf="@id/tv_username"
         app:layout_constraintTop_toBottomOf="@id/tv_username" />
