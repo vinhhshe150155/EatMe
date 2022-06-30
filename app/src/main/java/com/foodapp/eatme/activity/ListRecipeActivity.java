@@ -3,10 +3,13 @@ package com.foodapp.eatme.activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,6 +44,7 @@ ProgressDialog dialog;
     SearchView searchView;
     String mquery;
     ImageView btnFilter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +61,8 @@ ProgressDialog dialog;
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                callApi(query,mealType);
+                searchIngredients = query;
+                callApi(query,mealType,"");
                 return true;
             }
 
@@ -73,21 +78,42 @@ ProgressDialog dialog;
 
     private void initUI() {
         rcvListRecipe=findViewById(R.id.rcvListItem);
+        btnFilter = findViewById(R.id.btnFilter);
+        btnFilter.setOnClickListener(this::onFilterClick);
+    }
+    private void onFilterClick(View view) {
+        PopupMenu popupMenu = new PopupMenu(this, btnFilter);
+         popupMenu.setOnMenuItemClickListener(this::onMenuItemClick);
+         popupMenu.inflate(R.menu.filter_search_menu);
+        popupMenu.show();
+    }
+
+    public boolean onMenuItemClick(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.time:
+                callApi(searchIngredients,mealType,"time");
+                return true;
+            case R.id.kcal:
+                callApi(searchIngredients,mealType,"calories");
+                return true;
+        }
+        return  false;
     }
 
     private void initData() {
         searchIngredients = getIntent().getStringExtra("ingredients");
         mealType = getIntent().getStringExtra("mealType");
-        callApi(searchIngredients,mealType);
+        callApi(searchIngredients,mealType,"popularity");
     }
 
 
-    private void callApi(String ingredient,String type) {
+    private void callApi(String ingredient,String type, String sort) {
         if (!NetworkUtil.isNetworkAvailable(this)) {
             Toasty.normal(this, "No internet connection.").show();
             return;
         }
-        ApiService.apiService.getSearchList(ingredient,100, "popularity","asc",
+        ApiService.apiService.getSearchList(ingredient,100, sort,"asc",
                 1000000, 0, 10000,
                 true, true,type)
                 .enqueue(new Callback<ResultApiResponse>() {

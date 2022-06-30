@@ -39,7 +39,7 @@ List<Result> list;
     public void onBindViewHolder(@NonNull SearchRecipeViewHolder holder, int position) {
         holder.textView_title.setText(list.get(position).title);
         holder.textView_title.setSelected(true);
-        holder.textView_time.setText(list.get(position).readyInMinutes+ " Minutes");
+        holder.textView_time.setText(list.get(position).readyInMinutes+ " Mins");
         holder.textView_kcal.setText(String.valueOf((int)list.get(position).nutrition.nutrients.get(0).amount)+" Kcal");
         Glide.with(context).load(list.get(position).image).into(holder.imageView_food);
 

@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
- <item android:title="Sort by">
-  <menu>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+ <item
+     android:title="Search Option"
+     android:id="@+id/menu_search_option"
+     app:showAsAction="never">
+  <menu >
+   <group>
    <item android:id="@+id/time" android:title="Time"
-       android:icon="@drawable/ic_baseline_elderly_24"/>
+       android:icon="@drawable/ic_time"/>
    <item android:id="@+id/kcal" android:title="Kcal"
-       android:icon="@drawable/ic_baseline_elderly_24"/>
+       android:icon="@drawable/ic_kcal"/>
+   </group>
   </menu>
  </item>
- <item
-     android:id="@+id/edtTime"
-     android:actionLayout="@layout/item_filter_menu"
-     android:title="" />
 </menu>

@@ -184,6 +184,7 @@ public class HomeFragment extends Fragment {
     private void onCvFindRecipeClicked(View view) {
         Intent intent = new Intent(requireContext(), ListRecipeActivity.class);
         intent.putExtra("ingredients", getSearchIngredient());
+        intent.putExtra("mealType", "");
         startActivity(intent);
     }
 
