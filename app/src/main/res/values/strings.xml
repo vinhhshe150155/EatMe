@@ -25,6 +25,18 @@
     <string name="language">Language</string>
     <string name="key_language">languageKey</string>
     <string name="keyMenu" translatable="false">keyMenu</string>
+    <string name="filter">Filter</string>
+    <string name="menu">Menu</string>
+    <string name="empty_save_recipe">Oh no, you have no saved recipe.</string>
+    <string name="image_detail_ingredient">Image detail ingredient</string>
+    <string name="image_recipe">Image recipe</string>
+    <string name="kcal">Kcal</string>
+    <string name="time">Time</string>
+    <string name="delete">Delete</string>
+    <string name="min">min</string>
+    <string name="user">user</string>
+    <string name="view_reply">View reply</string>
+    <string name="reply">Reply</string>
     <string-array name="languages">
         <item>English</item>
         <item>한국어</item>

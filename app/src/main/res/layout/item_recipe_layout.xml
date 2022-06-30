@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cv_recipe"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -16,7 +17,7 @@
         android:orientation="vertical">
 
 
-        <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <androidx.cardview.widget.CardView
             android:id="@+id/parent_layout"
             android:layout_width="match_parent"
             android:layout_height="140dp"
@@ -28,6 +29,7 @@
                 android:id="@+id/img_recipe_item"
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
+                android:contentDescription="@string/image_recipe"
                 android:scaleType="centerCrop"
                 android:src="@drawable/fingerfood"
                 app:cardCornerRadius="100dp" />
@@ -52,7 +54,7 @@
                 android:padding="6dp"
                 android:text="@string/app_name"
                 android:textColor="@color/black"
-                android:textSize="17dp"
+                android:textSize="17sp"
                 android:textStyle="bold" />
         </GridLayout>
 
@@ -70,11 +72,13 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="10dp"
+                android:contentDescription="@string/kcal"
                 app:layout_constraintBottom_toTopOf="@+id/textView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView2"
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
-                app:srcCompat="@drawable/ic_recipe_kcal" />
+                app:srcCompat="@drawable/ic_recipe_kcal"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/tv_recipe_kcal"
@@ -86,13 +90,13 @@
                 android:layout_marginTop="0dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="10dp"
-                android:text="TextView"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView2"
-                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView"
+                tools:text="toolsText" />
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -103,6 +107,7 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="10dp"
+                android:contentDescription="@string/time"
                 app:layout_constraintBottom_toTopOf="@+id/textView2"
                 app:layout_constraintEnd_toStartOf="@+id/imageView"
                 app:layout_constraintStart_toStartOf="parent"
@@ -119,13 +124,13 @@
                 android:layout_marginTop="0dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="10dp"
-                android:text="TextView"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/textView"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView2"
+                tools:text="toolsText" />
 
         </GridLayout>
 

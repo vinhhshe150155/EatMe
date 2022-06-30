@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.chauthai.swipereveallayout.SwipeRevealLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/swipe_recipe_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -19,13 +20,14 @@
         <TextView
             android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:text="Delete"
+            android:text="@string/delete"
             android:textAlignment="center" />
 
         <ImageView
             android:layout_width="@dimen/_30sdp"
             android:layout_height="@dimen/_30sdp"
-            android:src="@drawable/ic_delete" />
+            android:src="@drawable/ic_delete"
+            android:contentDescription="@string/delete" />
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -52,8 +54,9 @@
             android:fontFamily="@font/heebo_light"
             android:maxLines="2"
             android:paddingStart="@dimen/_12sdp"
+            android:paddingEnd="0dp"
             android:paddingTop="@dimen/_8sdp"
-            android:text="ehsdfiosdfuisdoofs asasddasasdasdd asd  asd asd asd asd asdrasd"
+            tools:text="ehsdfiosdfuisdoofs asasddasasdasdd asd  asd asd asd asd asdrasd"
             android:textColor="@color/black"
             android:textSize="@dimen/_13ssp"
             android:textStyle="bold"
@@ -73,11 +76,12 @@
                 android:id="@+id/img_recipe_calories"
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="@dimen/_30sdp"
-                android:layout_marginLeft="@dimen/_8sdp"
+                android:layout_marginStart="@dimen/_8sdp"
                 android:padding="@dimen/_4sdp"
                 android:src="@drawable/calories"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/img_save_recipe" />
+                app:layout_constraintLeft_toRightOf="@id/img_save_recipe"
+                android:contentDescription="@string/kcal" />
 
             <TextView
                 android:id="@+id/tv_recipe_calories"
@@ -85,7 +89,7 @@
                 android:layout_height="match_parent"
                 android:fontFamily="@font/heebo_light"
                 android:gravity="bottom"
-                android:text="Uoa"
+                tools:text="1231"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_14ssp" />
 
@@ -95,9 +99,10 @@
                 android:layout_height="match_parent"
                 android:fontFamily="@font/heebo_light"
                 android:gravity="bottom"
-                android:paddingLeft="@dimen/_2sdp"
+                android:paddingStart="@dimen/_2sdp"
                 android:paddingBottom="@dimen/_1sdp"
-                android:text="calories"
+                android:paddingEnd="0dp"
+                android:text="@string/kcal"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_10ssp" />
 
@@ -105,9 +110,10 @@
                 android:id="@+id/img_recipe_ready_minute"
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="@dimen/_30sdp"
-                android:layout_marginLeft="@dimen/_8sdp"
+                android:layout_marginStart="@dimen/_8sdp"
                 android:padding="@dimen/_4sdp"
-                android:src="@drawable/time" />
+                android:src="@drawable/time"
+                android:contentDescription="@string/time" />
 
             <TextView
                 android:id="@+id/tv_recipe_ready_minute"
@@ -115,8 +121,9 @@
                 android:layout_height="match_parent"
                 android:fontFamily="@font/heebo_light"
                 android:gravity="bottom"
-                android:paddingLeft="@dimen/_2sdp"
-                android:text="Uoa"
+                android:paddingStart="@dimen/_2sdp"
+                android:paddingEnd="0dp"
+                tools:text="123"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_14ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -128,9 +135,10 @@
                 android:layout_height="match_parent"
                 android:fontFamily="@font/heebo_light"
                 android:gravity="bottom"
-                android:paddingLeft="@dimen/_2sdp"
+                android:paddingStart="@dimen/_2sdp"
+                android:paddingEnd="0dp"
                 android:paddingBottom="@dimen/_1sdp"
-                android:text="min"
+                android:text="@string/min"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_10ssp" />
         </LinearLayout>

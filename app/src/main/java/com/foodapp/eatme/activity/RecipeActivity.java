@@ -85,7 +85,6 @@ public class RecipeActivity extends AppCompatActivity {
             .build();
     final Translator englishKoreanTranslator = Translation.getClient(options);
     List<Step> steps;
-    private RecyclerView rcvListComment;
     private RecyclerView rcvListStep;
     private final List<Comment> comments = new ArrayList<>();
     private CommentAdapter adapter;
@@ -98,11 +97,9 @@ public class RecipeActivity extends AppCompatActivity {
     private static final int COMMENT_REPLY = 1;
     private static final int COMMENT_NESTED_REPLY = 2;
     private int commentStatus = COMMENT_NORMAL;
-    private String currentLanguage;
     private ConstraintLayout layoutRecipe;
     private RecipeDatabase database;
     private ImageView imgBack;
-    private ApiRecipeDetailManager apiRecipeDetailManager;
     private NutriListener nutriListener;
     private RecipeDetailsListener recipeDetailsListener;
     private RecipeExtend recipeExtend;
@@ -142,7 +139,7 @@ public class RecipeActivity extends AppCompatActivity {
         imgSubmitComment = findViewById(R.id.img_comment_submit);
         edtComment = findViewById(R.id.edt_comment);
         tvRecipeName = findViewById(R.id.tv_recipe_name);
-        rcvListComment = findViewById(R.id.rcv_list_comment);
+        RecyclerView rcvListComment = findViewById(R.id.rcv_list_comment);
         rcvListComment.setHasFixedSize(true);
         rcvListComment.setLayoutManager(new LinearLayoutManager(this));
         rcvListStep = findViewById(R.id.rcv_list_step);
@@ -165,7 +162,7 @@ public class RecipeActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        apiRecipeDetailManager = new ApiRecipeDetailManager(this);
+        ApiRecipeDetailManager apiRecipeDetailManager = new ApiRecipeDetailManager();
         initApiListener();
         database = RecipeDatabase.getInstance(getApplicationContext());
         auth = FirebaseAuth.getInstance();
@@ -174,18 +171,15 @@ public class RecipeActivity extends AppCompatActivity {
         tvRecipeName.setText(recipe.getSourceName());
         Glide.with(this).load(recipe.getImage()).into(imgRecipe);
         steps = recipe.getAnalyzedInstructions().get(0).getSteps();
-        currentLanguage = LocaleHelper.getCurrentLanguage();
+        String currentLanguage = LocaleHelper.getCurrentLanguage();
         apiRecipeDetailManager.getNutriExtend(nutriListener, recipe.getId());
         apiRecipeDetailManager.getRecipeDetails(recipeDetailsListener, recipe.getId());
-
         checkIfLiked();
         getComments();
-        switch (currentLanguage) {
-            case LocaleHelper.LANG_KR:
-                detectLanguage();
-                break;
-            default:
-                initStepAdapter();
+        if (LocaleHelper.LANG_KR.equals(currentLanguage)) {
+            detectLanguage();
+        } else {
+            initStepAdapter();
         }
     }
 

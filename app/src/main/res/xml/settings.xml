@@ -3,9 +3,10 @@
     android:key="preference_root">
     <Preference
         android:key="@string/keyMenu"
-        android:layout="@layout/layout_custom_preference"></Preference>
-    <PreferenceCategory android:title="Language"
-        android:icon="@drawable/ic_language">
+        android:layout="@layout/layout_custom_preference" />
+    <PreferenceCategory
+        android:icon="@drawable/ic_language"
+        android:title="Language">
         <ListPreference
             android:defaultValue="3"
             android:dialogTitle="@string/language"

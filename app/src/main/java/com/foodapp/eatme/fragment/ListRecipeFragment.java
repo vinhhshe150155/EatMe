@@ -76,7 +76,7 @@ public class ListRecipeFragment extends Fragment {
     }
 
     private void initData() {
-        database = RecipeDatabase.getInstance(getActivity().getApplicationContext());
+        database = RecipeDatabase.getInstance(requireActivity().getApplicationContext());
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user == null) {
             return;
@@ -100,7 +100,7 @@ public class ListRecipeFragment extends Fragment {
                         Intent intent = new Intent(requireContext(), RecipeActivity.class);
                         intent.putExtra("recipe", recipe);
                         startActivity(intent);
-                    }, recipe -> deleteRecipeFirebase(recipe));
+                    }, this::deleteRecipeFirebase);
             rcvListSavedRecipe.setAdapter(adapter);
         }
     }
@@ -141,14 +141,14 @@ public class ListRecipeFragment extends Fragment {
         Query deleteQuery = ref.orderByChild("id").equalTo(recipe.getId());
         deleteQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot recipeSnapshot : dataSnapshot.getChildren()) {
                     recipeSnapshot.getRef().removeValue();
                 }
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(requireContext(), "Failed.", Toast.LENGTH_SHORT).show();
             }
         });
@@ -156,7 +156,7 @@ public class ListRecipeFragment extends Fragment {
 
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         this.context = context;
     }

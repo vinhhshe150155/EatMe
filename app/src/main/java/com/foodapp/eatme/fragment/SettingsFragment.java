@@ -24,6 +24,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.settings, rootKey);
         ListPreference languages = findPreference("languageKey");
+        assert languages != null;
         String langCurrent = String.valueOf(languages.getValue());
         if (langCurrent.trim().equals("") || langCurrent.trim().equals("null")) {
             langCurrent = LocaleHelper.getCurrentLanguage();
@@ -31,16 +32,16 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         languages.setSummary(langCurrent.equals("ko") ? "한국어" : "English");
         String finalLangCurrent = langCurrent;
         languages.setOnPreferenceChangeListener((preference, newValue) -> {
-            String oldLang = finalLangCurrent;
-            if (!newValue.equals(oldLang)) {
+            if (!newValue.equals(finalLangCurrent)) {
                 setAppLocale(requireContext(), String.valueOf(newValue));
                 Intent intent = new Intent(getActivity(), SplashActivity.class);
-                getActivity().finishAffinity();
+                requireActivity().finishAffinity();
                 startActivity(intent);
             }
             return true;
         });
         Preference pref = findPreference("keyMenu");
+        assert pref != null;
         pref.setOnPreferenceClickListener(preference -> {
             if (getActivity() != null) {
                 drawerLayout = getActivity().findViewById(R.id.drawerlayout);

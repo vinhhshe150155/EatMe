@@ -22,7 +22,7 @@ public interface RecipeDAO {
     void delete(int id);
 
     @Query("SELECT * FROM recipe WHERE id = :id")
-    public Recipe getItemById(Long id);
+    Recipe getItemById(Long id);
 
     @Query("SELECT * FROM recipe")
     List<Recipe> getAllRecipe();

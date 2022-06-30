@@ -1,5 +1,6 @@
 package com.foodapp.eatme.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -36,6 +37,7 @@ public class ListSearchRecipeAdapter extends RecyclerView.Adapter<ListSearchReci
         return new ListRecipeViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ListRecipeViewHolder holder, int position) {
         Recipe recipe = recipes.get(position);
@@ -58,11 +60,11 @@ public class ListSearchRecipeAdapter extends RecyclerView.Adapter<ListSearchReci
     }
 
     public static class ListRecipeViewHolder extends RecyclerView.ViewHolder {
-        private CardView cvRecipeItem;
-        private TextView tvTitle;
-        private ImageView imgRecipe;
-        private TextView tvReadyTime;
-        private TextView tvKcal;
+        private final CardView cvRecipeItem;
+        private final TextView tvTitle;
+        private final ImageView imgRecipe;
+        private final TextView tvReadyTime;
+        private final TextView tvKcal;
 
 
         public ListRecipeViewHolder(@NonNull View itemView) {

@@ -1,7 +1,6 @@
 package com.foodapp.eatme.api;
 
-import android.content.Context;
-import android.util.Log;
+import androidx.annotation.NonNull;
 
 import com.foodapp.eatme.model.extend.NutriExtend;
 import com.foodapp.eatme.model.extend.RecipeExtend;
@@ -16,7 +15,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiRecipeDetailManager {
-    private Context context;
     ApiServiceRecipeDetail apiServiceRecipeDetail;
     Gson gson = new GsonBuilder().create();
     Retrofit retrofit = new Retrofit.Builder()
@@ -24,8 +22,7 @@ public class ApiRecipeDetailManager {
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build();
 
-    public ApiRecipeDetailManager(Context context) {
-        this.context = context;
+    public ApiRecipeDetailManager() {
         apiServiceRecipeDetail = retrofit.create(ApiServiceRecipeDetail.class);
     }
 
@@ -34,17 +31,16 @@ public class ApiRecipeDetailManager {
 
         call.enqueue(new Callback<RecipeExtend>() {
             @Override
-            public void onResponse(Call<RecipeExtend> call, Response<RecipeExtend> response) {
+            public void onResponse(@NonNull Call<RecipeExtend> call, @NonNull Response<RecipeExtend> response) {
                 if (!response.isSuccessful()) {
                     listener.didError(response.message());
-                    Log.println(Log.ERROR, "huhu32", call.toString());
                     return;
                 }
                 listener.didFetch(response.body(), response.message());
             }
 
             @Override
-            public void onFailure(Call<RecipeExtend> call, Throwable t) {
+            public void onFailure(@NonNull Call<RecipeExtend> call, @NonNull Throwable t) {
                 listener.didError(t.getMessage());
             }
         });
@@ -55,7 +51,7 @@ public class ApiRecipeDetailManager {
         Call<NutriExtend> call = apiServiceRecipeDetail.getNutriExtend(id, StringUtil.SPOONACULAR_API_KEY);
         call.enqueue(new Callback<NutriExtend>() {
             @Override
-            public void onResponse(Call<NutriExtend> call, Response<NutriExtend> response) {
+            public void onResponse(@NonNull Call<NutriExtend> call, @NonNull Response<NutriExtend> response) {
                 if (!response.isSuccessful()) {
                     listener.didError(response.message());
                     return;
@@ -64,7 +60,7 @@ public class ApiRecipeDetailManager {
             }
 
             @Override
-            public void onFailure(Call<NutriExtend> call, Throwable t) {
+            public void onFailure(@NonNull Call<NutriExtend> call, @NonNull Throwable t) {
                 listener.didError(t.getMessage());
             }
         });
