@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginEnd="@dimen/_8sdp">
 
     <ImageView
@@ -56,4 +57,14 @@
         android:textColor="@color/black"
         app:layout_constraintLeft_toLeftOf="@id/tv_username"
         app:layout_constraintTop_toBottomOf="@id/tv_username" />
+    <TextView
+        android:id="@+id/tv_comment_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_16sdp"
+        tools:text="A minute ago"
+        android:textSize="@dimen/_9ssp"
+        android:textColor="@color/black"
+        app:layout_constraintLeft_toRightOf="@id/tv_reply"
+        app:layout_constraintBottom_toBottomOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

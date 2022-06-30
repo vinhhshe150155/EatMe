@@ -32,6 +32,7 @@ import com.foodapp.eatme.util.StringUtil;
 import com.google.android.material.card.MaterialCardView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -227,6 +228,13 @@ public class HomeFragment extends Fragment {
         } else {
             rcvIngredientSearch.setVisibility(View.VISIBLE);
             searchIngredientAdapter.setCurrentLanguage(currentLanguage);
+            Collections.sort(filterIngredientList, (i1, i2) -> {
+                if (currentLanguage.equals(LocaleHelper.LANG_EN)) {
+                    return i1.getEnName().length() - i2.getEnName().length();
+                } else {
+                    return i1.getKrName().length() - i2.getKrName().length();
+                }
+            });
             searchIngredientAdapter.setIngredientList(filterIngredientList);
         }
     }

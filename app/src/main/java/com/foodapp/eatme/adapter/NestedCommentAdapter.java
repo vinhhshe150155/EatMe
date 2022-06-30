@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.foodapp.eatme.R;
 import com.foodapp.eatme.clickinterface.IClickNestedComment;
 import com.foodapp.eatme.model.ChildComment;
+import com.foodapp.eatme.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -43,6 +44,7 @@ public class NestedCommentAdapter extends RecyclerView.Adapter<NestedCommentAdap
         ChildComment comment = childCommentList.get(position);
         holder.tvContent.setText(comment.getContent());
         holder.tvUsername.setText(comment.getUsername());
+        holder.tvTimeComment.setText(StringUtil.getTimeAgo(comment.getTimestamp()));
         if (comment.getUsername() != null && !comment.getUsername().trim().equals("")) {
             holder.tvReplyUsername.setText(comment.getUserReply());
         }
@@ -60,6 +62,7 @@ public class NestedCommentAdapter extends RecyclerView.Adapter<NestedCommentAdap
         private final TextView tvUsername;
         private final TextView tvReply;
         private final TextView tvReplyUsername;
+        private final TextView tvTimeComment;
 
         public NestedCommentViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -67,6 +70,7 @@ public class NestedCommentAdapter extends RecyclerView.Adapter<NestedCommentAdap
             tvContent = itemView.findViewById(R.id.tv_content);
             tvUsername = itemView.findViewById(R.id.tv_username);
             tvReplyUsername = itemView.findViewById(R.id.tv_reply_user);
+            tvTimeComment = itemView.findViewById(R.id.tv_comment_time);
         }
     }
 
