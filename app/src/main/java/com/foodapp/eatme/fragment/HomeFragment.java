@@ -146,7 +146,7 @@ public class HomeFragment extends Fragment {
         mealTypes.add(new MealType("drink", R.drawable.drink, R.string.drink));
         mealTypes.add(new MealType("bread", R.drawable.bread, R.string.bread));
         mealTypes.add(new MealType("breakfast", R.drawable.breakfast, R.string.breakfast));
-        mealTypes.add(new MealType("side dish", R.drawable.side_dish, R.string.size_dish));
+        mealTypes.add(new MealType("side dish", R.drawable.side_dish, R.string.side_dish));
         mealTypes.add(new MealType("sauce", R.drawable.sauce, R.string.sauce));
         mealTypes.add(new MealType("fingerfood", R.drawable.fingerfood, R.string.fingerfood));
     }

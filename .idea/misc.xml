@@ -3,6 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Viettech88.vn/EatMe/app/src/main/res/drawable-anydpi/shapebottom.xml" value="0.154" />
+        <entry key="..\:/Users/Viettech88.vn/EatMe/app/src/main/res/layout/activity_list_recipe.xml" value="0.2515625" />
+        <entry key="..\:/Users/Viettech88.vn/EatMe/app/src/main/res/layout/activity_main.xml" value="0.2515625" />
+        <entry key="..\:/Users/Viettech88.vn/EatMe/app/src/main/res/layout/activity_search_result.xml" value="0.2515625" />
+        <entry key="..\:/Users/Viettech88.vn/EatMe/app/src/main/res/layout/fragment_home.xml" value="0.2515625" />
+        <entry key="..\:/Users/Viettech88.vn/EatMe/app/src/main/res/layout/fragment_list_recipe.xml" value="0.2515625" />
+        <entry key="..\:/Users/Viettech88.vn/EatMe/app/src/main/res/layout/header_navigattion_drawer.xml" value="0.2515625" />
+        <entry key="..\:/Users/Viettech88.vn/EatMe/app/src/main/res/layout/item_ingredient_search.xml" value="0.2515625" />
+        <entry key="..\:/Users/Viettech88.vn/EatMe/app/src/main/res/layout/item_recipe_layout.xml" value="0.2515625" />
+        <entry key="..\:/Users/Viettech88.vn/EatMe/app/src/main/res/layout/layout_comment_child.xml" value="0.2515625" />
+        <entry key="..\:/Users/Viettech88.vn/EatMe/app/src/main/res/layout/list_meal_ingridients.xml" value="0.2515625" />
+        <entry key="..\:/Users/Viettech88.vn/EatMe/app/src/main/res/layout/recipe_detail_main.xml" value="0.1" />
         <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/drawable-anydpi/ic_avt.xml" value="0.1935" />
         <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/drawable-anydpi/ic_delete.xml" value="0.215" />
         <entry key="..\:/Users/vinh1/Desktop/SUPER PROJECT/app/src/main/res/drawable-anydpi/ic_menu.xml" value="0.333" />
