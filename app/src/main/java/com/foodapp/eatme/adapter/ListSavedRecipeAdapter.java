@@ -52,7 +52,7 @@ public class ListSavedRecipeAdapter extends RecyclerView.Adapter<ListSavedRecipe
     public void onBindViewHolder(@NonNull ListSavedRecipeViewHolder holder, int position) {
         Recipe recipe = recipes.get(position);
         viewBinderHelper.bind(holder.swipeRevealLayout, String.valueOf(recipe.getId()));
-        holder.tvRecipeName.setText(recipe.getSourceName());
+        holder.tvRecipeName.setText(recipe.getTitle());
         holder.tvCalories.setText(getCalories(recipe.getSummary()));
         holder.tvReadyMinute.setText(String.valueOf(recipe.getReadyInMinutes()));
         Glide.with(context)
