@@ -4,63 +4,150 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.SignInActivity">
+    android:background="@drawable/gradient"
+    tools:context="activity.SignInActivity">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:textColor="#99F3EAEA"
+        android:text="A recipe has no soul. You must bring soul to the recipe."
+        android:fontFamily="@font/jost_regular"
+        android:textSize="@dimen/_11ssp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/logobigsize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/vEmail"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/view_border"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
     <EditText
         android:id="@+id/edtEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_width="270dp"
+        android:layout_height="40dp"
+        android:background="@null"
+        android:textAlignment="center"
+        android:fontFamily="@font/jost_regular"
         android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:textColor="@color/black"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:inputType="text"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColorHint="#4FFFFFFF"
+        android:textSize="12sp"
+        android:maxLines="1"
+        app:layout_constraintEnd_toEndOf="@+id/vEmail"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/vEmail"
+        app:layout_constraintTop_toTopOf="@+id/vEmail" />
+
+
+    <View
+        android:id="@+id/vPassword"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/view_border"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vEmail" />
 
     <EditText
         android:id="@+id/edtPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:textColor="@color/black"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/edtEmail" />
+        android:layout_width="280dp"
+        android:layout_height="40dp"
+        android:background="@null"
+        android:textAlignment="center"
+        android:fontFamily="@font/jost_regular"
+        android:hint=" Password"
+        android:maxLines="1"
+        android:textStyle="bold"
+        android:textColorHint="#4FFFFFFF"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/vPassword"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/vPassword"
+        app:layout_constraintTop_toTopOf="@+id/vPassword" />
 
     <Button
         android:id="@+id/btnSignIn"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:text="sign in"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edtPassword" />
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:textSize="12sp"
+        android:background="@drawable/button_border"
+        android:fontFamily="@font/jost_regular"
+        android:text="LOGIN"
+        android:textColor="#CA4545"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vPassword" />
 
     <Button
         android:id="@+id/btnSignInGoogle"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:text="GooGle"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvForgot" />
+        android:layout_width="220dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:text="sign in with google"
+        android:background="@drawable/button_border"
+        android:drawableLeft="@drawable/google_icon"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/jost_regular"
+        android:textColor="#CA4545"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSignIn" />
 
     <TextView
         android:id="@+id/tvSignUp"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="SignUp"
-        app:layout_constraintTop_toBottomOf="@id/btnSignIn" />
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/jost_regular"
+        android:text="New user ? Sign up here"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSignInGoogle" />
 
     <TextView
-        android:id="@+id/tvForgot"
-        android:layout_width="match_parent"
+        android:id="@+id/tvForgotPassword"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Forgot"
-        app:layout_constraintTop_toBottomOf="@id/tvSignUp" />
+        android:layout_marginTop="140dp"
+        android:text="Forgot password?"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/jost_regular"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSignInGoogle" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
