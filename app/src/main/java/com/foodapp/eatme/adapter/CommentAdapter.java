@@ -19,6 +19,7 @@ import com.foodapp.eatme.clickinterface.IClickNestedComment;
 import com.foodapp.eatme.clickinterface.IClickReplyComment;
 import com.foodapp.eatme.model.ChildComment;
 import com.foodapp.eatme.model.Comment;
+import com.foodapp.eatme.util.StringUtil;
 
 import java.util.List;
 
@@ -50,6 +51,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
         holder.tvContent.setText(comment.getContent());
         boolean isExpandable = comment.isExpandable();
         holder.layoutChild.setVisibility(isExpandable ? View.VISIBLE : View.GONE);
+        holder.tvTimeComment.setText(StringUtil.getTimeAgo(comment.getTimestamp()));
         if (isExpandable) {
             holder.tvViewReply.setText("Hide Reply");
         } else {
@@ -90,7 +92,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
         private final TextView tvReply;
         private final RecyclerView nestedRcv;
         private final TextView tvUsername;
-
+        private final TextView tvTimeComment;
         public CommentViewHolder(@NonNull View itemView) {
             super(itemView);
             layoutChild = itemView.findViewById(R.id.linear_list_child);
@@ -99,6 +101,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
             tvContent = itemView.findViewById(R.id.tv_content);
             tvReply = itemView.findViewById(R.id.tv_reply);
             tvUsername = itemView.findViewById(R.id.tv_username);
+            tvTimeComment = itemView.findViewById(R.id.tv_comment_time);
         }
     }
 }

@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:id="@+id/linear_layout"
@@ -66,6 +67,16 @@
                 android:textColor="@color/black"
                 app:layout_constraintLeft_toRightOf="@id/tv_view_reply"
                 app:layout_constraintTop_toBottomOf="@id/tv_content" />
+            <TextView
+                android:id="@+id/tv_comment_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                tools:text="A minute ago"
+                android:textSize="@dimen/_9ssp"
+                android:textColor="@color/black"
+                app:layout_constraintLeft_toRightOf="@id/tv_reply"
+                app:layout_constraintBottom_toBottomOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
