@@ -4,7 +4,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.Expose;
@@ -30,6 +29,7 @@ public class Recipe implements Parcelable {
     private int aggregateLikes;
     private int healthScore;
     private String creditsText;
+    private String license;
     private String sourceName;
     private double pricePerServing;
     @PrimaryKey(autoGenerate = false)
@@ -49,44 +49,9 @@ public class Recipe implements Parcelable {
     @SerializedName("analyzedInstructions")
     @Expose
     private List<AnalyzedInstruction> analyzedInstructions;
-
-    public Recipe(boolean vegetarian, boolean vegan, boolean glutenFree, boolean dairyFree, boolean veryHealthy, boolean cheap, boolean veryPopular, boolean sustainable, boolean lowFodmap, int weightWatcherSmartPoints, String gaps, int preparationMinutes, int cookingMinutes, int aggregateLikes, int healthScore, String creditsText, String sourceName, double pricePerServing, int id, String title, int readyInMinutes, int servings, String sourceUrl, int openLicense, String image, String imageType, String summary, List<String> cuisines, List<String> dishTypes, List<String> diets, List<String> occasions, List<AnalyzedInstruction> analyzedInstructions) {
-        this.vegetarian = vegetarian;
-        this.vegan = vegan;
-        this.glutenFree = glutenFree;
-        this.dairyFree = dairyFree;
-        this.veryHealthy = veryHealthy;
-        this.cheap = cheap;
-        this.veryPopular = veryPopular;
-        this.sustainable = sustainable;
-        this.lowFodmap = lowFodmap;
-        this.weightWatcherSmartPoints = weightWatcherSmartPoints;
-        this.gaps = gaps;
-        this.preparationMinutes = preparationMinutes;
-        this.cookingMinutes = cookingMinutes;
-        this.aggregateLikes = aggregateLikes;
-        this.healthScore = healthScore;
-        this.creditsText = creditsText;
-        this.sourceName = sourceName;
-        this.pricePerServing = pricePerServing;
-        this.id = id;
-        this.title = title;
-        this.readyInMinutes = readyInMinutes;
-        this.servings = servings;
-        this.sourceUrl = sourceUrl;
-        this.openLicense = openLicense;
-        this.image = image;
-        this.imageType = imageType;
-        this.summary = summary;
-        this.cuisines = cuisines;
-        this.dishTypes = dishTypes;
-        this.diets = diets;
-        this.occasions = occasions;
-        this.analyzedInstructions = analyzedInstructions;
-    }
-    @Ignore
-    public Recipe() {
-    }
+    private String spoonacularSourceUrl;
+    private String author;
+    private Nutrition nutrition;
 
     protected Recipe(Parcel in) {
         vegetarian = in.readByte() != 0;
@@ -105,6 +70,7 @@ public class Recipe implements Parcelable {
         aggregateLikes = in.readInt();
         healthScore = in.readInt();
         creditsText = in.readString();
+        license = in.readString();
         sourceName = in.readString();
         pricePerServing = in.readDouble();
         id = in.readInt();
@@ -121,6 +87,8 @@ public class Recipe implements Parcelable {
         diets = in.createStringArrayList();
         occasions = in.createStringArrayList();
         analyzedInstructions = in.createTypedArrayList(AnalyzedInstruction.CREATOR);
+        spoonacularSourceUrl = in.readString();
+        author = in.readString();
     }
 
     public static final Creator<Recipe> CREATOR = new Creator<Recipe>() {
@@ -134,6 +102,35 @@ public class Recipe implements Parcelable {
             return new Recipe[size];
         }
     };
+
+    public Nutrition getNutrition() {
+        return nutrition;
+    }
+
+    public void setNutrition(Nutrition nutrition) {
+        this.nutrition = nutrition;
+    }
+
+
+    public String getLicense() {
+        return license;
+    }
+
+    public void setLicense(String license) {
+        this.license = license;
+    }
+
+    public String getSpoonacularSourceUrl() {
+        return spoonacularSourceUrl;
+    }
+
+    public void setSpoonacularSourceUrl(String spoonacularSourceUrl) {
+        this.spoonacularSourceUrl = spoonacularSourceUrl;
+    }
+
+    public Recipe() {
+    }
+
 
     public boolean isVegetarian() {
         return vegetarian;
@@ -197,6 +194,14 @@ public class Recipe implements Parcelable {
 
     public void setSustainable(boolean sustainable) {
         this.sustainable = sustainable;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public boolean isLowFodmap() {
@@ -399,6 +404,7 @@ public class Recipe implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+
         parcel.writeByte((byte) (vegetarian ? 1 : 0));
         parcel.writeByte((byte) (vegan ? 1 : 0));
         parcel.writeByte((byte) (glutenFree ? 1 : 0));
@@ -415,6 +421,7 @@ public class Recipe implements Parcelable {
         parcel.writeInt(aggregateLikes);
         parcel.writeInt(healthScore);
         parcel.writeString(creditsText);
+        parcel.writeString(license);
         parcel.writeString(sourceName);
         parcel.writeDouble(pricePerServing);
         parcel.writeInt(id);
@@ -431,5 +438,9 @@ public class Recipe implements Parcelable {
         parcel.writeStringList(diets);
         parcel.writeStringList(occasions);
         parcel.writeTypedList(analyzedInstructions);
+        parcel.writeString(spoonacularSourceUrl);
+        parcel.writeString(author);
     }
+
+
 }

@@ -10,12 +10,14 @@ public class Step implements Parcelable {
     private String step;
     private List<Ingredient> ingredients;
     private List<Equipment> equipment;
+    private Length length;
 
-    public Step(int number, String step, List<Ingredient> ingredients, List<Equipment> equipment) {
+    public Step(int number, String step, List<Ingredient> ingredients, List<Equipment> equipment, Length length) {
         this.number = number;
         this.step = step;
         this.ingredients = ingredients;
         this.equipment = equipment;
+        this.length = length;
     }
 
     public Step() {
@@ -68,6 +70,14 @@ public class Step implements Parcelable {
 
     public void setEquipment(List<Equipment> equipment) {
         this.equipment = equipment;
+    }
+
+    public Length getLength() {
+        return length;
+    }
+
+    public void setLength(Length length) {
+        this.length = length;
     }
 
     @Override

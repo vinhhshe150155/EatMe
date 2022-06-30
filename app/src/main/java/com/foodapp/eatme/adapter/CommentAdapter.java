@@ -27,6 +27,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
     Context context;
     private final IClickReplyComment iClickReplyComment;
     private final IClickNestedComment iClickReplyNestedComment;
+
     public CommentAdapter(List<Comment> comments, Context context, IClickReplyComment iClickReplyComment, IClickNestedComment iClickReplyNestedComment) {
         this.comments = comments;
         this.context = context;
@@ -79,7 +80,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
 
     @Override
     public int getItemCount() {
-        return comments==null?0:comments.size();
+        return comments == null ? 0 : comments.size();
     }
 
     public static class CommentViewHolder extends RecyclerView.ViewHolder {
@@ -89,6 +90,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
         private final TextView tvReply;
         private final RecyclerView nestedRcv;
         private final TextView tvUsername;
+
         public CommentViewHolder(@NonNull View itemView) {
             super(itemView);
             layoutChild = itemView.findViewById(R.id.linear_list_child);

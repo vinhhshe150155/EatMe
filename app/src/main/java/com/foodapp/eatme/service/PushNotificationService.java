@@ -14,12 +14,12 @@ import com.foodapp.eatme.activity.MainActivity;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
-public class PushNotificationService extends FirebaseMessagingService{
+public class PushNotificationService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(@NonNull RemoteMessage message) {
         super.onMessageReceived(message);
-        RemoteMessage.Notification notification  = message.getNotification();
-        if(notification == null){
+        RemoteMessage.Notification notification = message.getNotification();
+        if (notification == null) {
             return;
         }
         String title = notification.getTitle();
@@ -37,7 +37,7 @@ public class PushNotificationService extends FirebaseMessagingService{
                 .setContentIntent(pendingIntent);
         Notification notification = noBuilder.build();
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        if(notificationManager != null){
+        if (notificationManager != null) {
             notificationManager.notify(1, notification);
         }
     }

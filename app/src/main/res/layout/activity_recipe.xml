@@ -1,24 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nested_scroll_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fillViewport="true">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:id="@+id/layout_loading"
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@color/floral_white"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             android:gravity="center"
-            android:layout_height="match_parent">
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
             <LinearLayout
-                android:gravity="center"
                 android:layout_width="@dimen/_180sdp"
-                android:layout_height="@dimen/_120sdp">
+                android:layout_height="@dimen/_120sdp"
+                android:gravity="center"
+                tools:ignore="UselessParent">
+
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/animationView"
                     android:layout_width="match_parent"
@@ -30,78 +38,310 @@
             </LinearLayout>
 
         </LinearLayout>
-        <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:visibility="gone"
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_recipe"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            app:layout_constraintTop_toTopOf="parent"
             tools:context=".RecipeActivity">
-            <ImageView
-                android:src="@drawable/ic_like"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                android:layout_margin="@dimen/_8sdp"
-                android:id="@+id/img_save_recipe"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"/>
-            <TextView
-                android:id="@+id/tv_recipe_name"
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_header"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/img_back"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/_2sdp"
+                    android:contentDescription="@string/back"
+                    android:gravity="left"
+                    android:padding="@dimen/_2sdp"
+                    android:src="@drawable/ic_arrow_back"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="RtlHardcoded" />
+
+                <com.like.LikeButton
+                    android:id="@+id/btn_like_recipe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    app:icon_size="10dp"
+                    app:icon_type="heart"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toLeftOf="@+id/img_share_recipe"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/img_share_recipe"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:contentDescription="@string/share"
+                    android:src="@drawable/ic_share"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_share_recipe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_50sdp"
-                android:gravity="center"
-                android:text="TextView"
-                app:layout_constraintTop_toTopOf="parent" />
-            <ImageView
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_recipe_name"
-                app:layout_constraintRight_toRightOf="parent"
-                android:id="@+id/img_recipe"
-                android:layout_width="@dimen/_200sdp"
-                android:layout_height="@dimen/_200sdp"/>
-            <LinearLayout
-                android:orientation="vertical"
-                app:layout_constraintTop_toBottomOf="@id/img_recipe"
+                app:layout_constraintTop_toBottomOf="@id/layout_header">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/img_recipe"
+                    android:layout_width="@dimen/_300sdp"
+                    android:layout_height="@dimen/_200sdp"
+                    android:scaleType="fitCenter"
+                    android:src="@color/black"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:riv_corner_radius="40dp" />
+
+                <TextView
+                    android:id="@+id/tv_recipe_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/alata"
+                    android:maxLines="4"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_17ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@+id/img_recipe"
+                    tools:text="Name of Mon an" />
+
+                <LinearLayout
+                    android:id="@+id/layout_nutri"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_42sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:background="@drawable/nutri_shape"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_recipe_name">
+
+                    <LinearLayout
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/_8sdp"
+                        android:layout_marginRight="@dimen/_8sdp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/kcal_lowercase"
+                            android:textColor="@color/pink_light" />
+
+                        <TextView
+                            android:id="@+id/tv_recipe_detail_calories"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/pink_medium"
+                            android:textStyle="bold"
+                            tools:text="123g" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="#7AFEB8B9" />
+
+                    <LinearLayout
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/_8sdp"
+                        android:layout_marginRight="@dimen/_8sdp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/protein"
+                            android:textColor="@color/pink_light" />
+
+                        <TextView
+                            android:id="@+id/tv_recipe_detail_protein"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/pink_medium"
+                            android:textStyle="bold"
+                            tools:text="123" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="#7AFEB8B9" />
+
+                    <LinearLayout
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/_8sdp"
+                        android:layout_marginRight="@dimen/_8sdp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/fat"
+                            android:textColor="@color/pink_light" />
+
+                        <TextView
+                            android:id="@+id/tv_recipe_detail_fat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/pink_medium"
+                            android:textStyle="bold"
+                            tools:text="123" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="#7AFEB8B9" />
+
+                    <LinearLayout
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/carbs"
+                            android:textColor="@color/pink_light" />
+
+                        <TextView
+                            android:id="@+id/tv_recipe_detail_carbs"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/pink_medium"
+                            android:textStyle="bold"
+                            tools:text="123" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <TextView
+                android:id="@+id/tv_title_ingredient"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:text="@string/ingredients"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintTop_toBottomOf="@id/layout_share_recipe" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcv_recipe_detail_ingredient"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tv_title_ingredient" />
+
+            <TextView
+                android:id="@+id/tv_title_step"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:text="@string/steps"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintTop_toBottomOf="@id/rcv_recipe_detail_ingredient" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/tv_title_step">
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rcv_list_step"
-                    android:nestedScrollingEnabled="false"
                     android:layout_width="match_parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_recipe_name"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:nestedScrollingEnabled="false"
+                    app:layout_constraintTop_toBottomOf="@id/tv_recipe_name" />
 
+                <TextView
+                    android:id="@+id/tv_title_comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:text="@string/comments"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13ssp" />
+
+                <TextView
+                    android:id="@+id/tv_comment_empty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:text="@string/be_first_to_comment"
+                    android:textSize="@dimen/_9ssp" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rcv_list_comment"
                     android:layout_width="match_parent"
-                    app:layout_constraintTop_toBottomOf="@id/rcv_list_step"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:id="@+id/tv_comment_empty"
-                    android:text="Be first to comment"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    app:layout_constraintTop_toBottomOf="@id/rcv_list_step" />
+
+
                 <LinearLayout
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_marginBottom="@dimen/_12sdp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
                     <EditText
-                        android:background="@color/floral_white"
                         android:id="@+id/edt_comment"
-                        android:hint="Comment"
-                        android:layout_width="@dimen/_200sdp"
-                        android:layout_height="wrap_content"/>
-                    <Button
-                        android:id="@+id/btn_comment_submit"
-                        android:text="Send"
-                        android:layout_width="@dimen/_100sdp"
-                        android:layout_height="wrap_content"/>
+                        android:layout_width="@dimen/_270sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:background="@drawable/shae_comment_background"
+                        android:hint="@string/what_do_you_think"
+                        android:importantForAutofill="no"
+                        android:inputType="text"
+                        android:paddingStart="@dimen/_8sdp"
+                        android:paddingEnd="@dimen/_8sdp"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <ImageView
+                        android:id="@+id/img_comment_submit"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/send"
+                        android:padding="@dimen/_4sdp"
+                        android:src="@drawable/send" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -109,6 +349,5 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </androidx.core.widget.NestedScrollView>

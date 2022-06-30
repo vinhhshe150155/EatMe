@@ -1,28 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_ingredient_suggest"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:animateLayoutChanges="true"
     android:layout_marginLeft="@dimen/_3sdp"
-    android:layout_marginRight="@dimen/_3sdp"
     android:layout_marginTop="@dimen/_1sdp"
+    android:layout_marginRight="@dimen/_3sdp"
     android:layout_marginBottom="@dimen/_1sdp"
-    android:background="@drawable/shape_suggest_ingre_background"
-    android:id="@+id/layout_ingredient_suggest">
+    android:animateLayoutChanges="true"
+    android:background="@drawable/shape_suggest_ingre_background">
+
     <TextView
-        android:text="@string/app_name"
-        android:gravity="center"
-        android:fontFamily="@font/outfit_light"
-        android:textSize="@dimen/_8ssp"
         android:id="@+id/tv_suggest_ingredient"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:fontFamily="@font/outfit_light"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textSize="@dimen/_8ssp" />
+
     <ImageView
-        android:contentDescription="@string/app_name"
-        android:layout_marginLeft="@dimen/_2sdp"
-        android:layout_marginRight="@dimen/_2sdp"
-        android:src="@drawable/ic_remove"
         android:id="@+id/img_remove_ingredient_suggestion"
         android:layout_width="@dimen/_12sdp"
-        android:layout_height="@dimen/_12sdp"/>
+        android:layout_height="@dimen/_12sdp"
+        android:layout_marginLeft="@dimen/_2sdp"
+        android:layout_marginRight="@dimen/_2sdp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_remove" />
 </LinearLayout>

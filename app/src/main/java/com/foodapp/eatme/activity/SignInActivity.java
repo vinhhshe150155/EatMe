@@ -15,6 +15,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.foodapp.eatme.R;
+import com.foodapp.eatme.util.StringUtil;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -69,9 +70,8 @@ public class SignInActivity extends AppCompatActivity {
         tvForgot = findViewById(R.id.tvForgot);
         btnSignInGoogle = findViewById(R.id.btnSignInGoogle);
         progressDialog = new ProgressDialog(this);
-        String id="164966780531-nd5bgk2sfjde7s6u1f8qjvi4ut0pkj6h.apps.googleusercontent.com";
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(id)
+                .requestIdToken(StringUtil.GSO_KEY)
                 .requestEmail()
                 .build();
 

@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+<<<<<<< HEAD
     <string name="app_name">날 먹어</string>
     <string name="notification_channel_id">push_notification_id</string>
     <string name="hello_blank_fragment">KOoR</string>
     <string name="suggestion_question">무엇을 요리해야합니까?</string>
     <string name="main_course">메인 디쉬</string>
+=======
+    <string name="app_name">Eat Me</string>
+    <string name="suggestion_question">음식?</string>
+    <string name="main_course">음식</string>
+>>>>>>> 7476136fe4716d5739587596e041a49d3166e6f8
     <string name="find_recipe">레시피 찾기</string>
     <string name="home">Home</string>
     <string name="settings">설정</string>
@@ -24,5 +30,28 @@
     <string name="snack">간식</string>
     <string name="drink">음료</string>
     <string name="language">Language</string>
-    <string name="key_language">languageKey</string>
+    <string name="filter">Filter</string>
+    <string name="menu">Menu</string>
+    <string name="empty_save_recipe">Oh no, you have no saved recipe.</string>
+    <string name="image_detail_ingredient">Image detail ingredient</string>
+    <string name="image_recipe">Image recipe</string>
+    <string name="kcal">Kcal</string>
+    <string name="time">Time</string>
+    <string name="delete">Delete</string>
+    <string name="min">min</string>
+    <string name="user">user</string>
+    <string name="view_reply">View reply</string>
+    <string name="reply">Reply</string>
+    <string name="back">Back</string>
+    <string name="share">Share</string>
+    <string name="kcal_lowercase">kcal</string>
+    <string name="protein">protein</string>
+    <string name="fat">fat</string>
+    <string name="carbs">carbs</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="steps">Steps</string>
+    <string name="comments">Comments</string>
+    <string name="be_first_to_comment">Be first to comment</string>
+    <string name="what_do_you_think">What do you think…?</string>
+    <string name="send">Send</string>
 </resources>

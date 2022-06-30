@@ -3,26 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
     <LinearLayout
         android:id="@+id/linear_layout"
-        android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_parent_comment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-           >
+            android:layout_height="wrap_content">
+
             <ImageView
                 android:id="@+id/img_user"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                android:src="@drawable/ic_avt"
-                android:layout_margin="@dimen/_8sdp"
                 android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"/>
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:contentDescription="@string/user"
+                android:padding="@dimen/_4sdp"
+                android:src="@drawable/user"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/tv_username"
                 android:layout_width="wrap_content"
@@ -42,36 +47,39 @@
                 android:textColor="@color/black"
                 app:layout_constraintLeft_toRightOf="@id/tv_username"
                 app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/tv_view_reply"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="view reply"
+                android:text="@string/view_reply"
                 android:textColor="@color/black"
                 app:layout_constraintLeft_toLeftOf="@id/tv_username"
                 app:layout_constraintTop_toBottomOf="@id/tv_username" />
+
             <TextView
                 android:id="@+id/tv_reply"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="reply"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:text="@string/reply"
                 android:textColor="@color/black"
-                android:layout_marginLeft="@dimen/_8sdp"
                 app:layout_constraintLeft_toRightOf="@id/tv_view_reply"
                 app:layout_constraintTop_toBottomOf="@id/tv_content" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
+            android:id="@+id/linear_list_child"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
             android:orientation="vertical"
-            android:id="@+id/linear_list_child"
-            android:layout_marginLeft="@dimen/_20sdp"
             app:layout_constraintTop_toBottomOf="@id/layout_parent_comment">
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcv_comment_child"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

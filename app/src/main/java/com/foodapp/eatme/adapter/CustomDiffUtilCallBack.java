@@ -2,7 +2,6 @@ package com.foodapp.eatme.adapter;
 
 import androidx.recyclerview.widget.DiffUtil;
 
-import com.foodapp.eatme.model.Ingredient;
 import com.foodapp.eatme.model.IngredientLocale;
 import com.foodapp.eatme.util.LocaleHelper;
 
@@ -11,7 +10,7 @@ import java.util.List;
 public class CustomDiffUtilCallBack extends DiffUtil.Callback {
     List<IngredientLocale> newList;
     List<IngredientLocale> oldList;
-    private String currentLanguage;
+    private final String currentLanguage;
 
     public CustomDiffUtilCallBack(List<IngredientLocale> newList, List<IngredientLocale> oldList, String currentLanguage) {
         this.newList = newList;

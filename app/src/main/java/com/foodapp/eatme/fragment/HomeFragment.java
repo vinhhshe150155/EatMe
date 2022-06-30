@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -25,14 +24,12 @@ import com.foodapp.eatme.activity.ListRecipeActivity;
 import com.foodapp.eatme.activity.MainActivity;
 import com.foodapp.eatme.adapter.SearchIngredientAdapter;
 import com.foodapp.eatme.adapter.SuggestMealTypeAdapter;
-import com.foodapp.eatme.model.Ingredient;
 import com.foodapp.eatme.model.IngredientLocale;
 import com.foodapp.eatme.model.MealType;
 import com.foodapp.eatme.util.ListIngredient;
 import com.foodapp.eatme.util.LocaleHelper;
 import com.foodapp.eatme.util.StringUtil;
 import com.google.android.material.card.MaterialCardView;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,7 +101,12 @@ public class HomeFragment extends Fragment {
 
     private void initMealTypeRcv() {
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-        SuggestMealTypeAdapter mealTypeAdapter = new SuggestMealTypeAdapter(mealTypes, requireContext());
+        SuggestMealTypeAdapter mealTypeAdapter = new SuggestMealTypeAdapter(mealTypes, requireContext(), mealType -> {
+            Intent intent = new Intent(getActivity(), ListRecipeActivity.class);
+            intent.putExtra("mealType", mealType.getName());
+            intent.putExtra("ingredients", getSearchIngredient());
+            startActivity(intent);
+        });
         rcvMealType.setAdapter(mealTypeAdapter);
         rcvMealType.setLayoutManager(staggeredGridLayoutManager);
     }
@@ -120,12 +122,10 @@ public class HomeFragment extends Fragment {
         TextView textView = viewItem.findViewById(R.id.tv_suggest_ingredient);
         ImageView imageView = viewItem.findViewById(R.id.img_remove_ingredient_suggestion);
         String ingredientName;
-        switch (currentLanguage) {
-            case LocaleHelper.LANG_KR:
-                ingredientName = ingredient.getKrName();
-                break;
-            default:
-                ingredientName = ingredient.getEnName();
+        if (LocaleHelper.LANG_KR.equals(currentLanguage)) {
+            ingredientName = ingredient.getKrName();
+        } else {
+            ingredientName = ingredient.getEnName();
         }
         textView.setText(StringUtil.toCaptalizedString(ingredientName));
         imageView.setOnClickListener(view -> {
@@ -192,7 +192,11 @@ public class HomeFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                filterList(newText);
+                if (newText.trim().equals("")) {
+                    rcvIngredientSearch.setVisibility(View.GONE);
+                } else {
+                    filterList(newText);
+                }
                 return false;
             }
         });
@@ -208,16 +212,14 @@ public class HomeFragment extends Fragment {
     private void filterList(String newText) {
         List<IngredientLocale> filterIngredientList = new ArrayList<>();
         for (IngredientLocale ingredient : allIngredientsLocale) {
-            switch (currentLanguage) {
-                case LocaleHelper.LANG_KR:
-                    if (ingredient.getKrName().toLowerCase().contains(newText.toLowerCase())) {
-                        filterIngredientList.add(ingredient);
-                    }
-                    break;
-                default:
-                    if (ingredient.getEnName().toLowerCase().contains(newText.toLowerCase())) {
-                        filterIngredientList.add(ingredient);
-                    }
+            if (LocaleHelper.LANG_KR.equals(currentLanguage)) {
+                if (ingredient.getKrName().toLowerCase().contains(newText.toLowerCase())) {
+                    filterIngredientList.add(ingredient);
+                }
+            } else {
+                if (ingredient.getEnName().toLowerCase().contains(newText.toLowerCase())) {
+                    filterIngredientList.add(ingredient);
+                }
             }
         }
         if (filterIngredientList.isEmpty()) {

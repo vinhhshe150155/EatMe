@@ -1,31 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_marginRight="@dimen/_8sdp"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/_4sdp">
 
     <TextView
         android:id="@+id/tv_step_number"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/_16sdp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_8sdp"
-        android:text="21"
+        android:layout_marginStart="@dimen/_2sdp"
         android:textColor="@color/black"
-        android:textSize="@dimen/_14ssp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="@dimen/_12ssp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="21" />
 
     <TextView
         android:id="@+id/tv_step_content"
         android:layout_width="@dimen/_270sdp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_8sdp"
-        android:text="@string/app_name"
+        android:layout_marginStart="@dimen/_1sdp"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:fontFamily="@font/ptsans"
         android:textColor="@color/black"
-        android:textSize="@dimen/_14ssp"
+        android:textSize="@dimen/_11ssp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/tv_step_number"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Activities in the stack are never rearranged, only pushed and popped from the stack—pushed onto the stack when started by the current activity" />
 </androidx.constraintlayout.widget.ConstraintLayout>

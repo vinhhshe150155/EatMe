@@ -1,29 +1,34 @@
 package com.foodapp.eatme.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-
+import com.bumptech.glide.Glide;
 import com.foodapp.eatme.R;
 import com.foodapp.eatme.activity.RecipeActivity;
 import com.foodapp.eatme.model.Recipe;
 
 import java.util.List;
 
-public class ListRecipeAdapter extends RecyclerView.Adapter<ListRecipeAdapter.ListRecipeViewHolder> {
+public class ListSearchRecipeAdapter extends RecyclerView.Adapter<ListSearchRecipeAdapter.ListRecipeViewHolder> {
     private final List<Recipe> recipes;
     private final Context context;
-    public ListRecipeAdapter(List<Recipe> recipes, Context context){
+
+    public ListSearchRecipeAdapter(List<Recipe> recipes, Context context) {
         this.recipes = recipes;
         this.context = context;
     }
+
     @NonNull
     @Override
     public ListRecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -32,11 +37,16 @@ public class ListRecipeAdapter extends RecyclerView.Adapter<ListRecipeAdapter.Li
         return new ListRecipeViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ListRecipeViewHolder holder, int position) {
         Recipe recipe = recipes.get(position);
-        holder.tvRecipeName.setText(recipe.getSourceName());
-        holder.itemView.setOnClickListener(view -> {
+        holder.tvTitle.setText(recipe.getTitle());
+        holder.tvTitle.setSelected(true);
+        holder.tvReadyTime.setText(recipe.getReadyInMinutes() + " Minutes");
+        holder.tvKcal.setText(((int) recipe.getNutrition().getNutrients().get(0).getAmount()) + " Kcal");
+        Glide.with(context).load(recipe.getImage()).into(holder.imgRecipe);
+        holder.cvRecipeItem.setOnClickListener(view -> {
             Intent intent = new Intent(context, RecipeActivity.class);
             intent.putExtra("recipe", recipe);
             context.startActivity(intent);
@@ -46,15 +56,24 @@ public class ListRecipeAdapter extends RecyclerView.Adapter<ListRecipeAdapter.Li
 
     @Override
     public int getItemCount() {
-        return recipes==null?0:recipes.size();
+        return recipes == null ? 0 : recipes.size();
     }
 
     public static class ListRecipeViewHolder extends RecyclerView.ViewHolder {
-        private final TextView tvRecipeName;
+        private final CardView cvRecipeItem;
+        private final TextView tvTitle;
+        private final ImageView imgRecipe;
+        private final TextView tvReadyTime;
+        private final TextView tvKcal;
+
 
         public ListRecipeViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvRecipeName = itemView.findViewById(R.id.tv_recipe_name);
+            cvRecipeItem = itemView.findViewById(R.id.cv_recipe);
+            tvReadyTime = itemView.findViewById(R.id.tv_recipe_ready_time);
+            tvTitle = itemView.findViewById(R.id.tv_recipe_item_name);
+            imgRecipe = itemView.findViewById(R.id.img_recipe_item);
+            tvKcal = itemView.findViewById(R.id.tv_recipe_kcal);
         }
     }
 }

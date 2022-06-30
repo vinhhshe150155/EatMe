@@ -25,9 +25,9 @@ import com.foodapp.eatme.model.Recipe;
 import java.util.List;
 
 public class ListSavedRecipeAdapter extends RecyclerView.Adapter<ListSavedRecipeAdapter.ListSavedRecipeViewHolder> {
-    private List<Recipe> recipes;
-    private ViewBinderHelper viewBinderHelper = new ViewBinderHelper();
-    private Context context;
+    private final List<Recipe> recipes;
+    private final ViewBinderHelper viewBinderHelper = new ViewBinderHelper();
+    private final Context context;
     private final IClickItemSavedRecipe iClickItemSavedRecipe;
     private final IClickDeleteSavedRecipe iClickDeleteSavedRecipe;
     RecipeDatabase database;
@@ -90,14 +90,14 @@ public class ListSavedRecipeAdapter extends RecyclerView.Adapter<ListSavedRecipe
         return recipes == null ? 0 : recipes.size();
     }
 
-    public class ListSavedRecipeViewHolder extends RecyclerView.ViewHolder {
-        private SwipeRevealLayout swipeRevealLayout;
-        private LinearLayout layoutDelete;
-        private TextView tvRecipeName;
-        private ConstraintLayout layoutItemSavedRecipe;
-        private TextView tvCalories;
-        private TextView tvReadyMinute;
-        private ImageView imgRecipe;
+    public static class ListSavedRecipeViewHolder extends RecyclerView.ViewHolder {
+        private final SwipeRevealLayout swipeRevealLayout;
+        private final LinearLayout layoutDelete;
+        private final TextView tvRecipeName;
+        private final ConstraintLayout layoutItemSavedRecipe;
+        private final TextView tvCalories;
+        private final TextView tvReadyMinute;
+        private final ImageView imgRecipe;
 
         public ListSavedRecipeViewHolder(@NonNull View itemView) {
             super(itemView);

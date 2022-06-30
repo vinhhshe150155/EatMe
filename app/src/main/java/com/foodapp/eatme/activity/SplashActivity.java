@@ -35,7 +35,6 @@ public class SplashActivity extends AppCompatActivity {
         Log.e("Lang", lang);
         setAppLocale(this, lang);
         setContentView(R.layout.activity_splash);
-
     }
 
     private void setAppLocale(Context context, String language) {
