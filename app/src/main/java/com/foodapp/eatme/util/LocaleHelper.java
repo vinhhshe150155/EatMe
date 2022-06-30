@@ -61,9 +61,12 @@ public class LocaleHelper {
             return "en";
         }
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        String lang = preferences.getString(SELECTED_LANGUAGE, null);
-        if (lang == null || lang.equals("")) {
-            lang = Locale.getDefault().getLanguage();
+        String lang = preferences.getString(SELECTED_LANGUAGE, "en");
+
+        if (!lang.equals("en") && !lang.equals("ko")) {
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString(SELECTED_LANGUAGE, "en");
+            lang = "en";
         }
         return lang;
     }
