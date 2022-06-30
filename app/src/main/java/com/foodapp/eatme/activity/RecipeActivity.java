@@ -2,7 +2,12 @@ package com.foodapp.eatme.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -15,6 +20,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -54,6 +60,7 @@ import com.google.mlkit.nl.translate.TranslatorOptions;
 import com.like.LikeButton;
 import com.like.OnLikeListener;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -69,6 +76,7 @@ public class RecipeActivity extends AppCompatActivity {
     TextView tvRecipeName;
     LikeButton btnLike;
     ImageView imgRecipe;
+    ImageView imgShare;
     TextView tvCommentEmpty;
     private boolean isLiked;
     private final TranslatorOptions options = new TranslatorOptions.Builder()
@@ -100,6 +108,7 @@ public class RecipeActivity extends AppCompatActivity {
     private RecipeExtend recipeExtend;
     private TextView tvKcal;
     private TextView tvProtein;
+    private ConstraintLayout layoutShare;
     private TextView tvFat;
     private TextView tvCarbs;
     private NestedScrollView nestedScrollView;
@@ -115,8 +124,10 @@ public class RecipeActivity extends AppCompatActivity {
     }
 
     private void initUI() {
+        layoutShare = findViewById(R.id.layout_share_recipe);
         nestedScrollView = findViewById(R.id.nested_scroll_view);
         tvKcal = findViewById(R.id.tv_recipe_detail_calories);
+        imgShare = findViewById(R.id.img_share_recipe);
         tvProtein = findViewById(R.id.tv_recipe_detail_protein);
         tvFat = findViewById(R.id.tv_recipe_detail_fat);
         tvCarbs = findViewById(R.id.tv_recipe_detail_carbs);
@@ -204,6 +215,7 @@ public class RecipeActivity extends AppCompatActivity {
             onBackPressed();
         });
         nestedScrollView.setOnClickListener(view -> closeKeyboard());
+        imgShare.setOnClickListener(view -> shareRecipe());
     }
 
     @Override
@@ -473,5 +485,21 @@ public class RecipeActivity extends AppCompatActivity {
             InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             manager.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
+    }
+
+    private void shareRecipe() {
+        Bitmap bitmap = Bitmap.createBitmap(layoutShare.getWidth(), layoutShare.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        canvas.drawColor(ContextCompat.getColor(this, R.color.white));
+        layoutShare.draw(canvas);
+        Intent share = new Intent(Intent.ACTION_SEND);
+        share.setType("image/jpeg");
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(getContentResolver(),
+                bitmap, "Eat Me", null);
+        Uri imageUri = Uri.parse(path);
+        share.putExtra(Intent.EXTRA_STREAM, imageUri);
+        startActivity(Intent.createChooser(share, "Share recipe through..."));
     }
 }
