@@ -168,7 +168,7 @@ public class RecipeActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
         recipe = getIntent().getParcelableExtra("recipe");
-        tvRecipeName.setText(recipe.getSourceName());
+        tvRecipeName.setText(recipe.getTitle());
         Glide.with(this).load(recipe.getImage()).into(imgRecipe);
         steps = recipe.getAnalyzedInstructions().get(0).getSteps();
         String currentLanguage = LocaleHelper.getCurrentLanguage();
@@ -336,9 +336,12 @@ public class RecipeActivity extends AppCompatActivity {
                 .addOnSuccessListener(
                         v -> {
                             Log.e("Translate", "Success");
-                            englishKoreanTranslator.translate(recipe.getSourceName())
+                            englishKoreanTranslator.translate(recipe.getTitle())
                                     .addOnSuccessListener(
-                                            translatedText -> tvRecipeName.setText(translatedText))
+                                            translatedText -> {
+                                                tvRecipeName.setText(translatedText);
+                                                recipe.setTitle(translatedText);
+                                            })
                                     .addOnFailureListener(
                                             e -> Log.e("Translate", e.getMessage()));
                             for (int i = 0; i < steps.size(); i++) {
