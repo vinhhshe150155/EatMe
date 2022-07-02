@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -25,6 +26,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SignInActivity extends AppCompatActivity {
 
@@ -67,7 +71,7 @@ public class SignInActivity extends AppCompatActivity {
         edtEmail = findViewById(R.id.edtEmail);
         edtPassword = findViewById(R.id.edtPassword);
         tvSignUp = findViewById(R.id.tvSignUp);
-        tvForgot = findViewById(R.id.tvForgot);
+        tvForgot = findViewById(R.id.tvForgotPassword);
         btnSignInGoogle = findViewById(R.id.btnSignInGoogle);
         progressDialog = new ProgressDialog(this);
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -90,26 +94,36 @@ public class SignInActivity extends AppCompatActivity {
             startActivity(intent);
         });
         btnSignIn.setOnClickListener(view -> onClickSignIn());
-        tvForgot.setOnClickListener(view -> onClickForgotPassword());
+        tvForgot.setOnClickListener(view -> {
+            Intent intent = new Intent(SignInActivity.this, ForgotPasswordActivity.class);
+            startActivity(intent);
+        });
         btnSignInGoogle.setOnClickListener(view -> signInWithGoogle());
     }
 
-    private void onClickForgotPassword() {
-        progressDialog.show();
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        String emailAddress = edtEmail.getText().toString().trim();
-        auth.sendPasswordResetEmail(emailAddress)
-                .addOnCompleteListener(task -> {
-                    progressDialog.dismiss();
-                    if (task.isSuccessful()) {
-                        Toast.makeText(SignInActivity.this, "SENT", Toast.LENGTH_SHORT).show();
-                    }
-                });
+    public static boolean isValidPassword(final String password) {
+
+        Pattern pattern;
+        Matcher matcher;
+        final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$";
+        pattern = Pattern.compile(PASSWORD_PATTERN);
+        matcher = pattern.matcher(password);
+        return matcher.matches();
+
     }
 
     private void onClickSignIn() {
         String email = edtEmail.getText().toString().trim();
         String password = edtPassword.getText().toString().trim();
+        if(email.isEmpty() && !Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            edtEmail.setError("Please enter valid email");
+            return;
+        }else if(password.isEmpty() || isValidPassword(password)){
+            edtPassword.setError("Please enter valid password");
+            return;
+        }
+
+
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         progressDialog.show();
         mAuth.signInWithEmailAndPassword(email, password)
@@ -120,7 +134,7 @@ public class SignInActivity extends AppCompatActivity {
                         finishAffinity();
                         startActivity(intent);
                     } else {
-                        Toast.makeText(SignInActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignInActivity.this, "Please check email or password.", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
