@@ -57,12 +57,24 @@
         <item>ko</item>
     </string-array>
     <string name="title_activity_forgot_password">ForgotPasswordActivity</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="sign_up">Sign up</string>
+    <string name="first_fragment_label" translatable="false">First Fragment</string>
+    <string name="second_fragment_label" translatable="false">Second Fragment</string>
+    <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
+    <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
+    <string name="email">Email</string>
+    <string name="logo">logo</string>
+    <string name="password">Password</string>
+    <string name="name">Name</string>
+    <string name="a_recipe_has_no_soul_you_must_bring_soul_to_the_recipe">A recipe has no soul. You must bring soul to the recipe.</string>
+    <string name="login">Login</string>
+    <string name="sign_in_with_google">sign in with google</string>
+    <string name="new_user_sign_up_here">New user ? Sign up here</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="forgot_password_uppercase">FORGOT PASSWORD</string>
+    <string name="we_just_need_registered_email_to_send_your_password_reset">We just need registered email to send your password reset</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="reset_password">Reset Password</string>
 </resources>

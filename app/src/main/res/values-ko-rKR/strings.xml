@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<<<<<<< HEAD
-    <string name="app_name">날 먹어</string>
     <string name="notification_channel_id">push_notification_id</string>
-    <string name="hello_blank_fragment">KOoR</string>
     <string name="suggestion_question">무엇을 요리해야합니까?</string>
     <string name="main_course">메인 디쉬</string>
-=======
     <string name="app_name">Eat Me</string>
-    <string name="suggestion_question">음식?</string>
-    <string name="main_course">음식</string>
->>>>>>> 7476136fe4716d5739587596e041a49d3166e6f8
     <string name="find_recipe">레시피 찾기</string>
     <string name="home">Home</string>
     <string name="settings">설정</string>
@@ -54,4 +47,21 @@
     <string name="be_first_to_comment">Be first to comment</string>
     <string name="what_do_you_think">What do you think…?</string>
     <string name="send">Send</string>
+    <string name="title_activity_forgot_password">ForgotPasswordActivity</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="sign_up">Sign up</string>
+    <string name="email">Email</string>
+    <string name="logo">logo</string>
+    <string name="password">Password</string>
+    <string name="name">Name</string>
+    <string name="a_recipe_has_no_soul_you_must_bring_soul_to_the_recipe">A recipe has no soul. You must bring soul to the recipe.</string>
+    <string name="login">Login</string>
+    <string name="sign_in_with_google">sign in with google</string>
+    <string name="new_user_sign_up_here">New user ? Sign up here</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="forgot_password_uppercase">FORGOT PASSWORD</string>
+    <string name="we_just_need_registered_email_to_send_your_password_reset">We just need registered email to send your password reset</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="reset_password">Reset Password</string>
 </resources>
