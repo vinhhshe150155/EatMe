@@ -43,8 +43,8 @@ public class ListSearchRecipeAdapter extends RecyclerView.Adapter<ListSearchReci
         Recipe recipe = recipes.get(position);
         holder.tvTitle.setText(recipe.getTitle());
         holder.tvTitle.setSelected(true);
-        holder.tvReadyTime.setText(recipe.getReadyInMinutes() + " Minutes");
-        holder.tvKcal.setText(((int) recipe.getNutrition().getNutrients().get(0).getAmount()) + " Kcal");
+        holder.tvReadyTime.setText(recipe.getReadyInMinutes() + "min");
+        holder.tvKcal.setText(((int) recipe.getNutrition().getNutrients().get(0).getAmount()) + "kcal");
         Glide.with(context).load(recipe.getImage()).into(holder.imgRecipe);
         holder.cvRecipeItem.setOnClickListener(view -> {
             Intent intent = new Intent(context, RecipeActivity.class);

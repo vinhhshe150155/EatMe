@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +40,7 @@ import com.foodapp.eatme.model.Recipe;
 import com.foodapp.eatme.model.Step;
 import com.foodapp.eatme.model.extend.NutriExtend;
 import com.foodapp.eatme.model.extend.RecipeExtend;
+import com.foodapp.eatme.util.LoadingDialog;
 import com.foodapp.eatme.util.LocaleHelper;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -91,7 +91,7 @@ public class RecipeActivity extends AppCompatActivity {
     private ImageView imgSubmitComment;
     private EditText edtComment;
     private Comment currentReplyComment;
-    private LinearLayout layoutLoading;
+    private LoadingDialog loadingDialog;
     private ChildComment childComment;
     private static final int COMMENT_NORMAL = 0;
     private static final int COMMENT_REPLY = 1;
@@ -131,7 +131,6 @@ public class RecipeActivity extends AppCompatActivity {
         rcvIngredient = findViewById(R.id.rcv_recipe_detail_ingredient);
         btnLike = findViewById(R.id.btn_like_recipe);
         layoutRecipe = findViewById(R.id.layout_recipe);
-        layoutLoading = findViewById(R.id.layout_loading);
         tvCommentEmpty = findViewById(R.id.tv_comment_empty);
         tvCommentEmpty.setVisibility(View.GONE);
         imgBack = findViewById(R.id.img_back);
@@ -142,6 +141,7 @@ public class RecipeActivity extends AppCompatActivity {
         RecyclerView rcvListComment = findViewById(R.id.rcv_list_comment);
         rcvListComment.setHasFixedSize(true);
         rcvListComment.setLayoutManager(new LinearLayoutManager(this));
+        loadingDialog = new LoadingDialog(this);
         rcvListStep = findViewById(R.id.rcv_list_step);
         adapter = new CommentAdapter(comments, this, comment3 -> {
             currentReplyComment = comment3;
@@ -162,6 +162,7 @@ public class RecipeActivity extends AppCompatActivity {
     }
 
     private void initData() {
+        loadingDialog.showDialog(null);
         ApiRecipeDetailManager apiRecipeDetailManager = new ApiRecipeDetailManager();
         initApiListener();
         database = RecipeDatabase.getInstance(getApplicationContext());
@@ -187,7 +188,7 @@ public class RecipeActivity extends AppCompatActivity {
         RecipeStepAdapter adapter = new RecipeStepAdapter(steps);
         rcvListStep.setLayoutManager(new LinearLayoutManager(this));
         rcvListStep.setAdapter(adapter);
-        layoutLoading.setVisibility(View.GONE);
+        loadingDialog.hideDialog();
         layoutRecipe.setVisibility(View.VISIBLE);
     }
 
@@ -355,7 +356,7 @@ public class RecipeActivity extends AppCompatActivity {
                                                         RecipeStepAdapter adapter = new RecipeStepAdapter(steps);
                                                         rcvListStep.setLayoutManager(new LinearLayoutManager(this));
                                                         rcvListStep.setAdapter(adapter);
-                                                        layoutLoading.setVisibility(View.GONE);
+                                                        loadingDialog.hideDialog();
                                                         layoutRecipe.setVisibility(View.VISIBLE);
                                                     }
                                                 }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="initial_slider_calories">
+        <item>0</item>
+        <item>5000</item>
+    </array>
+    <array name="initial_slider_time">
+        <item>0</item>
+        <item>500</item>
+    </array>
+</resources>

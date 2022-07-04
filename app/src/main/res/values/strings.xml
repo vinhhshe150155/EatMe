@@ -77,4 +77,26 @@
     <string name="we_just_need_registered_email_to_send_your_password_reset">We just need registered email to send your password reset</string>
     <string name="enter_your_email">Enter your email</string>
     <string name="reset_password">Reset Password</string>
+    <string name="meal_type">Meal Type</string>
+    <string name="more">More</string>
+    <string name="gluten_free">Gluten Free</string>
+    <string name="ketogenic">Ketogenic</string>
+    <string name="vegetarian">Vegetarian</string>
+    <string name="lacto_vegetarian">Lacto-Vegetarian</string>
+    <string name="ovo_vegetarian">Ovo-Vegetarian</string>
+    <string name="vegan">Vegan</string>
+    <string name="pescetarian">Pescetarian</string>
+    <string name="paleo">Paleo</string>
+    <string name="primal">Primal</string>
+    <string name="low_fodmap">Low FODMAP</string>
+    <string name="whole30">Whole30</string>
+    <string name="diet">Diet</string>
+    <string name="calories">Calories</string>
+    <string name="apply">Apply</string>
+    <string name="reset">Reset</string>
+    <string name="loading">Loading…</string>
+    <string name="suitable">Suitable</string>
+    <string name="popularity">Popularity</string>
+    <string name="healthiness">Healthiness</string>
+    <string name="we_can_t_found_any_recipe">We can\'t found any recipe.</string>
 </resources>

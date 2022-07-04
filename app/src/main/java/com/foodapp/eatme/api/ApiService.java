@@ -28,6 +28,7 @@ public interface ApiService {
     Call<ApiFoodResponse> getSearchList(
             @Query("includeIngredients") String includeIngredients,
             @Query("number") Integer number,
+            @Query("diet") String diet,
             @Query("sort") String sort,
             @Query("sortDirection") String sortDirection,
             @Query("maxReadyTime") Integer maxReadyTime,
