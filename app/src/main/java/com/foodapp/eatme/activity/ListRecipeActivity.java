@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,8 +38,8 @@ public class ListRecipeActivity extends AppCompatActivity {
     private String searchIngredients, mealType;
     private List<Recipe> recipes;
     SearchRecipeAdapter randomRecipeAdapter;
-//
-ProgressDialog dialog;
+    //
+    ProgressDialog dialog;
     RequestManager manager;
     RecyclerView recyclerView;
     SearchView searchView;
@@ -54,15 +55,16 @@ ProgressDialog dialog;
         searchData();
     }
 
-    private void searchData() { dialog=new ProgressDialog(this);
+    private void searchData() {
+        dialog = new ProgressDialog(this);
         dialog.setTitle("Loading...");
 
-        searchView= findViewById(R.id.searchView);
+        searchView = findViewById(R.id.searchView);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 searchIngredients = query;
-                callApi(query,mealType,"");
+                callApi(query, mealType, "popularity", "asc");
                 return true;
             }
 
@@ -77,14 +79,15 @@ ProgressDialog dialog;
     }
 
     private void initUI() {
-        rcvListRecipe=findViewById(R.id.rcvListItem);
+        rcvListRecipe = findViewById(R.id.rcvListItem);
         btnFilter = findViewById(R.id.btnFilter);
         btnFilter.setOnClickListener(this::onFilterClick);
     }
+
     private void onFilterClick(View view) {
         PopupMenu popupMenu = new PopupMenu(this, btnFilter);
-         popupMenu.setOnMenuItemClickListener(this::onMenuItemClick);
-         popupMenu.inflate(R.menu.filter_search_menu);
+        popupMenu.setOnMenuItemClickListener(this::onMenuItemClick);
+        popupMenu.inflate(R.menu.filter_search_menu);
         popupMenu.show();
     }
 
@@ -92,43 +95,58 @@ ProgressDialog dialog;
 
         switch (item.getItemId()) {
             case R.id.time:
-                callApi(searchIngredients,mealType,"time");
+                if (item.getIcon().equals(R.drawable.ic_increase)) {
+
+                    callApi(searchIngredients, mealType, "time", "asc");
+                    item.setIcon(R.drawable.ic_decrease);
+                } else {
+                    Toast.makeText(this, "decrease", Toast.LENGTH_SHORT).show();
+                    callApi(searchIngredients, mealType, "time", "desc");
+                    item.setIcon(R.drawable.ic_increase);
+                }
                 return true;
             case R.id.kcal:
-                callApi(searchIngredients,mealType,"calories");
+                //callApi(searchIngredients, mealType, "calories");
+                if (item.getIcon().equals(R.drawable.ic_increase)) {
+                    callApi(searchIngredients, mealType, "calories", "asc");
+                    item.setIcon(R.drawable.ic_decrease);
+                } else {
+                    callApi(searchIngredients, mealType, "calories", "desc");
+                    item.setIcon(R.drawable.ic_increase);
+                }
                 return true;
         }
-        return  false;
+        return false;
     }
 
     private void initData() {
         searchIngredients = getIntent().getStringExtra("ingredients");
         mealType = getIntent().getStringExtra("mealType");
-        callApi(searchIngredients,mealType,"popularity");
+        callApi(searchIngredients, mealType, "popularity", "asc");
     }
 
 
-    private void callApi(String ingredient,String type, String sort) {
+    private void callApi(String ingredient, String type, String sort, String sortDirection) {
         if (!NetworkUtil.isNetworkAvailable(this)) {
             Toasty.normal(this, "No internet connection.").show();
             return;
         }
-        ApiService.apiService.getSearchList(ingredient,100, sort,"asc",
-                1000000, 0, 10000,
-                true, true,type)
+        ApiService.apiService.getSearchList(ingredient, 100, sort, sortDirection,
+                        1000000, 0, 10000,
+                        true, true, type)
                 .enqueue(new Callback<ResultApiResponse>() {
-            @Override
-            public void onResponse(@NonNull Call<ResultApiResponse> call, @NonNull Response<ResultApiResponse> response) {
-                randomRecipeAdapter = new SearchRecipeAdapter(ListRecipeActivity.this,response.body().results);
-                rcvListRecipe.setAdapter(randomRecipeAdapter);
-                rcvListRecipe.setLayoutManager(new GridLayoutManager(ListRecipeActivity.this,2));
-                }
+                    @Override
+                    public void onResponse(@NonNull Call<ResultApiResponse> call, @NonNull Response<ResultApiResponse> response) {
+                        randomRecipeAdapter = new SearchRecipeAdapter(ListRecipeActivity.this, response.body().results);
+                        rcvListRecipe.setAdapter(randomRecipeAdapter);
+                        rcvListRecipe.setLayoutManager(new GridLayoutManager(ListRecipeActivity.this, 2));
+                    }
 
 
-            @Override
-            public void onFailure(@NonNull Call<ResultApiResponse> call, @NonNull Throwable t) {
-                Log.e("UBruhoa", t.getMessage());
-            }
-        });
+                    @Override
+                    public void onFailure(@NonNull Call<ResultApiResponse> call, @NonNull Throwable t) {
+                        Log.e("UBruhoa", t.getMessage());
+                    }
+                });
     }
 }

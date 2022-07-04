@@ -8,9 +8,9 @@
   <menu >
    <group>
    <item android:id="@+id/time" android:title="Time"
-       android:icon="@drawable/ic_time"/>
+       android:icon="@drawable/ic_increase"/>
    <item android:id="@+id/kcal" android:title="Kcal"
-       android:icon="@drawable/ic_kcal"/>
+       android:icon="@drawable/ic_increase"/>
    </group>
   </menu>
  </item>
