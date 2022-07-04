@@ -116,7 +116,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            //super.onBackPressed();
+           showHome();
         }
     }
 
@@ -129,6 +130,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         String email = user.getEmail();
         tvUsername.setText(name);
         tvEmail.setText(email);
+    }
+    private void showHome() {
+        replaceFragment(new HomeFragment());
+        currentFragment = FRAGMENT_HOME;
     }
 
     private void addUserIfNotExist() {
