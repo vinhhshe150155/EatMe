@@ -33,15 +33,32 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
 
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "DefaultLocale"})
     @Override
     public void onBindViewHolder(@NonNull IngredientViewHolder holder, int position) {
         ExtendedIngredient ingredient = ingredients.get(position);
-        holder.tvIngredientName.setText(ingredient.getName());
+        holder.tvIngredientName.setText(validateName(ingredient.getName()));
         holder.tvIngredientName.setSelected(true);
-        holder.tvIngredienAmount.setText(ingredient.getAmount() + " " + ingredient.getUnit());
-        holder.tvIngredienAmount.setSelected(true);
+        holder.tvIngredientAmount.setText(String.format("%.1f", ingredient.getAmount()) + " " + ingredient.getUnit());
+        holder.tvIngredientAmount.setSelected(true);
         Glide.with(context).load("https://spoonacular.com/cdn/ingredients_100x100/" + ingredient.getImage()).into(holder.imgIngredient);
+    }
+
+    public String validateName(String str) {
+        if (str == null) {
+            return "";
+        }
+        int i = -1;
+        do {
+            i++;
+            char c = str.charAt(i);
+            if (!((c > 'a' && c < 'z') || (c > 'A' && c < 'Z'))) {
+                i++;
+                break;
+            }
+        } while (i < str.length());
+        i--;
+        return str.substring(i).trim();
     }
 
     @Override
@@ -51,13 +68,13 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
 
     static class IngredientViewHolder extends RecyclerView.ViewHolder {
         private final TextView tvIngredientName;
-        private final TextView tvIngredienAmount;
+        private final TextView tvIngredientAmount;
         private final ImageView imgIngredient;
 
         public IngredientViewHolder(@NonNull View itemView) {
             super(itemView);
             tvIngredientName = itemView.findViewById(R.id.tv_recipe_detail_ingredient_name);
-            tvIngredienAmount = itemView.findViewById(R.id.tv_recipe_detail_ingredient_amount);
+            tvIngredientAmount = itemView.findViewById(R.id.tv_recipe_detail_ingredient_amount);
             imgIngredient = itemView.findViewById(R.id.img_recipe_detail_ingredient);
         }
     }

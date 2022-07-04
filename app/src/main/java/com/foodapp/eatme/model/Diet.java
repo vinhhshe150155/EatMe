@@ -1,7 +1,6 @@
 package com.foodapp.eatme.model;
 
-
-public class MealType {
+public class Diet {
     private String name;
     private int image;
     private boolean selected;
@@ -11,7 +10,7 @@ public class MealType {
         return selected;
     }
 
-    public MealType(String name, int image, int strResource, boolean selected) {
+    public Diet(String name, int image, int strResource, boolean selected) {
         this.name = name;
         this.image = image;
         this.selected = selected;
@@ -38,7 +37,7 @@ public class MealType {
         this.image = image;
     }
 
-    public MealType() {
+    public Diet() {
     }
 
     public int getStrResource() {
@@ -49,12 +48,12 @@ public class MealType {
         this.strResource = strResource;
     }
 
-    public MealType(String name, int image) {
+    public Diet(String name, int image) {
         this.name = name;
         this.image = image;
     }
 
-    public MealType(String name, int image, int strResource) {
+    public Diet(String name, int image, int strResource) {
         this.name = name;
         this.image = image;
         this.strResource = strResource;
