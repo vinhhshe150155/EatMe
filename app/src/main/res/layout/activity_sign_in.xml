@@ -16,7 +16,7 @@
         android:fontFamily="@font/jost_regular"
         android:text="@string/a_recipe_has_no_soul_you_must_bring_soul_to_the_recipe"
         android:textColor="#99F3EAEA"
-        android:textSize="@dimen/_11ssp"
+        android:textSize="@dimen/_12ssp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,14 +34,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <View
         android:id="@+id/vEmail"
         android:layout_width="300dp"
         android:layout_height="40dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="26dp"
         android:background="@drawable/view_border"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
@@ -59,13 +60,12 @@
         android:maxLines="1"
         android:textAlignment="center"
         android:textColorHint="#4FFFFFFF"
-        android:textSize="12sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/vEmail"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/vEmail"
         app:layout_constraintTop_toTopOf="@+id/vEmail" />
-
 
     <View
         android:id="@+id/vPassword"
@@ -79,7 +79,7 @@
 
     <EditText
         android:id="@+id/edtPassword"
-        android:layout_width="280dp"
+        android:layout_width="270dp"
         android:layout_height="40dp"
         android:background="@null"
         android:fontFamily="@font/jost_regular"
@@ -89,23 +89,23 @@
         android:maxLines="1"
         android:textAlignment="center"
         android:textColorHint="#4FFFFFFF"
-        android:textSize="12sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/vPassword"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.45"
         app:layout_constraintStart_toStartOf="@+id/vPassword"
         app:layout_constraintTop_toTopOf="@+id/vPassword" />
 
     <Button
-        android:id="@+id/btnSignIn"
+        android:id="@+id/btnSignUp"
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/border_recipe_item"
+        android:background="@drawable/border_button"
         android:fontFamily="@font/jost_regular"
-        android:text="@string/login"
+        android:text="@string/sign_in"
         android:textColor="#CA4545"
-        android:textSize="12sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -116,16 +116,16 @@
         android:layout_width="220dp"
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/border_recipe_item"
-        android:drawableStart="@drawable/google"
+        android:background="@drawable/border_button"
+        android:drawableLeft="@drawable/google"
         android:fontFamily="@font/jost_regular"
         android:text="@string/sign_in_with_google"
         android:textColor="#CA4545"
-        android:textSize="11sp"
+        android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSignIn" />
+        app:layout_constraintTop_toBottomOf="@+id/btnSignUp" />
 
     <TextView
         android:id="@+id/tvSignUp"
@@ -135,7 +135,7 @@
         android:fontFamily="@font/jost_regular"
         android:text="@string/new_user_sign_up_here"
         android:textColor="@color/white"
-        android:textSize="12sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -149,7 +149,7 @@
         android:fontFamily="@font/jost_regular"
         android:text="@string/forgot_password"
         android:textColor="@color/white"
-        android:textSize="12sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
