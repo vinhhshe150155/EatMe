@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/EatMe/app/src/main/res/drawable-xxhdpi/border_button.xml" value="0.216" />
+        <entry key="..\:/EatMe/app/src/main/res/layout/activity_sign_in.xml" value="0.25416666666666665" />
+        <entry key="..\:/EatMe/app/src/main/res/layout/activity_sign_up.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Viettech88.vn/EatMe/app/src/main/res/layout/activity_list_recipe.xml" value="0.2515625" />
         <entry key="..\:/Users/Viettech88.vn/EatMe/app/src/main/res/layout/activity_main.xml" value="0.2515625" />
         <entry key="..\:/Users/Viettech88.vn/EatMe/app/src/main/res/layout/activity_splash.xml" value="0.2515625" />

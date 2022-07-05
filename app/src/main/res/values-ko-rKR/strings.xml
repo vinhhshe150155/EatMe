@@ -54,9 +54,10 @@
     <string name="email">Email</string>
     <string name="logo">logo</string>
     <string name="password">Password</string>
-    <string name="name">Name</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="name">User name</string>
     <string name="a_recipe_has_no_soul_you_must_bring_soul_to_the_recipe">A recipe has no soul. You must bring soul to the recipe.</string>
-    <string name="login">Login</string>
+    <string name="sign_in">Sign in</string>
     <string name="sign_in_with_google">sign in with google</string>
     <string name="new_user_sign_up_here">New user ? Sign up here</string>
     <string name="forgot_password">Forgot password?</string>
@@ -86,4 +87,6 @@
     <string name="popularity">Popularity</string>
     <string name="healthiness">Healthiness</string>
     <string name="we_can_t_found_any_recipe">We can\'t found any recipe.</string>
+    <string name="have_an_account_sign_in_here">Have an account? Sign in here</string>
+    <string name="oops_you_want_to_create_an_account">Oops ! You want to create an account?</string>
 </resources>
