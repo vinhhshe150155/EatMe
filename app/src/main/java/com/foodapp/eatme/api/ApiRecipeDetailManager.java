@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 
 import com.foodapp.eatme.model.extend.NutriExtend;
 import com.foodapp.eatme.model.extend.RecipeExtend;
-import com.foodapp.eatme.util.StringUtil;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -18,7 +17,7 @@ public class ApiRecipeDetailManager {
     ApiServiceRecipeDetail apiServiceRecipeDetail;
     Gson gson = new GsonBuilder().create();
     Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("https://api.spoonacular.com/")
+            .baseUrl("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build();
 
@@ -27,7 +26,7 @@ public class ApiRecipeDetailManager {
     }
 
     public void getRecipeDetails(RecipeDetailsListener listener, int id) {
-        Call<RecipeExtend> call = apiServiceRecipeDetail.callRecipeDetails(id, StringUtil.SPOONACULAR_API_KEY);
+        Call<RecipeExtend> call = apiServiceRecipeDetail.callRecipeDetails(id);
 
         call.enqueue(new Callback<RecipeExtend>() {
             @Override
@@ -48,7 +47,7 @@ public class ApiRecipeDetailManager {
     }
 
     public void getNutriExtend(NutriListener listener, int id) {
-        Call<NutriExtend> call = apiServiceRecipeDetail.getNutriExtend(id, StringUtil.SPOONACULAR_API_KEY);
+        Call<NutriExtend> call = apiServiceRecipeDetail.getNutriExtend(id);
         call.enqueue(new Callback<NutriExtend>() {
             @Override
             public void onResponse(@NonNull Call<NutriExtend> call, @NonNull Response<NutriExtend> response) {
