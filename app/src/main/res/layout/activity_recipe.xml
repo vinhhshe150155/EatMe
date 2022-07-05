@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nested_scroll_view"
+    android:id="@+id/scroll_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_recipe"
@@ -224,6 +224,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_8sdp"
                 android:layout_marginTop="@dimen/_8sdp"
+                android:fontFamily="@font/alata"
                 android:text="@string/ingredients"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_13ssp"
@@ -241,6 +242,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_8sdp"
                 android:layout_marginTop="@dimen/_12sdp"
+                android:fontFamily="@font/alata"
                 android:text="@string/steps"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_13ssp"
@@ -266,6 +268,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_8sdp"
                     android:layout_marginTop="@dimen/_12sdp"
+                    android:fontFamily="@font/alata"
                     android:text="@string/comments"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_13ssp" />
@@ -284,13 +287,39 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_8sdp"
+                    android:paddingBottom="@dimen/_8sdp"
                     app:layout_constraintTop_toBottomOf="@id/rcv_list_step" />
 
+                <LinearLayout
+                    android:id="@+id/layout_replying"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    tools:ignore="UseCompoundDrawables">
+
+                    <TextView
+                        android:id="@+id/tv_replying"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_12sdp"
+                        android:fontFamily="@font/alata"
+                        android:textSize="@dimen/_8ssp"
+                        tools:text="Replying :" />
+
+                    <ImageView
+                        android:id="@+id/img_cancel_replying"
+                        android:layout_width="@dimen/_14sdp"
+                        android:layout_height="@dimen/_14sdp"
+                        android:contentDescription="@string/more"
+                        android:paddingTop="@dimen/_3sdp"
+                        android:src="@drawable/ic_remove" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_2sdp"
                     android:layout_marginBottom="@dimen/_12sdp"
                     android:gravity="center"
                     android:orientation="horizontal">
@@ -300,6 +329,7 @@
                         android:layout_width="@dimen/_270sdp"
                         android:layout_height="@dimen/_40sdp"
                         android:background="@drawable/shae_comment_background"
+                        android:fontFamily="@font/ptsans"
                         android:hint="@string/what_do_you_think"
                         android:importantForAutofill="no"
                         android:inputType="text"
@@ -310,7 +340,7 @@
                     <ImageView
                         android:id="@+id/img_comment_submit"
                         android:layout_width="@dimen/_30sdp"
-                        android:layout_height="match_parent"
+                        android:layout_height="@dimen/_30sdp"
                         android:contentDescription="@string/send"
                         android:padding="@dimen/_4sdp"
                         android:src="@drawable/send" />
@@ -322,4 +352,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.core.widget.NestedScrollView>
+</ScrollView>

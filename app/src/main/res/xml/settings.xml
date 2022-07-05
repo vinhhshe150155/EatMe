@@ -14,14 +14,6 @@
             android:entryValues="@array/languages_value"
             android:key="@string/key_language"
             android:title="@string/language" />
-
-    </PreferenceCategory>
-    <PreferenceCategory android:title="Polus">
-        <SwitchPreferenceCompat
-            android:defaultValue="false"
-            android:key="+10 polus project"
-            android:summary="+10 polus vì leader đanh đá"
-            android:title="+10 polus project" />
     </PreferenceCategory>
 
 </PreferenceScreen>

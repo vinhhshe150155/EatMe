@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +22,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
-import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -108,8 +109,11 @@ public class RecipeActivity extends AppCompatActivity {
     private ConstraintLayout layoutShare;
     private TextView tvFat;
     private TextView tvCarbs;
-    private NestedScrollView nestedScrollView;
+    private ScrollView scrollView;
     private RecyclerView rcvIngredient;
+    private ImageView imgCancelReplying;
+    private TextView tvReplying;
+    private LinearLayout layoutReplying;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,9 +124,13 @@ public class RecipeActivity extends AppCompatActivity {
         initAction();
     }
 
+    @SuppressLint("SetTextI18n")
     private void initUI() {
+        layoutReplying = findViewById(R.id.layout_replying);
+        imgCancelReplying = findViewById(R.id.img_cancel_replying);
+        tvReplying = findViewById(R.id.tv_replying);
         layoutShare = findViewById(R.id.layout_share_recipe);
-        nestedScrollView = findViewById(R.id.nested_scroll_view);
+        scrollView = findViewById(R.id.scroll_view);
         tvKcal = findViewById(R.id.tv_recipe_detail_calories);
         imgShare = findViewById(R.id.img_share_recipe);
         tvProtein = findViewById(R.id.tv_recipe_detail_protein);
@@ -139,19 +147,24 @@ public class RecipeActivity extends AppCompatActivity {
         edtComment = findViewById(R.id.edt_comment);
         tvRecipeName = findViewById(R.id.tv_recipe_name);
         RecyclerView rcvListComment = findViewById(R.id.rcv_list_comment);
-        rcvListComment.setHasFixedSize(true);
+        rcvListComment.setHasFixedSize(false);
         rcvListComment.setLayoutManager(new LinearLayoutManager(this));
         loadingDialog = new LoadingDialog(this);
         rcvListStep = findViewById(R.id.rcv_list_step);
+        layoutReplying.setVisibility(View.GONE);
         adapter = new CommentAdapter(comments, this, comment3 -> {
             currentReplyComment = comment3;
             commentStatus = COMMENT_REPLY;
+            tvReplying.setText("Replying " + comment3.getUsername() + ":");
+            layoutReplying.setVisibility(View.VISIBLE);
         }, new IClickNestedComment() {
             @Override
             public void onClickReplyNestedComment(ChildComment comment, Comment comment2) {
                 currentReplyComment = comment2;
                 childComment = comment;
                 commentStatus = COMMENT_NESTED_REPLY;
+                tvReplying.setText("Replying " + comment2.getUsername() + ":");
+                layoutReplying.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -209,8 +222,14 @@ public class RecipeActivity extends AppCompatActivity {
             finish();
             onBackPressed();
         });
-        nestedScrollView.setOnClickListener(view -> closeKeyboard());
+        scrollView.setOnClickListener(view -> closeKeyboard());
         imgShare.setOnClickListener(view -> shareRecipe());
+        imgCancelReplying.setOnClickListener(view -> cancelReplying());
+    }
+
+    private void cancelReplying() {
+        commentStatus = COMMENT_NORMAL;
+        layoutReplying.setVisibility(View.GONE);
     }
 
     @Override
@@ -226,6 +245,9 @@ public class RecipeActivity extends AppCompatActivity {
     }
 
     private void sendComment() {
+        if (edtComment.getText().toString().trim().equals("")) {
+            return;
+        }
         closeKeyboard();
         switch (commentStatus) {
             case 0:
@@ -238,6 +260,7 @@ public class RecipeActivity extends AppCompatActivity {
                 replyNestedComment();
                 break;
         }
+        cancelReplying();
         commentStatus = COMMENT_NORMAL;
     }
 

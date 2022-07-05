@@ -69,12 +69,11 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
             }
         });
         holder.nestedRcv.setLayoutManager(new LinearLayoutManager(holder.itemView.getContext()));
-        holder.nestedRcv.setHasFixedSize(true);
+        holder.nestedRcv.setHasFixedSize(false);
         holder.nestedRcv.setAdapter(adapter);
         holder.tvUsername.setText(comment.getUsername());
         holder.tvViewReply.setOnClickListener(view -> {
             comment.setExpandable(!comment.isExpandable());
-            //            adapter.updateCommentList(childComments);
             notifyItemChanged(holder.getAdapterPosition());
         });
         holder.tvReply.setOnClickListener(view -> iClickReplyComment.onClickReplyComment(comment));
@@ -93,6 +92,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
         private final RecyclerView nestedRcv;
         private final TextView tvUsername;
         private final TextView tvTimeComment;
+
         public CommentViewHolder(@NonNull View itemView) {
             super(itemView);
             layoutChild = itemView.findViewById(R.id.linear_list_child);
