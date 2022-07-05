@@ -45,20 +45,19 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
     }
 
     public String validateName(String str) {
+        StringBuilder rs = new StringBuilder();
         if (str == null) {
-            return "";
+            return rs.toString();
         }
-        int i = -1;
+        int i = 0;
         do {
-            i++;
             char c = str.charAt(i);
-            if (!((c > 'a' && c < 'z') || (c > 'A' && c < 'Z'))) {
-                i++;
-                break;
+            if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c == ' ')) {
+                rs.append(c);
             }
+            i++;
         } while (i < str.length());
-        i--;
-        return str.substring(i).trim();
+        return rs.toString().trim();
     }
 
     @Override
