@@ -116,8 +116,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
-            //super.onBackPressed();
-           showHome();
+            if(currentFragment == FRAGMENT_HOME){
+                // super.onBackPressed();
+                finish();
+            }else{
+           // super.onBackPressed();
+           showHome();}
         }
     }
 
