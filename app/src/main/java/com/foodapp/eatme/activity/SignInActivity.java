@@ -67,7 +67,7 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     private void initUI() {
-        btnSignIn = findViewById(R.id.btnSignIn);
+        btnSignIn = findViewById(R.id.btnSignUp);
         edtEmail = findViewById(R.id.edtEmail);
         edtPassword = findViewById(R.id.edtPassword);
         tvSignUp = findViewById(R.id.tvSignUp);
@@ -115,14 +115,17 @@ public class SignInActivity extends AppCompatActivity {
     private void onClickSignIn() {
         String email = edtEmail.getText().toString().trim();
         String password = edtPassword.getText().toString().trim();
+        boolean validEmail = true,
+                validPassword = true;
         if(email.isEmpty() && !Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             edtEmail.setError("Please enter valid email");
-            return;
-        }else if(password.isEmpty() || isValidPassword(password)){
+            validEmail = false;
+        }else if(password.isEmpty()){
             edtPassword.setError("Please enter valid password");
-            return;
+            validPassword = false;
         }
-
+        if (!validEmail || !validPassword )
+            return;
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         progressDialog.show();
