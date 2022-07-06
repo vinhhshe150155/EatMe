@@ -3,15 +3,10 @@ package com.foodapp.eatme.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-@Entity(tableName = "recipe")
 public class Recipe implements Parcelable {
     private boolean vegetarian;
     private boolean vegan;
@@ -32,7 +27,6 @@ public class Recipe implements Parcelable {
     private String license;
     private String sourceName;
     private double pricePerServing;
-    @PrimaryKey(autoGenerate = false)
     private int id;
     private String title;
     private int readyInMinutes;
@@ -47,7 +41,6 @@ public class Recipe implements Parcelable {
     private List<String> diets;
     private List<String> occasions;
     @SerializedName("analyzedInstructions")
-    @Expose
     private List<AnalyzedInstruction> analyzedInstructions;
     private String spoonacularSourceUrl;
     private String author;

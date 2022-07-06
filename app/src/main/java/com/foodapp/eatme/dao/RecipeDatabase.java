@@ -7,13 +7,13 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
-import com.foodapp.eatme.model.Recipe;
+import com.foodapp.eatme.model.extend.RecipeExtend;
 
 @TypeConverters({DataConverter.class})
-@Database(entities = {Recipe.class}, version = 1, exportSchema = false)
+@Database(entities = {RecipeExtend.class}, version = 1, exportSchema = false)
 public abstract class RecipeDatabase extends RoomDatabase {
     private static RecipeDatabase recipeDatabase;
-    public static final String DATABASE_NAME = "recipe.db";
+    public static final String DATABASE_NAME = "recipeDatabase.db";
 
     public abstract RecipeDAO recipeDAO();
 

@@ -23,7 +23,7 @@ import com.foodapp.eatme.R;
 import com.foodapp.eatme.activity.RecipeActivity;
 import com.foodapp.eatme.adapter.ListSavedRecipeAdapter;
 import com.foodapp.eatme.dao.RecipeDatabase;
-import com.foodapp.eatme.model.Recipe;
+import com.foodapp.eatme.model.extend.RecipeExtend;
 import com.foodapp.eatme.util.NetworkUtil;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -40,7 +40,7 @@ import java.util.List;
 
 public class ListRecipeFragment extends Fragment {
     RecipeDatabase database;
-    List<Recipe> recipeList;
+    List<RecipeExtend> recipeList;
     RecyclerView rcvListSavedRecipe;
     ImageView imgMenu;
     DrawerLayout drawerLayout;
@@ -117,10 +117,13 @@ public class ListRecipeFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 recipeList = new ArrayList<>();
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    Recipe recipe = postSnapshot.getValue(Recipe.class);
+                    RecipeExtend recipe = postSnapshot.getValue(RecipeExtend.class);
                     if (recipe != null) {
                         recipeList.add(recipe);
                     }
+                }
+                for(RecipeExtend recipe: recipeList){
+                    database.recipeDAO().insert(recipe);
                 }
                 initRecyclerView();
             }
@@ -132,7 +135,7 @@ public class ListRecipeFragment extends Fragment {
         });
     }
 
-    private void deleteRecipeFirebase(Recipe recipe) {
+    private void deleteRecipeFirebase(RecipeExtend recipe) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user == null) {
             return;

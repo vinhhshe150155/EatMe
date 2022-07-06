@@ -1,10 +1,18 @@
 package com.foodapp.eatme.model.extend;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 import com.foodapp.eatme.model.AnalyzedInstruction;
 
 import java.util.List;
 
-public class RecipeExtend {
+@Entity(tableName = "recipe")
+public class RecipeExtend implements Parcelable {
     private boolean vegetarian;
     private boolean vegan;
     private boolean glutenFree;
@@ -24,6 +32,7 @@ public class RecipeExtend {
     private String sourceName;
     private double pricePerServing;
     private List<ExtendedIngredient> extendedIngredients;
+    @PrimaryKey(autoGenerate = false)
     private int id;
     private String title;
     private int readyInMinutes;
@@ -33,17 +42,68 @@ public class RecipeExtend {
     private String image;
     private String imageType;
     private String summary;
-    private List<Object> cuisines;
+    private List<String> cuisines;
     private List<String> dishTypes;
     private List<String> diets;
     private List<String> occasions;
     private WinePairing winePairing;
     private String instructions;
     private List<AnalyzedInstruction> analyzedInstructions;
-    private Object originalId;
+    private String originalId;
+    private NutriExtend nutriExtend;
 
+    @Ignore
     public RecipeExtend() {
     }
+
+    protected RecipeExtend(Parcel in) {
+        vegetarian = in.readByte() != 0;
+        vegan = in.readByte() != 0;
+        glutenFree = in.readByte() != 0;
+        dairyFree = in.readByte() != 0;
+        veryHealthy = in.readByte() != 0;
+        cheap = in.readByte() != 0;
+        veryPopular = in.readByte() != 0;
+        sustainable = in.readByte() != 0;
+        lowFodmap = in.readByte() != 0;
+        weightWatcherSmartPoints = in.readInt();
+        gaps = in.readString();
+        preparationMinutes = in.readInt();
+        cookingMinutes = in.readInt();
+        aggregateLikes = in.readInt();
+        healthScore = in.readInt();
+        creditsText = in.readString();
+        sourceName = in.readString();
+        pricePerServing = in.readDouble();
+        id = in.readInt();
+        title = in.readString();
+        readyInMinutes = in.readInt();
+        servings = in.readInt();
+        sourceUrl = in.readString();
+        openLicense = in.readInt();
+        image = in.readString();
+        imageType = in.readString();
+        summary = in.readString();
+        cuisines = in.createStringArrayList();
+        dishTypes = in.createStringArrayList();
+        diets = in.createStringArrayList();
+        occasions = in.createStringArrayList();
+        instructions = in.readString();
+        analyzedInstructions = in.createTypedArrayList(AnalyzedInstruction.CREATOR);
+        originalId = in.readString();
+    }
+
+    public static final Creator<RecipeExtend> CREATOR = new Creator<RecipeExtend>() {
+        @Override
+        public RecipeExtend createFromParcel(Parcel in) {
+            return new RecipeExtend(in);
+        }
+
+        @Override
+        public RecipeExtend[] newArray(int size) {
+            return new RecipeExtend[size];
+        }
+    };
 
     public boolean isVegetarian() {
         return vegetarian;
@@ -269,50 +329,11 @@ public class RecipeExtend {
         this.summary = summary;
     }
 
-    public RecipeExtend(boolean vegetarian, boolean vegan, boolean glutenFree, boolean dairyFree, boolean veryHealthy, boolean cheap, boolean veryPopular, boolean sustainable, boolean lowFodmap, int weightWatcherSmartPoints, String gaps, int preparationMinutes, int cookingMinutes, int aggregateLikes, int healthScore, String creditsText, String sourceName, double pricePerServing, List<ExtendedIngredient> extendedIngredients, int id, String title, int readyInMinutes, int servings, String sourceUrl, int openLicense, String image, String imageType, String summary, List<Object> cuisines, List<String> dishTypes, List<String> diets, List<String> occasions, WinePairing winePairing, String instructions, List<AnalyzedInstruction> analyzedInstructions, Object originalId) {
-        this.vegetarian = vegetarian;
-        this.vegan = vegan;
-        this.glutenFree = glutenFree;
-        this.dairyFree = dairyFree;
-        this.veryHealthy = veryHealthy;
-        this.cheap = cheap;
-        this.veryPopular = veryPopular;
-        this.sustainable = sustainable;
-        this.lowFodmap = lowFodmap;
-        this.weightWatcherSmartPoints = weightWatcherSmartPoints;
-        this.gaps = gaps;
-        this.preparationMinutes = preparationMinutes;
-        this.cookingMinutes = cookingMinutes;
-        this.aggregateLikes = aggregateLikes;
-        this.healthScore = healthScore;
-        this.creditsText = creditsText;
-        this.sourceName = sourceName;
-        this.pricePerServing = pricePerServing;
-        this.extendedIngredients = extendedIngredients;
-        this.id = id;
-        this.title = title;
-        this.readyInMinutes = readyInMinutes;
-        this.servings = servings;
-        this.sourceUrl = sourceUrl;
-        this.openLicense = openLicense;
-        this.image = image;
-        this.imageType = imageType;
-        this.summary = summary;
-        this.cuisines = cuisines;
-        this.dishTypes = dishTypes;
-        this.diets = diets;
-        this.occasions = occasions;
-        this.winePairing = winePairing;
-        this.instructions = instructions;
-        this.analyzedInstructions = analyzedInstructions;
-        this.originalId = originalId;
-    }
-
-    public List<Object> getCuisines() {
+    public List<String> getCuisines() {
         return cuisines;
     }
 
-    public void setCuisines(List<Object> cuisines) {
+    public void setCuisines(List<String> cuisines) {
         this.cuisines = cuisines;
     }
 
@@ -364,11 +385,102 @@ public class RecipeExtend {
         this.analyzedInstructions = analyzedInstructions;
     }
 
-    public Object getOriginalId() {
+    public String getOriginalId() {
         return originalId;
     }
 
-    public void setOriginalId(Object originalId) {
+    public void setOriginalId(String originalId) {
         this.originalId = originalId;
+    }
+
+    public NutriExtend getNutriExtend() {
+        return nutriExtend;
+    }
+
+    public void setNutriExtend(NutriExtend nutriExtend) {
+        this.nutriExtend = nutriExtend;
+    }
+
+    public RecipeExtend(boolean vegetarian, boolean vegan, boolean glutenFree, boolean dairyFree, boolean veryHealthy, boolean cheap, boolean veryPopular, boolean sustainable, boolean lowFodmap, int weightWatcherSmartPoints, String gaps, int preparationMinutes, int cookingMinutes, int aggregateLikes, int healthScore, String creditsText, String sourceName, double pricePerServing, List<ExtendedIngredient> extendedIngredients, int id, String title, int readyInMinutes, int servings, String sourceUrl, int openLicense, String image, String imageType, String summary, List<String> cuisines, List<String> dishTypes, List<String> diets, List<String> occasions, WinePairing winePairing, String instructions, List<AnalyzedInstruction> analyzedInstructions, String originalId, NutriExtend nutriExtend) {
+        this.vegetarian = vegetarian;
+        this.vegan = vegan;
+        this.glutenFree = glutenFree;
+        this.dairyFree = dairyFree;
+        this.veryHealthy = veryHealthy;
+        this.cheap = cheap;
+        this.veryPopular = veryPopular;
+        this.sustainable = sustainable;
+        this.lowFodmap = lowFodmap;
+        this.weightWatcherSmartPoints = weightWatcherSmartPoints;
+        this.gaps = gaps;
+        this.preparationMinutes = preparationMinutes;
+        this.cookingMinutes = cookingMinutes;
+        this.aggregateLikes = aggregateLikes;
+        this.healthScore = healthScore;
+        this.creditsText = creditsText;
+        this.sourceName = sourceName;
+        this.pricePerServing = pricePerServing;
+        this.extendedIngredients = extendedIngredients;
+        this.id = id;
+        this.title = title;
+        this.readyInMinutes = readyInMinutes;
+        this.servings = servings;
+        this.sourceUrl = sourceUrl;
+        this.openLicense = openLicense;
+        this.image = image;
+        this.imageType = imageType;
+        this.summary = summary;
+        this.cuisines = cuisines;
+        this.dishTypes = dishTypes;
+        this.diets = diets;
+        this.occasions = occasions;
+        this.winePairing = winePairing;
+        this.instructions = instructions;
+        this.analyzedInstructions = analyzedInstructions;
+        this.originalId = originalId;
+        this.nutriExtend = nutriExtend;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeByte((byte) (vegetarian ? 1 : 0));
+        parcel.writeByte((byte) (vegan ? 1 : 0));
+        parcel.writeByte((byte) (glutenFree ? 1 : 0));
+        parcel.writeByte((byte) (dairyFree ? 1 : 0));
+        parcel.writeByte((byte) (veryHealthy ? 1 : 0));
+        parcel.writeByte((byte) (cheap ? 1 : 0));
+        parcel.writeByte((byte) (veryPopular ? 1 : 0));
+        parcel.writeByte((byte) (sustainable ? 1 : 0));
+        parcel.writeByte((byte) (lowFodmap ? 1 : 0));
+        parcel.writeInt(weightWatcherSmartPoints);
+        parcel.writeString(gaps);
+        parcel.writeInt(preparationMinutes);
+        parcel.writeInt(cookingMinutes);
+        parcel.writeInt(aggregateLikes);
+        parcel.writeInt(healthScore);
+        parcel.writeString(creditsText);
+        parcel.writeString(sourceName);
+        parcel.writeDouble(pricePerServing);
+        parcel.writeInt(id);
+        parcel.writeString(title);
+        parcel.writeInt(readyInMinutes);
+        parcel.writeInt(servings);
+        parcel.writeString(sourceUrl);
+        parcel.writeInt(openLicense);
+        parcel.writeString(image);
+        parcel.writeString(imageType);
+        parcel.writeString(summary);
+        parcel.writeStringList(cuisines);
+        parcel.writeStringList(dishTypes);
+        parcel.writeStringList(diets);
+        parcel.writeStringList(occasions);
+        parcel.writeString(instructions);
+        parcel.writeTypedList(analyzedInstructions);
+        parcel.writeString(originalId);
     }
 }

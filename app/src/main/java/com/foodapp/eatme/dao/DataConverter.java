@@ -4,6 +4,9 @@ import androidx.room.TypeConverter;
 
 import com.foodapp.eatme.model.AnalyzedInstruction;
 import com.foodapp.eatme.model.Nutrition;
+import com.foodapp.eatme.model.extend.ExtendedIngredient;
+import com.foodapp.eatme.model.extend.NutriExtend;
+import com.foodapp.eatme.model.extend.WinePairing;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -56,7 +59,73 @@ public class DataConverter {
     }
 
     @TypeConverter
-    public String fromObjectNutrition(Nutrition nutrition) {
+    public String toObjectNutrition(NutriExtend nutrition) {
+        if (nutrition == null) {
+            return (null);
+        }
+        Gson gson = new Gson();
+        Type type = new TypeToken<NutriExtend>() {
+        }.getType();
+        return gson.toJson(nutrition, type);
+    }
+
+    @TypeConverter
+    public NutriExtend fromObjectNutrition(String nutrition) {
+        if (nutrition == null) {
+            return (null);
+        }
+        Gson gson = new Gson();
+        Type type = new TypeToken<NutriExtend>() {
+        }.getType();
+        return gson.fromJson(nutrition, type);
+    }
+
+    @TypeConverter
+    public String fromObjectExtendedIngredient(List<ExtendedIngredient> ingredients) {
+        if (ingredients == null) {
+            return (null);
+        }
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<ExtendedIngredient>>() {
+        }.getType();
+        return gson.toJson(ingredients, type);
+    }
+
+    @TypeConverter
+    public List<ExtendedIngredient> toObjectExtendedIngredient(String ingredient) {
+        if (ingredient == null) {
+            return (null);
+        }
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<ExtendedIngredient>>() {
+        }.getType();
+        return gson.fromJson(ingredient, type);
+    }
+
+    @TypeConverter
+    public String toObjectWineParing(WinePairing winePairing) {
+        if (winePairing == null) {
+            return (null);
+        }
+        Gson gson = new Gson();
+        Type type = new TypeToken<WinePairing>() {
+        }.getType();
+        return gson.toJson(winePairing, type);
+    }
+
+    @TypeConverter
+    public WinePairing fromObjectEWineParing(String winePairing) {
+        if (winePairing == null) {
+            return (null);
+        }
+        Gson gson = new Gson();
+        Type type = new TypeToken<WinePairing>() {
+        }.getType();
+        return gson.fromJson(winePairing, type);
+    }
+
+    @TypeConverter
+    public String toObjectNutrion(Nutrition nutrition) {
         if (nutrition == null) {
             return (null);
         }
@@ -67,7 +136,7 @@ public class DataConverter {
     }
 
     @TypeConverter
-    public Nutrition toObjectNutrition(String nutrition) {
+    public Nutrition fromObjectNutrion(String nutrition) {
         if (nutrition == null) {
             return (null);
         }

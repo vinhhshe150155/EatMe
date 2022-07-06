@@ -6,24 +6,24 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.foodapp.eatme.model.Recipe;
+import com.foodapp.eatme.model.extend.RecipeExtend;
 
 import java.util.List;
 
 @Dao
 public interface RecipeDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(Recipe recipe);
+    void insert(RecipeExtend recipe);
 
     @Update
-    void update(Recipe recipe);
+    void update(RecipeExtend recipe);
 
-    @Query("DELETE FROM recipe where id = :id")
+    @Query("DELETE FROM recipe WHERE id = :id")
     void delete(int id);
 
     @Query("SELECT * FROM recipe WHERE id = :id")
-    Recipe getItemById(Long id);
+    RecipeExtend getItemById(Long id);
 
     @Query("SELECT * FROM recipe")
-    List<Recipe> getAllRecipe();
+    List<RecipeExtend> getAllRecipe();
 }
