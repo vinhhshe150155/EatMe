@@ -20,19 +20,19 @@ import com.foodapp.eatme.R;
 import com.foodapp.eatme.clickinterface.IClickDeleteSavedRecipe;
 import com.foodapp.eatme.clickinterface.IClickItemSavedRecipe;
 import com.foodapp.eatme.dao.RecipeDatabase;
-import com.foodapp.eatme.model.Recipe;
+import com.foodapp.eatme.model.extend.RecipeExtend;
 
 import java.util.List;
 
 public class ListSavedRecipeAdapter extends RecyclerView.Adapter<ListSavedRecipeAdapter.ListSavedRecipeViewHolder> {
-    private final List<Recipe> recipes;
+    private final List<RecipeExtend> recipes;
     private final ViewBinderHelper viewBinderHelper = new ViewBinderHelper();
     private final Context context;
     private final IClickItemSavedRecipe iClickItemSavedRecipe;
     private final IClickDeleteSavedRecipe iClickDeleteSavedRecipe;
     RecipeDatabase database;
 
-    public ListSavedRecipeAdapter(List<Recipe> recipes, Context context, IClickItemSavedRecipe iClickItemSavedRecipe, IClickDeleteSavedRecipe iClickDeleteSavedRecipe) {
+    public ListSavedRecipeAdapter(List<RecipeExtend> recipes, Context context, IClickItemSavedRecipe iClickItemSavedRecipe, IClickDeleteSavedRecipe iClickDeleteSavedRecipe) {
         this.recipes = recipes;
         this.context = context;
         viewBinderHelper.setOpenOnlyOne(true);
@@ -50,10 +50,10 @@ public class ListSavedRecipeAdapter extends RecyclerView.Adapter<ListSavedRecipe
 
     @Override
     public void onBindViewHolder(@NonNull ListSavedRecipeViewHolder holder, int position) {
-        Recipe recipe = recipes.get(position);
+        RecipeExtend recipe = recipes.get(position);
         viewBinderHelper.bind(holder.swipeRevealLayout, String.valueOf(recipe.getId()));
         holder.tvRecipeName.setText(recipe.getTitle());
-        holder.tvCalories.setText(getCalories(recipe.getSummary()));
+        holder.tvCalories.setText((recipe.getNutriExtend().getCalories().replace("k", "")));
         holder.tvReadyMinute.setText(String.valueOf(recipe.getReadyInMinutes()));
         Glide.with(context)
                 .load(recipe.getImage())
@@ -68,17 +68,6 @@ public class ListSavedRecipeAdapter extends RecyclerView.Adapter<ListSavedRecipe
         });
     }
 
-    private String getCalories(String str) {
-        int start = 0;
-        int end = str.indexOf("calories</b>");
-        for (int i = end - 2; i > 0; i--) {
-            if (!Character.isDigit(str.charAt(i))) {
-                start = ++i;
-                break;
-            }
-        }
-        return str.substring(start, end);
-    }
 
     private void deleteRecipe(int id) {
         database.recipeDAO().delete(id);

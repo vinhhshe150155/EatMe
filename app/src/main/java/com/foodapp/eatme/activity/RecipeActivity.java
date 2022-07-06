@@ -43,6 +43,7 @@ import com.foodapp.eatme.model.extend.NutriExtend;
 import com.foodapp.eatme.model.extend.RecipeExtend;
 import com.foodapp.eatme.util.LoadingDialog;
 import com.foodapp.eatme.util.LocaleHelper;
+import com.foodapp.eatme.util.NetworkUtil;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -114,6 +115,8 @@ public class RecipeActivity extends AppCompatActivity {
     private ImageView imgCancelReplying;
     private TextView tvReplying;
     private LinearLayout layoutReplying;
+    private LinearLayout layoutComment;
+    private String typeRecipe = "on";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,6 +129,7 @@ public class RecipeActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void initUI() {
+        layoutComment = findViewById(R.id.layout_comment);
         layoutReplying = findViewById(R.id.layout_replying);
         imgCancelReplying = findViewById(R.id.img_cancel_replying);
         tvReplying = findViewById(R.id.tv_replying);
@@ -175,26 +179,95 @@ public class RecipeActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        loadingDialog.showDialog(null);
-        ApiRecipeDetailManager apiRecipeDetailManager = new ApiRecipeDetailManager();
-        initApiListener();
-        database = RecipeDatabase.getInstance(getApplicationContext());
-        auth = FirebaseAuth.getInstance();
-        user = auth.getCurrentUser();
-        recipe = getIntent().getParcelableExtra("recipe");
-        tvRecipeName.setText(recipe.getTitle());
-        Glide.with(this).load(recipe.getImage()).into(imgRecipe);
-        steps = recipe.getAnalyzedInstructions().get(0).getSteps();
+        if (NetworkUtil.isNetworkAvailable(this)) {
+            if (getIntent().getParcelableExtra("recipe") instanceof RecipeExtend) {
+                initOnline(0);
+            } else {
+                initOnline(1);
+            }
+
+        } else {
+            initOffline();
+        }
         String currentLanguage = LocaleHelper.getCurrentLanguage();
-        apiRecipeDetailManager.getNutriExtend(nutriListener, recipe.getId());
-        apiRecipeDetailManager.getRecipeDetails(recipeDetailsListener, recipe.getId());
-        checkIfLiked();
-        getComments();
         if (LocaleHelper.LANG_KR.equals(currentLanguage)) {
             detectLanguage();
         } else {
             initStepAdapter();
         }
+    }
+
+    private void initOffline() {
+        loadingDialog.showDialog(null);
+        typeRecipe = "off";
+        database = RecipeDatabase.getInstance(getApplicationContext());
+        recipeExtend = getIntent().getParcelableExtra("recipe");
+        recipeExtend = database.recipeDAO().getItemById((long) recipeExtend.getId());
+        tvRecipeName.setText(recipeExtend.getTitle());
+        Glide.with(this).load(recipeExtend.getImage()).into(imgRecipe);
+        steps = recipeExtend.getAnalyzedInstructions().get(0).getSteps();
+        layoutComment.setVisibility(View.GONE);
+        btnLike.setLiked(true);
+        setNutriExtentInfo(recipeExtend.getNutriExtend());
+        IngredientAdapter ingredientsAdapter = new IngredientAdapter(RecipeActivity.this, recipeExtend.getExtendedIngredients());
+        rcvIngredient.setLayoutManager(new LinearLayoutManager(RecipeActivity.this, LinearLayoutManager.VERTICAL, false));
+        rcvIngredient.setHasFixedSize(true);
+        rcvIngredient.setAdapter(ingredientsAdapter);
+    }
+
+    private void initOnline(int type) {
+        loadingDialog.showDialog(null);
+        ApiRecipeDetailManager apiRecipeDetailManager = new ApiRecipeDetailManager();
+        database = RecipeDatabase.getInstance(getApplicationContext());
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
+        initApiListener();
+        //from saved list
+        if (type == 0) {
+            recipeExtend = getIntent().getParcelableExtra("recipe");
+            initRecipe();
+        } else {
+            recipe = getIntent().getParcelableExtra("recipe");
+            initRecipeExtend();
+        }
+        tvRecipeName.setText(recipe.getTitle());
+        Glide.with(this).load(recipe.getImage()).into(imgRecipe);
+        apiRecipeDetailManager.getNutriExtend(nutriListener, recipe.getId());
+        apiRecipeDetailManager.getRecipeDetails(recipeDetailsListener, recipe.getId());
+        steps = recipe.getAnalyzedInstructions().get(0).getSteps();
+        typeRecipe = "on";
+        checkIfLiked();
+        getComments();
+    }
+
+    private void initRecipeExtend() {
+        recipeExtend = new RecipeExtend();
+        recipeExtend.setTitle(recipe.getTitle());
+        recipeExtend.setReadyInMinutes(recipe.getReadyInMinutes());
+        recipeExtend.setId(recipe.getId());
+        recipeExtend.setAnalyzedInstructions(recipe.getAnalyzedInstructions());
+        recipeExtend.setCuisines(recipe.getCuisines());
+        recipeExtend.setDiets(recipe.getDiets());
+        recipeExtend.setDishTypes(recipe.getDishTypes());
+        recipeExtend.setCookingMinutes(recipe.getCookingMinutes());
+        recipeExtend.setImage(recipe.getImage());
+        recipeExtend.setHealthScore(recipe.getHealthScore());
+        recipeExtend.setPreparationMinutes(recipe.getPreparationMinutes());
+    }
+
+    private void initRecipe() {
+        recipe = new Recipe();
+        recipe.setTitle(recipeExtend.getTitle());
+        recipe.setReadyInMinutes(recipeExtend.getReadyInMinutes());
+        recipe.setId(recipeExtend.getId());
+        recipe.setAnalyzedInstructions(recipeExtend.getAnalyzedInstructions());
+        recipe.setCuisines(recipeExtend.getCuisines());
+        recipe.setDiets(recipeExtend.getDiets());
+        recipe.setDishTypes(recipeExtend.getDishTypes());
+        recipe.setCookingMinutes(recipeExtend.getCookingMinutes());
+        recipe.setImage(recipeExtend.getImage());
+        recipe.setHealthScore(recipeExtend.getHealthScore());
+        recipe.setPreparationMinutes(recipeExtend.getPreparationMinutes());
     }
 
     private void initStepAdapter() {
@@ -209,11 +282,19 @@ public class RecipeActivity extends AppCompatActivity {
         btnLike.setOnLikeListener(new OnLikeListener() {
             @Override
             public void liked(LikeButton likeButton) {
+                if (typeRecipe.equals("off")) {
+                    btnLike.setLiked(true);
+                    return;
+                }
                 saveRecipe();
             }
 
             @Override
             public void unLiked(LikeButton likeButton) {
+                if (typeRecipe.equals("off")) {
+                    btnLike.setLiked(true);
+                    return;
+                }
                 saveRecipe();
             }
         });
@@ -238,7 +319,7 @@ public class RecipeActivity extends AppCompatActivity {
     }
 
     private void saveRecipe() {
-        database.recipeDAO().insert(recipe);
+        database.recipeDAO().insert(recipeExtend);
         addRecipeToFirebase();
         Toasty.normal(this, isLiked ? "Unliked" : "Saved").show();
         isLiked = !isLiked;
@@ -416,11 +497,11 @@ public class RecipeActivity extends AppCompatActivity {
         }
         if (isLiked) {
             deleteRecipeFirebase();
-            database.recipeDAO().delete(recipe.getId());
+            database.recipeDAO().delete(recipeExtend.getId());
             return;
         }
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("user").child(user.getUid()).child("savedRecipe");
-        ref.push().setValue(recipe);
+        ref.push().setValue(recipeExtend);
     }
 
     private void deleteRecipeFirebase() {
@@ -467,10 +548,8 @@ public class RecipeActivity extends AppCompatActivity {
             @Override
             public void didFetch(NutriExtend nutriExtend, String message) {
                 if (nutriExtend != null) {
-                    tvKcal.setText(nutriExtend.getCalories().replace("k", ""));
-                    tvProtein.setText(nutriExtend.getProtein());
-                    tvFat.setText(nutriExtend.getFat());
-                    tvCarbs.setText(nutriExtend.getCarbs());
+                    recipeExtend.setNutriExtend(nutriExtend);
+                    setNutriExtentInfo(nutriExtend);
                 }
             }
 
@@ -482,8 +561,8 @@ public class RecipeActivity extends AppCompatActivity {
         recipeDetailsListener = new RecipeDetailsListener() {
             @Override
             public void didFetch(RecipeExtend response, String message) {
-                recipeExtend = response;
-                if (recipeExtend != null) {
+                if (response != null) {
+                    recipeExtend.setExtendedIngredients(response.getExtendedIngredients());
                     IngredientAdapter ingredientsAdapter = new IngredientAdapter(RecipeActivity.this, recipeExtend.getExtendedIngredients());
                     rcvIngredient.setLayoutManager(new LinearLayoutManager(RecipeActivity.this, LinearLayoutManager.VERTICAL, false));
                     rcvIngredient.setHasFixedSize(true);
@@ -498,6 +577,13 @@ public class RecipeActivity extends AppCompatActivity {
             }
         };
 
+    }
+
+    private void setNutriExtentInfo(NutriExtend nutriExtend) {
+        tvKcal.setText(nutriExtend.getCalories().replace("k", ""));
+        tvProtein.setText(nutriExtend.getProtein());
+        tvFat.setText(nutriExtend.getFat());
+        tvCarbs.setText(nutriExtend.getCarbs());
     }
 
     private void closeKeyboard() {

@@ -1,20 +1,80 @@
 package com.foodapp.eatme.model.extend;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import com.google.gson.annotations.Expose;
+
 import java.util.List;
 
-public class ExtendedIngredient {
+public class ExtendedIngredient implements Parcelable {
+    @Expose
     private int id;
+    @Expose
     private String aisle;
+    @Expose
     private String image;
+    @Expose
     private String consistency;
+    @Expose
     private String name;
+    @Expose
     private String nameClean;
+    @Expose
     private String original;
+    @Expose
     private String originalName;
+    @Expose
     private double amount;
 
     public ExtendedIngredient() {
     }
+
+    protected ExtendedIngredient(Parcel in) {
+        id = in.readInt();
+        aisle = in.readString();
+        image = in.readString();
+        consistency = in.readString();
+        name = in.readString();
+        nameClean = in.readString();
+        original = in.readString();
+        originalName = in.readString();
+        amount = in.readDouble();
+        unit = in.readString();
+        meta = in.createStringArrayList();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(aisle);
+        dest.writeString(image);
+        dest.writeString(consistency);
+        dest.writeString(name);
+        dest.writeString(nameClean);
+        dest.writeString(original);
+        dest.writeString(originalName);
+        dest.writeDouble(amount);
+        dest.writeString(unit);
+        dest.writeStringList(meta);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<ExtendedIngredient> CREATOR = new Creator<ExtendedIngredient>() {
+        @Override
+        public ExtendedIngredient createFromParcel(Parcel in) {
+            return new ExtendedIngredient(in);
+        }
+
+        @Override
+        public ExtendedIngredient[] newArray(int size) {
+            return new ExtendedIngredient[size];
+        }
+    };
 
     public int getId() {
         return id;

@@ -1,14 +1,44 @@
 package com.foodapp.eatme.model.extend;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import com.google.gson.annotations.Expose;
+
 import java.util.List;
 
-public class NutriExtend {
+public class NutriExtend implements Parcelable {
+    @Expose
     private String calories;
+    @Expose
     private String carbs;
+    @Expose
     private String fat;
+    @Expose
     private String protein;
+    @Expose
     private List<Bad> bad;
+    @Expose
     private List<Good> good;
+
+    protected NutriExtend(Parcel in) {
+        calories = in.readString();
+        carbs = in.readString();
+        fat = in.readString();
+        protein = in.readString();
+    }
+
+    public static final Creator<NutriExtend> CREATOR = new Creator<NutriExtend>() {
+        @Override
+        public NutriExtend createFromParcel(Parcel in) {
+            return new NutriExtend(in);
+        }
+
+        @Override
+        public NutriExtend[] newArray(int size) {
+            return new NutriExtend[size];
+        }
+    };
 
     public String getCalories() {
         return calories;
@@ -68,5 +98,18 @@ public class NutriExtend {
         this.protein = protein;
         this.bad = bad;
         this.good = good;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(calories);
+        parcel.writeString(carbs);
+        parcel.writeString(fat);
+        parcel.writeString(protein);
     }
 }

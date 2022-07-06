@@ -1,10 +1,51 @@
 package com.foodapp.eatme.model.extend;
 
-public class Bad {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import com.google.gson.annotations.Expose;
+
+public class Bad implements Parcelable {
+    @Expose
     private String name;
+    @Expose
     private String amount;
+    @Expose
     private boolean indented;
+    @Expose
     private double percentOfDailyNeeds;
+
+    protected Bad(Parcel in) {
+        name = in.readString();
+        amount = in.readString();
+        indented = in.readByte() != 0;
+        percentOfDailyNeeds = in.readDouble();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(amount);
+        dest.writeByte((byte) (indented ? 1 : 0));
+        dest.writeDouble(percentOfDailyNeeds);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Bad> CREATOR = new Creator<Bad>() {
+        @Override
+        public Bad createFromParcel(Parcel in) {
+            return new Bad(in);
+        }
+
+        @Override
+        public Bad[] newArray(int size) {
+            return new Bad[size];
+        }
+    };
 
     public String getName() {
         return name;
