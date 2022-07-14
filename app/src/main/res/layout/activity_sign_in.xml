@@ -113,11 +113,11 @@
 
     <Button
         android:id="@+id/btnSignInGoogle"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/_170sdp"
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/border_button"
-        android:drawableStart="@drawable/google"
+        android:drawableLeft="@drawable/google"
         android:fontFamily="@font/jost_regular"
         android:text="@string/sign_in_with_google"
         android:textColor="#CA4545"
