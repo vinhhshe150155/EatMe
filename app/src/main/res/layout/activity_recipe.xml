@@ -327,7 +327,7 @@
 
                     <EditText
                         android:id="@+id/edt_comment"
-                        android:layout_width="@dimen/_270sdp"
+                        android:layout_width="@dimen/_260sdp"
                         android:layout_height="@dimen/_40sdp"
                         android:background="@drawable/shae_comment_background"
                         android:fontFamily="@font/ptsans"

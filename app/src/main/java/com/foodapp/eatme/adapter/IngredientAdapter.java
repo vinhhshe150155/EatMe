@@ -41,7 +41,7 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
         holder.tvIngredientName.setSelected(true);
         holder.tvIngredientAmount.setText(String.format("%.1f", ingredient.getAmount()) + " " + ingredient.getUnit());
         holder.tvIngredientAmount.setSelected(true);
-        Glide.with(context).load("https://spoonacular.com/cdn/ingredients_100x100/" + ingredient.getImage()).into(holder.imgIngredient);
+        Glide.with(context).load("https://spoonacular.com/cdn/ingredients_100x100/" + ingredient.getImage()).placeholder(R.drawable.placeholder_image).into(holder.imgIngredient);
     }
 
     public String validateName(String str) {

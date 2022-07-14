@@ -71,7 +71,6 @@ public class ListSavedRecipeAdapter extends RecyclerView.Adapter<ListSavedRecipe
 
     private void deleteRecipe(int id) {
         database.recipeDAO().delete(id);
-        Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show();
     }
 
     @Override

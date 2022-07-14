@@ -3,11 +3,13 @@ package com.foodapp.eatme.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -17,8 +19,11 @@ import com.bumptech.glide.Glide;
 import com.foodapp.eatme.R;
 import com.foodapp.eatme.activity.RecipeActivity;
 import com.foodapp.eatme.model.Recipe;
+import com.foodapp.eatme.util.NetworkUtil;
 
 import java.util.List;
+
+import es.dmoral.toasty.Toasty;
 
 public class ListSearchRecipeAdapter extends RecyclerView.Adapter<ListSearchRecipeAdapter.ListRecipeViewHolder> {
     private final List<Recipe> recipes;
@@ -44,9 +49,18 @@ public class ListSearchRecipeAdapter extends RecyclerView.Adapter<ListSearchReci
         holder.tvTitle.setText(recipe.getTitle());
         holder.tvTitle.setSelected(true);
         holder.tvReadyTime.setText(recipe.getReadyInMinutes() + "min");
-        holder.tvKcal.setText(((int) recipe.getNutrition().getNutrients().get(0).getAmount()) + "kcal");
-        Glide.with(context).load(recipe.getImage()).into(holder.imgRecipe);
+        int calories = ((int) recipe.getNutrition().getNutrients().get(0).getAmount());
+        holder.tvKcal.setText(calories + "kcal");
+        Glide.with(context).load(recipe.getImage()).placeholder(R.drawable.placeholder_image).into(holder.imgRecipe);
+        if (calories > 1200) calories = 1200;
+        int colorGreen = (1200 - calories) * 190 / 1200;
+        String hexColor = String.format("#%02x%02x%02x", 255, colorGreen, 50);
+        holder.imgRecipeCalories.setColorFilter(Color.parseColor(hexColor));
         holder.cvRecipeItem.setOnClickListener(view -> {
+            if (!NetworkUtil.isNetworkAvailable(context)) {
+                Toasty.info(context, R.string.no_internet_connection, Toast.LENGTH_SHORT, true).show();
+                return;
+            }
             Intent intent = new Intent(context, RecipeActivity.class);
             intent.putExtra("recipe", recipe);
             context.startActivity(intent);
@@ -63,6 +77,7 @@ public class ListSearchRecipeAdapter extends RecyclerView.Adapter<ListSearchReci
         private final CardView cvRecipeItem;
         private final TextView tvTitle;
         private final ImageView imgRecipe;
+        private final ImageView imgRecipeCalories;
         private final TextView tvReadyTime;
         private final TextView tvKcal;
 
@@ -74,6 +89,7 @@ public class ListSearchRecipeAdapter extends RecyclerView.Adapter<ListSearchReci
             tvTitle = itemView.findViewById(R.id.tv_recipe_item_name);
             imgRecipe = itemView.findViewById(R.id.img_recipe_item);
             tvKcal = itemView.findViewById(R.id.tv_recipe_kcal);
+            imgRecipeCalories = itemView.findViewById(R.id.imageView);
         }
     }
 }

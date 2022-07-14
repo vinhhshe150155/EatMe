@@ -16,6 +16,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.foodapp.eatme.R;
+import com.foodapp.eatme.util.LoadingDialog;
 import com.foodapp.eatme.util.StringUtil;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -38,7 +39,7 @@ public class SignInActivity extends AppCompatActivity {
     private TextView tvSignUp;
     private TextView tvForgot;
     private Button btnSignInGoogle;
-    private ProgressDialog progressDialog;
+    private LoadingDialog progressDialog;
     private GoogleSignInClient mGoogleSignInClient;
     private static final String TAG = "GoogleActivity";
     private FirebaseAuth mAuth;
@@ -73,7 +74,7 @@ public class SignInActivity extends AppCompatActivity {
         tvSignUp = findViewById(R.id.tvSignUp);
         tvForgot = findViewById(R.id.tvForgotPassword);
         btnSignInGoogle = findViewById(R.id.btnSignInGoogle);
-        progressDialog = new ProgressDialog(this);
+        progressDialog = new LoadingDialog(this);
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(StringUtil.GSO_KEY)
                 .requestEmail()
@@ -128,10 +129,10 @@ public class SignInActivity extends AppCompatActivity {
             return;
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        progressDialog.show();
+        progressDialog.showDialog(null);
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
-                    progressDialog.dismiss();
+                    progressDialog.hideDialog();
                     if (task.isSuccessful()) {
                         Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                         finishAffinity();

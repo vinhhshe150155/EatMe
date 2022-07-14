@@ -33,7 +33,7 @@ public class RecipeStepAdapter extends RecyclerView.Adapter<RecipeStepAdapter.Re
     public void onBindViewHolder(@NonNull RecipeStepViewHolder holder, int position) {
         Step step = steps.get(position);
         holder.tvStepContent.setText(step.getStep());
-        holder.tvStepNumber.setText(Integer.toString(position + 1));
+        holder.tvStepNumber.setText((position + 1) + ".");
     }
 
     @Override
