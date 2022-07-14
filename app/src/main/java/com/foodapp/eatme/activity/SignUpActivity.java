@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.foodapp.eatme.R;
+import com.foodapp.eatme.util.LoadingDialog;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
@@ -26,7 +27,7 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText edtPassword;
     private EditText edtConfirmPassword;
     private EditText edtUsername;
-    private ProgressDialog progressDialog;
+    private LoadingDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public class SignUpActivity extends AppCompatActivity {
         edtEmail = findViewById(R.id.edtEmail);
         edtPassword = findViewById(R.id.edtPassword);
         edtConfirmPassword = findViewById(R.id.edtConfirmPassword);
-        progressDialog = new ProgressDialog(this);
+        progressDialog = new LoadingDialog(this);
         edtUsername = findViewById(R.id.edtUsername);
     }
 
@@ -94,7 +95,7 @@ public class SignUpActivity extends AppCompatActivity {
         if (!validEmail || !validNickname || !validPassword || !validConfirmPassword)
             return;
         FirebaseAuth auth = FirebaseAuth.getInstance();
-        progressDialog.show();
+        progressDialog.showDialog(null);
         auth.createUserWithEmailAndPassword(strEmail, strPassword)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
@@ -104,7 +105,7 @@ public class SignUpActivity extends AppCompatActivity {
                         if (user != null) {
                             user.updateProfile(profileUpdates)
                                     .addOnCompleteListener(task1 -> {
-                                        progressDialog.dismiss();
+                                        progressDialog.hideDialog();
                                         if (task1.isSuccessful()) {
                                             Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
                                             startActivity(intent);
@@ -115,7 +116,7 @@ public class SignUpActivity extends AppCompatActivity {
                     } else {
                         Toast.makeText(SignUpActivity.this, "FAILED", Toast.LENGTH_SHORT).show();
                     }
-                    progressDialog.dismiss();
+                    progressDialog.hideDialog();
                 });
 
     }

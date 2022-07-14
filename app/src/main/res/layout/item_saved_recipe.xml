@@ -5,7 +5,7 @@
     android:id="@+id/swipe_recipe_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/_8sdp"
+    android:layout_margin="@dimen/_4sdp"
     app:dragEdge="right"
     app:revealMode="same_level">
 
@@ -34,7 +34,7 @@
         android:id="@+id/layout_saved_recipe"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_90sdp"
-        android:background="@color/floral_white">
+        android:background="@drawable/border_recipe_item">
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/img_save_recipe"
@@ -102,7 +102,7 @@
                 android:paddingStart="@dimen/_2sdp"
                 android:paddingBottom="@dimen/_1sdp"
                 android:paddingEnd="0dp"
-                android:text="@string/kcal"
+                android:text="@string/kcal_lowercase"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_10ssp" />
 

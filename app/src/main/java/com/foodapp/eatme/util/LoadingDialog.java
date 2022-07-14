@@ -26,6 +26,7 @@ public class LoadingDialog {
         }
         dialog.create();
         dialog.show();
+        dialog.setCanceledOnTouchOutside(false);
     }
 
     public void hideDialog() {

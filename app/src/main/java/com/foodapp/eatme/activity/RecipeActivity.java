@@ -159,16 +159,20 @@ public class RecipeActivity extends AppCompatActivity {
         adapter = new CommentAdapter(comments, this, comment3 -> {
             currentReplyComment = comment3;
             commentStatus = COMMENT_REPLY;
-            tvReplying.setText("Replying " + comment3.getUsername() + ":");
+            tvReplying.setText(getResources().getString(R.string.replying) + " " + comment3.getUsername() + ":");
             layoutReplying.setVisibility(View.VISIBLE);
+            edtComment.requestFocus();
+            showKeyboard();
         }, new IClickNestedComment() {
             @Override
             public void onClickReplyNestedComment(ChildComment comment, Comment comment2) {
                 currentReplyComment = comment2;
                 childComment = comment;
                 commentStatus = COMMENT_NESTED_REPLY;
-                tvReplying.setText("Replying " + comment2.getUsername() + ":");
+                tvReplying.setText(getResources().getString(R.string.replying) + " " + comment.getUsername() + ":");
                 layoutReplying.setVisibility(View.VISIBLE);
+                edtComment.requestFocus();
+                showKeyboard();
             }
 
             @Override
@@ -234,7 +238,11 @@ public class RecipeActivity extends AppCompatActivity {
         Glide.with(this).load(recipe.getImage()).into(imgRecipe);
         apiRecipeDetailManager.getNutriExtend(nutriListener, recipe.getId());
         apiRecipeDetailManager.getRecipeDetails(recipeDetailsListener, recipe.getId());
-        steps = recipe.getAnalyzedInstructions().get(0).getSteps();
+        if (!recipe.getAnalyzedInstructions().isEmpty()) {
+            steps = recipe.getAnalyzedInstructions().get(0).getSteps();
+        } else {
+            steps = new ArrayList<>();
+        }
         typeRecipe = "on";
         checkIfLiked();
         getComments();
@@ -319,9 +327,19 @@ public class RecipeActivity extends AppCompatActivity {
     }
 
     private void saveRecipe() {
-        database.recipeDAO().insert(recipeExtend);
+        if (database.recipeDAO().getItemById((long) recipeExtend.getId()) != null) {
+            database.recipeDAO().delete(recipeExtend.getId());
+        } else {
+            database.recipeDAO().insert(recipeExtend);
+        }
         addRecipeToFirebase();
-        Toasty.normal(this, isLiked ? "Unliked" : "Saved").show();
+        if (!isLiked) {
+            Toasty.custom(this, R.string.saved_cap, R.drawable.heart_hand, R.color.pink_light, Toast.LENGTH_SHORT, true,
+                    true).show();
+        } else {
+            Toasty.custom(this, R.string.unliked, R.drawable.broken_heart, R.color.gray_light, Toast.LENGTH_SHORT, true,
+                    true).show();
+        }
         isLiked = !isLiked;
     }
 
@@ -446,27 +464,30 @@ public class RecipeActivity extends AppCompatActivity {
                                             translatedText -> {
                                                 tvRecipeName.setText(translatedText);
                                                 recipe.setTitle(translatedText);
+                                                recipe.setTitle(translatedText);
                                             })
                                     .addOnFailureListener(
                                             e -> Log.e("Translate", e.getMessage()));
-                            for (int i = 0; i < steps.size(); i++) {
-                                Step step = steps.get(i);
-                                int index = i;
-                                englishKoreanTranslator.translate(step.getStep())
-                                        .addOnSuccessListener(
-                                                str -> {
-                                                    steps.get(index).setStep(str);
-                                                    if (index == steps.size() - 1) {
-                                                        RecipeStepAdapter adapter = new RecipeStepAdapter(steps);
-                                                        rcvListStep.setLayoutManager(new LinearLayoutManager(this));
-                                                        rcvListStep.setAdapter(adapter);
-                                                        loadingDialog.hideDialog();
-                                                        layoutRecipe.setVisibility(View.VISIBLE);
+                            if (!steps.isEmpty()) {
+                                for (int i = 0; i < steps.size(); i++) {
+                                    Step step = steps.get(i);
+                                    int index = i;
+                                    englishKoreanTranslator.translate(step.getStep())
+                                            .addOnSuccessListener(
+                                                    str -> {
+                                                        steps.get(index).setStep(str);
+                                                        if (index == steps.size() - 1) {
+                                                            RecipeStepAdapter adapter = new RecipeStepAdapter(steps);
+                                                            rcvListStep.setLayoutManager(new LinearLayoutManager(this));
+                                                            rcvListStep.setAdapter(adapter);
+                                                            loadingDialog.hideDialog();
+                                                            layoutRecipe.setVisibility(View.VISIBLE);
+                                                        }
                                                     }
-                                                }
-                                        )
-                                        .addOnFailureListener(
-                                                e -> Log.e("Translate", e.getMessage()));
+                                            )
+                                            .addOnFailureListener(
+                                                    e -> Log.e("Translate", e.getMessage()));
+                                }
                             }
                         })
                 .addOnFailureListener(e -> Log.e("Error", "Model could n’t be downloaded " + e));
@@ -497,7 +518,6 @@ public class RecipeActivity extends AppCompatActivity {
         }
         if (isLiked) {
             deleteRecipeFirebase();
-            database.recipeDAO().delete(recipeExtend.getId());
             return;
         }
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("user").child(user.getUid()).child("savedRecipe");
@@ -521,7 +541,7 @@ public class RecipeActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(RecipeActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                Toasty.error(RecipeActivity.this, R.string.error, Toast.LENGTH_SHORT, true).show();
             }
         });
     }
@@ -591,6 +611,14 @@ public class RecipeActivity extends AppCompatActivity {
         if (view != null) {
             InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             manager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+
+    private void showKeyboard() {
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            manager.showSoftInput(view, 0);
         }
     }
 

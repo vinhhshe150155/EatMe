@@ -236,6 +236,28 @@
 
         </LinearLayout>
 
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/layout_sort">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lost_connection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="lost_connection.json"
+                app:lottie_imageAssetsFolder="assets/"
+                app:lottie_loop="true" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
         <LinearLayout
             android:id="@+id/layout_empty_search"
             android:layout_width="match_parent"
@@ -289,15 +311,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_80sdp"
                     android:background="@color/floral_white"
-                    android:gravity="start"
-                    android:orientation="vertical"
-                    android:padding="20dp">
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/drawerlayout_tv_email"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_50sdp"
                         android:text="@string/filter"
                         android:textAlignment="center"
                         android:textColor="@color/black"

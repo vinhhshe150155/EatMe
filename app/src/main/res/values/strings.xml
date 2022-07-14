@@ -102,4 +102,12 @@
     <string name="we_can_t_found_any_recipe">We can\'t found any recipe.</string>
     <string name="have_an_account_sign_in_here">Have an account? Sign in here</string>
     <string name="oops_you_want_to_create_an_account">Oops ! You want to create an account?</string>
+    <string name="no_internet_connection">No internet connection.</string>
+    <string name="search">Search…</string>
+    <string name="error">An error occurred.</string>
+    <string name="unliked">Unliked</string>
+    <string name="saved_cap">Saved</string>
+    <string name="replying">Replying</string>
+    <string name="deleted">Deleted</string>
+    <string name="my_recipes">My recipes</string>
 </resources>

@@ -37,6 +37,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
+
 
 public class ListRecipeFragment extends Fragment {
     RecipeDatabase database;
@@ -122,7 +124,11 @@ public class ListRecipeFragment extends Fragment {
                         recipeList.add(recipe);
                     }
                 }
-                for(RecipeExtend recipe: recipeList){
+                List<RecipeExtend> deleteList = database.recipeDAO().getAllRecipe();
+                for (RecipeExtend recipeExtend : deleteList) {
+                    database.recipeDAO().delete(recipeExtend.getId());
+                }
+                for (RecipeExtend recipe : recipeList) {
                     database.recipeDAO().insert(recipe);
                 }
                 initRecyclerView();
@@ -147,12 +153,13 @@ public class ListRecipeFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot recipeSnapshot : dataSnapshot.getChildren()) {
                     recipeSnapshot.getRef().removeValue();
+                    Toasty.custom(requireContext(), R.string.deleted, R.drawable.ic_delete, R.color.violet, Toast.LENGTH_SHORT, true, true).show();
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(requireContext(), "Failed.", Toast.LENGTH_SHORT).show();
+                Toasty.error(requireContext(), R.string.error).show();
             }
         });
     }

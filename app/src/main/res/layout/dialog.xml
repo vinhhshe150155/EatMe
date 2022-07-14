@@ -25,6 +25,7 @@
             tools:ignore="UselessParent">
 
             <com.airbnb.lottie.LottieAnimationView
+                android:layout_marginTop="@dimen/_15sdp"
                 android:padding="@dimen/_4sdp"
                 android:id="@+id/animationView"
                 android:layout_width="@dimen/_40sdp"

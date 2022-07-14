@@ -8,6 +8,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,7 +21,9 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.foodapp.eatme.R;
 import com.foodapp.eatme.adapter.DietAdapter;
 import com.foodapp.eatme.adapter.ListSearchRecipeAdapter;
@@ -92,6 +95,8 @@ public class ListRecipeActivity extends AppCompatActivity {
     private ImageView imgFilter;
     DrawerLayout drawerLayout;
     private LinearLayout layoutSearchEmpty;
+    private LottieAnimationView lostConnection;
+    private SwipeRefreshLayout refreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +109,8 @@ public class ListRecipeActivity extends AppCompatActivity {
 
 
     private void initUI() {
+        refreshLayout = findViewById(R.id.refresh_layout);
+        lostConnection = findViewById(R.id.lost_connection);
         layoutSearchEmpty = findViewById(R.id.layout_empty_search);
         drawerLayout = findViewById(R.id.drawer_layout);
         imgFilter = findViewById(R.id.img_filter);
@@ -131,6 +138,9 @@ public class ListRecipeActivity extends AppCompatActivity {
     }
 
     private void initData() {
+        if (!NetworkUtil.isNetworkAvailable(this)) {
+            lostConnection.setVisibility(View.VISIBLE);
+        }
         initSortDirection();
         initSortBy();
         searchIngredients = getIntent().getStringExtra("ingredients");
@@ -236,6 +246,10 @@ public class ListRecipeActivity extends AppCompatActivity {
     }
 
     private void initAction() {
+        refreshLayout.setOnRefreshListener(() -> {
+            initData();
+            refreshLayout.setRefreshing(false);
+        });
         searchView.setOnQueryTextListener(new OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -390,7 +404,7 @@ public class ListRecipeActivity extends AppCompatActivity {
 
     private void searchRecipe() {
         if (!NetworkUtil.isNetworkAvailable(this)) {
-            Toasty.normal(this, "No internet connection.").show();
+            Toasty.info(this, "No internet connection.", Toast.LENGTH_SHORT, true).show();
             return;
         }
         loadingDialog.showDialog(null);
@@ -434,7 +448,7 @@ public class ListRecipeActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(@NonNull Call<ApiFoodResponse> call, @NonNull Throwable t) {
-                Toasty.normal(ListRecipeActivity.this, "Error.").show();
+                Toasty.info(ListRecipeActivity.this, R.string.error, Toast.LENGTH_SHORT, true).show();
                 loadingDialog.hideDialog();
             }
         });
