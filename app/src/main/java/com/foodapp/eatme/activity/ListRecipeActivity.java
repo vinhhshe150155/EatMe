@@ -201,6 +201,11 @@ public class ListRecipeActivity extends AppCompatActivity {
 
     @SuppressLint("NotifyDataSetChanged")
     private void initRcvMealType() {
+        for (MealType m : mealTypes) {
+            if (m.getName().equals(mealType)) {
+                m.setSelected(true);
+            }
+        }
         mealTypeFilterAdapter = new MealTypeFilterAdapter(mealTypes, mealType1 -> {
             for (MealType m : mealTypes) {
                 m.setSelected(false);
@@ -211,7 +216,6 @@ public class ListRecipeActivity extends AppCompatActivity {
         });
         rcvMealTypeFilter.setLayoutManager(new GridLayoutManager(this, 2));
         rcvMealTypeFilter.setAdapter(mealTypeFilterAdapter);
-
     }
 
     private void initMealType() {
