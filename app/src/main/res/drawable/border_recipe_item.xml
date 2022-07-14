@@ -4,7 +4,7 @@
     <!-- This is the stroke you want to define -->
     <stroke android:width="1.5dp"
         android:color="#f4f6f8"/>
-    <solid android:color="#B4FFE1A8"/>
+    <solid android:color="#7CFFE1A8"/>
     <!-- Optional, round your corners -->
     <corners
         android:radius="13dp"
