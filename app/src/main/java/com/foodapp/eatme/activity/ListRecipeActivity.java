@@ -140,6 +140,8 @@ public class ListRecipeActivity extends AppCompatActivity {
     private void initData() {
         if (!NetworkUtil.isNetworkAvailable(this)) {
             lostConnection.setVisibility(View.VISIBLE);
+        }else {
+            lostConnection.setVisibility(View.GONE);
         }
         initSortDirection();
         initSortBy();
@@ -251,6 +253,7 @@ public class ListRecipeActivity extends AppCompatActivity {
 
     private void initAction() {
         refreshLayout.setOnRefreshListener(() -> {
+            initUI();
             initData();
             refreshLayout.setRefreshing(false);
         });
